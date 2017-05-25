@@ -60,16 +60,20 @@ class InfinitePaySettingsType extends AbstractType
                 'required' => true,
             ])
             ->add('infinitePayAutoCapture', CheckboxType::class, [
-                'label' => 'oro.infinite_pay.settings.auto_capture.label'
+                'label' => 'oro.infinite_pay.settings.auto_capture.label',
+                'required' => false,
             ])
             ->add('infinitePayAutoActivate', CheckboxType::class, [
-                'label' => 'oro.infinite_pay.settings.auto_activate.label'
+                'label' => 'oro.infinite_pay.settings.auto_activate.label',
+                'required' => false,
             ])
             ->add('infinitePayTestMode', CheckboxType::class, [
-                'label' => 'oro.infinite_pay.settings.test_mode.label'
+                'label' => 'oro.infinite_pay.settings.test_mode.label',
+                'required' => false,
             ])
             ->add('infinitePayDebugMode', CheckboxType::class, [
-                'label' => 'oro.infinite_pay.settings.debug_mode.label'
+                'label' => 'oro.infinite_pay.settings.debug_mode.label',
+                'required' => false,
             ])
             ->add('infinitePayInvoiceDuePeriod', IntegerType::class, [
                 'label' => 'oro.infinite_pay.settings.invoice_due_period.label'
