@@ -16,7 +16,8 @@
     },
     "require": {
         "php": ">=7.0",
-        "oro/commerce": "1.x-dev"
+        "oro/commerce": "1.x-dev",
+        "besimple/soap-client": "^0.2.6"
     },
     "extra": {
         "branch-alias": {
