@@ -93,7 +93,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
 
         $paymentTransaction = new PaymentTransaction();
         $paymentTransaction->setTransactionOptions(
-            ['additionalOptions' => []]
+            ['additionalData' => '{}']
         );
         $order = new Order();
         $reserveResponse = $actionReserve->execute($paymentTransaction, $order);
@@ -125,7 +125,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
 
         $paymentTransaction = new PaymentTransaction();
         $paymentTransaction->setTransactionOptions(
-            ['additionalOptions' => []]
+            ['additionalData' => '{}']
         );
         $order = new Order();
 
@@ -162,7 +162,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
 
         $paymentTransaction = new PaymentTransaction();
         $paymentTransaction->setTransactionOptions(
-            ['additionalOptions' => []]
+            ['additionalData' => '{}']
         );
         $order = new Order();
         $reserveResponse = $actionReserve->execute($paymentTransaction, $order);

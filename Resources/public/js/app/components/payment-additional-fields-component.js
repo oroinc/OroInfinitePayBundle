@@ -1,8 +1,8 @@
-/** @lends PaymentUserInputComponent */
+/** @lends PaymentAdditionalFieldsComponent */
 define(function(require) {
     'use strict';
 
-    var PaymentUserInputComponent;
+    var PaymentAdditionalFieldsComponent;
     var mediator = require('oroui/js/mediator');
     var _ = require('underscore');
     var $ = require('jquery');
@@ -10,21 +10,11 @@ define(function(require) {
 
     var BaseComponent = require('oroui/js/app/components/base/component');
 
-    PaymentUserInputComponent = BaseComponent.extend(/** @exports PaymentUserInputComponent.prototype */ {
-        /**
-         * @property {jQuery}
-         */
-        $inputForm: null,
-
+    PaymentAdditionalFieldsComponent = BaseComponent.extend({
         /**
          * @property {jQuery}
          */
         $el: null,
-
-        /**
-         * @property {jQuery}
-         */
-        $userInput: null,
 
         /**
          * @property {Object}
@@ -32,11 +22,10 @@ define(function(require) {
         options: {
             paymentMethod: null,
             selectors: {
-                form: '.infinitepay-form',
+                container: '.infinitepay-additional-fields',
                 fieldEmail: '[name$="oro_infinite_pay_debtor_data[email]"]',
                 fieldLegalform: '[name$="oro_infinite_pay_debtor_data[legal_form]"]',
-                collectionUserInput: '[data-name="field__user-input"]',
-                inputField: '[name$="[user_input][__index__]"]'
+                inputField: '[name$="[additional_data][__index__]"]'
             }
         },
 
@@ -47,7 +36,6 @@ define(function(require) {
             this.options = _.extend({}, this.options, options);
             this.$el = $(options._sourceElement);
 
-            this.$userInput = this.getUserInputElement();
             mediator.on('checkout:payment:before-form-serialization', this.beforeTransit, this);
             mediator.on('checkout:payment:before-restore-filled-form', this.updateDebtorDataFormIdentifier, this);
 
@@ -71,13 +59,27 @@ define(function(require) {
          */
         beforeTransit: function(eventData) {
             if (eventData.paymentMethod === this.options.paymentMethod) {
+                // eventData.stopped = true;
 
                 var email = this.getEmailElement().val();
                 var legalForm = this.getLegalFormElement().val();
 
-                this.getUserInputStorage('email').val(email);
-                this.getUserInputStorage('legalForm').val(legalForm);
+                console.log(email);
+                this.setAdditionalData(email, legalForm);
             }
+        },
+
+        /**
+         * @param {String} email
+         * @param {String} legalForm
+         */
+        setAdditionalData: function(email, legalForm) {
+            var additionalData = {
+                'email': email,
+                'legalForm': legalForm
+            };
+
+            mediator.trigger('checkout:payment:additional-data:set', JSON.stringify(additionalData));
         },
 
         /**
@@ -85,36 +87,11 @@ define(function(require) {
          */
         validateBeforeTransit: function(eventData) {
             if (eventData.data.paymentMethod === this.options.paymentMethod) {
-                eventData.stopped = !this.validate();
+                // eventData.stopped = !this.validate();
+                // eventData.stopped = true;
             }
         },
 
-        /**
-         * @param name
-         * @returns {jQuery|HTMLElement}
-         */
-        getUserInputStorage: function(name) {
-            var selectorInputField = this.options.selectors.inputField.replace(/__index__/g, name);
-            var inputField = this.$userInput.find(selectorInputField);
-            if (inputField.length === 0) {
-                var namedPrototype = this.getNamedPrototype(name);
-                this.$userInput.append(namedPrototype);
-                inputField = this.$userInput.find(selectorInputField);
-            }
-
-            return inputField;
-        },
-
-        /**
-         * @returns {string}
-         */
-        getNamedPrototype: function(name) {
-            return this.$userInput.data('prototype').replace(/__name__/g, name);
-        },
-
-        getUserInputElement: function() {
-            return $(this.options.selectors.collectionUserInput);
-        },
         /**
          * @returns {jQuery|HTMLElement}
          */
@@ -136,14 +113,14 @@ define(function(require) {
             if (this.disposed) {
                 return;
             }
-            PaymentUserInputComponent.__super__.dispose.call(this);
+            PaymentAdditionalFieldsComponent.__super__.dispose.call(this);
         },
 
         /**
          * @returns {jQuery|HTMLElement}
          */
         getForm: function() {
-            return $(this.options.selectors.form);
+            return $(this.options.selectors.container);
         },
 
         /**
@@ -225,6 +202,6 @@ define(function(require) {
         }
     });
 
-    return PaymentUserInputComponent;
+    return PaymentAdditionalFieldsComponent;
 });
 

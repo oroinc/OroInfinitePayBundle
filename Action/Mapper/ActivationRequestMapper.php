@@ -41,10 +41,10 @@ class ActivationRequestMapper implements RequestMapperInterface
     /**
      * @param Order $order
      * @param InfinitePayConfigInterface $config
-     * @param array $userInput
+     * @param array $additionalData
      * @return ActivateOrder
      */
-    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $userInput)
+    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData)
     {
         $orderId = $order->getIdentifier();
         $clientData = $this->clientDataProvider->getClientData($orderId, $config);
