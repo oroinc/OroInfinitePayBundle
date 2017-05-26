@@ -1,5 +1,5 @@
 {
-    "name": "oro/infinitepay",
+    "name": "oro/commerce-infinitepay",
     "description": "Oro InfinitePay Integration",
     "homepage": "https://github.com/orocrm/OroInfinitePayBundle.git",
     "license": "OSL-3.0",
