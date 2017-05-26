@@ -10,8 +10,9 @@ interface RequestMapperInterface
     /**
      * @param Order $order
      * @param InfinitePayConfigInterface $config
-     * @param array $userInput
+     * @param array $additionalData
+     *
      * @return mixed
      */
-    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $userInput);
+    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData);
 }

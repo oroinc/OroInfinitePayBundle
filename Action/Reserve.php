@@ -10,6 +10,14 @@ use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 class Reserve extends ActionAbstract
 {
     /**
+     * @internal
+     */
+    const DEFAULT_ADDITIONAL_DATA = [
+        'email' => '',
+        'legalForm' => '',
+    ];
+
+    /**
      * @var AutomationProviderInterface
      */
     protected $automationProvider;
@@ -27,11 +35,11 @@ class Reserve extends ActionAbstract
      */
     public function execute(PaymentTransaction $paymentTransaction, Order $order)
     {
-        $additionalOptions = $this->getAdditionalOptionsFromPaymentTransaction($paymentTransaction);
+        $additionalData = $this->getAdditionalDataFromPaymentTransaction($paymentTransaction);
 
         $paymentMethodConfig = $this->getPaymentMethodConfig($paymentTransaction->getPaymentMethod());
 
-        $reserveOrder = $this->requestMapper->createRequestFromOrder($order, $paymentMethodConfig, $additionalOptions);
+        $reserveOrder = $this->requestMapper->createRequestFromOrder($order, $paymentMethodConfig, $additionalData);
         $reserveOrder = $this->automationProvider->setAutomation(
             $reserveOrder,
             $order,
@@ -72,12 +80,30 @@ class Reserve extends ActionAbstract
      * @param PaymentTransaction $paymentTransaction
      *
      * @return array
+     *
+     * @throws \LogicException
+     * @throws \ErrorException
      */
-    private function getAdditionalOptionsFromPaymentTransaction(PaymentTransaction $paymentTransaction)
+    private function getAdditionalDataFromPaymentTransaction(PaymentTransaction $paymentTransaction)
     {
         $transactionOptions = $paymentTransaction->getTransactionOptions();
 
-        return $transactionOptions['additionalOptions'];
+        if (!array_key_exists('additionalData', $transactionOptions)) {
+            throw new \ErrorException('Additional data was not found in transaction options');
+        }
+
+        $additionalData = json_decode($transactionOptions['additionalData'], true);
+        if (!is_array($additionalData)) {
+            throw new \LogicException('Additional data could not be decoded');
+        }
+
+        // Ensure additional data has requried elements.
+        $additionalData += self::DEFAULT_ADDITIONAL_DATA;
+
+        // Remove undesired elements.
+        $filteredAdditionalData = array_intersect_key($additionalData, self::DEFAULT_ADDITIONAL_DATA);
+
+        return $filteredAdditionalData;
     }
 
     /**

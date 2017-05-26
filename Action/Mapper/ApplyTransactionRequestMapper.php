@@ -26,16 +26,16 @@ class ApplyTransactionRequestMapper implements RequestMapperInterface
     /**
      * @param Order $order
      * @param InfinitePayConfigInterface $config
-     * @param array $userInput
+     * @param array $additionalData
      * @return ApplyTransaction
      */
-    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $userInput)
+    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData)
     {
         $request = new ApplyTransaction();
 
         $orderData = new OrderTotal();
         $orderData->setOrderId($order->getIdentifier());
-        $orderData->setRefNo($userInput['ref_no']);
+        $orderData->setRefNo($additionalData['ref_no']);
 
         $applyTransaction = new RequestApplyTransaction();
         $applyTransaction->setClientData($this->clientDataProvider->getClientData($order->getIdentifier(), $config));

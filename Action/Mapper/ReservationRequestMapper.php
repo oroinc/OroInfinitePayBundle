@@ -57,16 +57,17 @@ class ReservationRequestMapper implements RequestMapperInterface
     /**
      * @param Order $order
      * @param InfinitePayConfigInterface $config
-     * @param array $userInput
+     * @param array $additionalData
+     *
      * @return ReserveOrder
      */
-    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $userInput)
+    public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData)
     {
         $orderId = $order->getIdentifier();
         $clientData = $this->clientDataProvider->getClientData($orderId, $config);
         $debtorData = $this->debtorDataProvider->getDebtorData($order);
-        $debtorData->setBdEmai($userInput['email']);
-        $debtorData->setComOrPer($userInput['legalForm']);
+        $debtorData->setBdEmai($additionalData['email']);
+        $debtorData->setComOrPer($additionalData['legalForm']);
 
         $orderTotal = $this->orderTotalProvider->getOrderTotal($order);
         $orderTotal->setAutoCapture('0');
