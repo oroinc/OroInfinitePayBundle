@@ -59,12 +59,9 @@ define(function(require) {
          */
         beforeTransit: function(eventData) {
             if (eventData.paymentMethod === this.options.paymentMethod) {
-                // eventData.stopped = true;
-
                 var email = this.getEmailElement().val();
                 var legalForm = this.getLegalFormElement().val();
 
-                console.log(email);
                 this.setAdditionalData(email, legalForm);
             }
         },
@@ -87,8 +84,7 @@ define(function(require) {
          */
         validateBeforeTransit: function(eventData) {
             if (eventData.data.paymentMethod === this.options.paymentMethod) {
-                // eventData.stopped = !this.validate();
-                // eventData.stopped = true;
+                eventData.stopped = !this.validate();
             }
         },
 
