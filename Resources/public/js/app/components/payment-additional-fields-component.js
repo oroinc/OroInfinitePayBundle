@@ -162,7 +162,7 @@ define(function(require) {
             var validator = virtualForm.validate({
                 ignore: '', // required to validate all fields in virtual form
                 errorPlacement: function(error, element) {
-                    var $el = self.$form.find('#' + $(element).attr('id'));
+                    var $el = self.getForm().find('#' + $(element).attr('id'));
                     $.validator.defaults.errorPlacement(error, $el);
                 }
             });
