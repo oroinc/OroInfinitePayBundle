@@ -34,6 +34,6 @@ class OroAccountBundle implements Migration, OrderedMigrationInterface
      */
     public function getOrder()
     {
-            return 1;
+        return 1;
     }
 }
