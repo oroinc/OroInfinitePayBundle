@@ -146,24 +146,37 @@ define(function(require) {
          * @returns {Boolean}
          */
         validate: function(event) {
-            var virtualForm = $('<form>');
-
             var appendElement;
             if (event !== undefined && event.target) {
-                appendElement = $(event.target).clone();
+                var element = $(event.target);
+                var parentForm = element.closest('form');
+
+                if (parentForm.length) {
+                    return element.validate().form();
+                }
+
+                appendElement = element.clone();
             } else {
                 appendElement = this.getForm().clone();
             }
 
+            var virtualForm = $('<form>');
             virtualForm.append(appendElement);
 
             var self = this;
-            // should be refactored in scope https://magecore.atlassian.net/browse/BB-10308
             var validator = virtualForm.validate({
                 ignore: '', // required to validate all fields in virtual form
                 errorPlacement: function(error, element) {
                     var $el = self.getForm().find('#' + $(element).attr('id'));
-                    $.validator.defaults.errorPlacement(error, $el);
+                    var parentWithValidation = $el.parents('[data-validation]');
+
+                    $el.addClass('error');
+
+                    if (parentWithValidation.length) {
+                        error.appendTo(parentWithValidation.first());
+                    } else {
+                        error.appendTo($el.parent());
+                    }
                 }
             });
 
