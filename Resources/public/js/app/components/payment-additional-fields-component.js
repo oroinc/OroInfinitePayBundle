@@ -146,15 +146,21 @@ define(function(require) {
          * @returns {Boolean}
          */
         validate: function(event) {
-            var virtualForm = $('<form>');
-
             var appendElement;
             if (event !== undefined && event.target) {
-                appendElement = $(event.target).clone();
+                var element = $(event.target);
+                var parentForm = element.closest('form');
+
+                if (parentForm.length) {
+                    return element.validate().form();
+                }
+
+                appendElement = element.clone();
             } else {
                 appendElement = this.getForm().clone();
             }
 
+            var virtualForm = $('<form>');
             virtualForm.append(appendElement);
 
             var self = this;
