@@ -5,6 +5,7 @@ namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Validator\Constraints;
 use Doctrine\Common\Collections\ArrayCollection;
 use Oro\Bundle\AddressBundle\Entity\AddressType;
 use Oro\Bundle\CustomerBundle\Entity\Customer;
+use Oro\Bundle\FrontendBundle\Request\FrontendHelper;
 use Oro\Bundle\InfinitePayBundle\Validator\Constraints\CustomerRequireVatId;
 use Oro\Bundle\InfinitePayBundle\Validator\Constraints\CustomerRequireVatIdValidator;
 use Oro\Component\Testing\Unit\EntityTrait;
@@ -14,6 +15,9 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
 {
     use EntityTrait;
+
+    /** @var FrontendHelper|\PHPUnit_Framework_MockObject_MockObject */
+    private $frontendHelper;
 
     /** @var  CustomerRequireVatId */
     protected $constraint;
@@ -29,6 +33,8 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
         $this->constraint = new CustomerRequireVatId();
         $this->validator = new CustomerRequireVatIdValidator();
+        $this->frontendHelper = $this->createMock(FrontendHelper::class);
+        $this->validator->setFrontendHelper($this->frontendHelper);
     }
 
     /**
@@ -43,12 +49,29 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
         $validator->validate(false, $constraint);
     }
 
+    public function testValidateWhenFrontendRequest()
+    {
+        $this->frontendHelper->expects($this->once())
+            ->method('isFrontendRequest')
+            ->willReturn(true);
+        /** @var ExecutionContextInterface|\PHPUnit_Framework_MockObject_MockObject $context */
+        $context = $this->createMock(ExecutionContextInterface::class);
+        $context->expects($this->never())
+                ->method('addViolation');
+
+        $this->validator->initialize($context);
+        $this->validator->validate(new Customer(), $this->constraint);
+    }
+
     /**
      * @dataProvider addressesDataProvider
      * @param array $addresses
      */
     public function testValidation($vatId, $addresses, $expectedViolation)
     {
+        $this->frontendHelper->expects($this->once())
+            ->method('isFrontendRequest')
+            ->willReturn(false);
         /** @var Customer|\PHPUnit_Framework_MockObject_MockObject $customer */
         $customer = $this->getMockBuilder(Customer::class)
             ->disableOriginalConstructor()
