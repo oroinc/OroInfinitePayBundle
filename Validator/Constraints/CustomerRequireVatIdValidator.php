@@ -5,12 +5,26 @@ namespace Oro\Bundle\InfinitePayBundle\Validator\Constraints;
 use Oro\Bundle\AddressBundle\Entity\AddressType;
 use Oro\Bundle\CustomerBundle\Entity\Customer;
 use Oro\Bundle\CustomerBundle\Entity\CustomerAddress;
+use Oro\Bundle\FrontendBundle\Request\FrontendHelper;
 use Oro\Bundle\TaxBundle\Matcher\EuropeanUnionHelper;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class CustomerRequireVatIdValidator extends ConstraintValidator
 {
+    /**
+     * @var FrontendHelper
+     */
+    private $frontendHelper;
+
+    /**
+     * @param FrontendHelper $frontendHelper
+     */
+    public function setFrontendHelper(FrontendHelper $frontendHelper)
+    {
+        $this->frontendHelper = $frontendHelper;
+    }
+
     /**
      * @param Customer $value
      * @param Constraint $constraint
@@ -28,10 +42,24 @@ class CustomerRequireVatIdValidator extends ConstraintValidator
             );
         }
 
+        if ($this->frontendHelper->isFrontendRequest()) {
+            return;
+        }
+
+        if ($this->getBillingEUAddesses($value) && empty($value->getVatId())) {
+            $this->context->addViolation($constraint->message);
+        }
+    }
+
+    /**
+     * @param Customer $customer
+     * @return array|CustomerAddress[]
+     */
+    protected function getBillingEUAddesses(Customer $customer)
+    {
         $billingEUAddresses = [];
 
-        /** @var CustomerAddress $address */
-        foreach ($value->getAddresses() as $address) {
+        foreach ($customer->getAddresses() as $address) {
             if ($address->isEmpty()
                 || !EuropeanUnionHelper::isEuropeanUnionCountry($address->getCountryIso2())) {
                 continue;
@@ -48,8 +76,6 @@ class CustomerRequireVatIdValidator extends ConstraintValidator
             }
         }
 
-        if ($billingEUAddresses && empty($value->getVatId())) {
-            $this->context->addViolation($constraint->message);
-        }
+        return $billingEUAddresses;
     }
 }

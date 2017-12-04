@@ -35,5 +35,7 @@ services:
 
     oro_infinite_pay.validator.customer_require_vat_id:
         class: 'Oro\Bundle\InfinitePayBundle\Validator\Constraints\CustomerRequireVatIdValidator'
+        calls:
+            - [setFrontendHelper, ['@oro_frontend.request.frontend_helper']]
         tags:
             - { name: validator.constraint_validator, alias: oro_infinite_pay_customer_require_vat_id_validator }
