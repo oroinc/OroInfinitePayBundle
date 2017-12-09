@@ -4,9 +4,9 @@
  
 InfinitePay configuration can be found in:
  
-```code
-Configuration → Commerce → Payment → Infinite Pay.
-```
+
+**Configuration > Commerce > Payment > Infinite Pay**
+
 
 There are Display Options like bundle activation status and labels for frontend display. The account data (provided by InfinitePay upon registration) need to be filled out under **Credentials**.
 In **Advanced Options** Auto Capture and/or Auto Activation is enabled.
