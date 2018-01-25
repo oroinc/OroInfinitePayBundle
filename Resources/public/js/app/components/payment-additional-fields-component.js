@@ -1,4 +1,3 @@
-/** @lends PaymentAdditionalFieldsComponent */
 define(function(require) {
     'use strict';
 
@@ -72,8 +71,8 @@ define(function(require) {
          */
         setAdditionalData: function(email, legalForm) {
             var additionalData = {
-                'email': email,
-                'legalForm': legalForm
+                email: email,
+                legalForm: legalForm
             };
 
             mediator.trigger('checkout:payment:additional-data:set', JSON.stringify(additionalData));
@@ -181,8 +180,8 @@ define(function(require) {
             });
 
             virtualForm.find('select').each(function(index, item) {
-                //set new select to value of old select
-                //http://stackoverflow.com/questions/742810/clone-isnt-cloning-select-values
+                // set new select to value of old select
+                // http://stackoverflow.com/questions/742810/clone-isnt-cloning-select-values
                 $(item).val(self.getForm().find('select').eq(index).val());
             });
 
