@@ -2,10 +2,10 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Integration;
 
-use Oro\Bundle\IntegrationBundle\Entity\Transport;
-use Oro\Bundle\IntegrationBundle\Provider\TransportInterface;
 use Oro\Bundle\InfinitePayBundle\Entity\InfinitePaySettings;
 use Oro\Bundle\InfinitePayBundle\Form\Type\InfinitePaySettingsType;
+use Oro\Bundle\IntegrationBundle\Entity\Transport;
+use Oro\Bundle\IntegrationBundle\Provider\TransportInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class InfinitePayTransport implements TransportInterface
