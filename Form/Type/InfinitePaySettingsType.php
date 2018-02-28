@@ -36,12 +36,12 @@ class InfinitePaySettingsType extends AbstractType
             ->add('infinitePayLabels', LocalizedFallbackValueCollectionType::NAME, [
                 'label' => 'oro.infinite_pay.settings.labels.label',
                 'required' => true,
-                'options' => ['constraints' => [new NotBlank()]],
+                'entry_options' => ['constraints' => [new NotBlank()]],
             ])
             ->add('infinitePayShortLabels', LocalizedFallbackValueCollectionType::NAME, [
                 'label' => 'oro.infinite_pay.settings.short_labels.label',
                 'required' => true,
-                'options' => ['constraints' => [new NotBlank()]],
+                'entry_options' => ['constraints' => [new NotBlank()]],
             ])
             ->add('infinitePayClientRef', TextType::class, [
                 'label' => 'oro.infinite_pay.settings.client_ref.label',
