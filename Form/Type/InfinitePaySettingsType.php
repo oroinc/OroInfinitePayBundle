@@ -33,12 +33,12 @@ class InfinitePaySettingsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('infinitePayLabels', LocalizedFallbackValueCollectionType::NAME, [
+            ->add('infinitePayLabels', LocalizedFallbackValueCollectionType::class, [
                 'label' => 'oro.infinite_pay.settings.labels.label',
                 'required' => true,
                 'entry_options' => ['constraints' => [new NotBlank()]],
             ])
-            ->add('infinitePayShortLabels', LocalizedFallbackValueCollectionType::NAME, [
+            ->add('infinitePayShortLabels', LocalizedFallbackValueCollectionType::class, [
                 'label' => 'oro.infinite_pay.settings.short_labels.label',
                 'required' => true,
                 'entry_options' => ['constraints' => [new NotBlank()]],

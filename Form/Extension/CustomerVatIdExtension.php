@@ -19,7 +19,7 @@ class CustomerVatIdExtension extends AbstractTypeExtension
         $builder
             ->add(
                 'vatId',
-                VatIdType::NAME,
+                VatIdType::class,
                 [
                     'required' => false,
                     'mapped' => false,
