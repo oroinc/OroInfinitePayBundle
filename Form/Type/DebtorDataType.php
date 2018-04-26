@@ -21,25 +21,25 @@ class DebtorDataType extends AbstractType
     public static function getAvailableLegalTypes()
     {
         return [
-            'ag' => 'AG',
-            'eg' => 'eG',
-            'ek' => 'EK',
-            'ev' => 'e.V.',
-            'freelancer' => 'Freelancer',
-            'gbr' => 'GbR',
-            'gmbh' => 'GmbH',
-            'gmbh_ig' => 'GmbH iG',
-            'gmbh_co_kg' => 'GmbH & Co. KG',
-            'kg' => 'KG',
-            'kgaa' => 'KgaA',
-            'ltd' => 'Ltd',
-            'ltd_co_kg' => 'Ltd co KG',
-            'ohg' => 'OHG',
-            'offtl_einrichtung' => 'öffl. Einrichtung',
-            'sonst_pers_ges' => 'Sonst. KapitalGes',
-            'stiftung' => 'Stiftung',
-            'ug' => 'UG',
-            'einzel' => 'Einzelunternehmen, Kleingewerbe, Handelsvetreter',
+            'AG' => 'ag',
+            'eG' => 'eg',
+            'EK' => 'ek',
+            'e.V.' => 'ev',
+            'Freelancer' => 'freelancer',
+            'GbR' => 'gbr',
+            'GmbH' => 'gmbh',
+            'GmbH iG' => 'gmbh_ig',
+            'GmbH & Co. KG' => 'gmbh_co_kg',
+            'KG' => 'kg',
+            'KgaA' => 'kgaa',
+            'Ltd' => 'ltd',
+            'Ltd co KG' => 'ltd_co_kg',
+            'OHG' => 'ohg',
+            'öffl. Einrichtung' => 'offtl_einrichtung',
+            'Sonst. KapitalGes' => 'sonst_pers_ges',
+            'Stiftung' => 'stiftung',
+            'UG' => 'ug',
+            'Einzelunternehmen, Kleingewerbe, Handelsvetreter' => 'einzel',
         ];
     }
 
@@ -60,6 +60,8 @@ class DebtorDataType extends AbstractType
                 'legal_form',
                 ChoiceType::class,
                 [
+                    // TODO: remove 'choices_as_values' option below in scope of BAP-15236
+                    'choices_as_values' => true,
                     'choices' => self::getAvailableLegalTypes(),
                 ]
             );
