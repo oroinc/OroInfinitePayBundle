@@ -60,8 +60,6 @@ class DebtorDataType extends AbstractType
                 'legal_form',
                 ChoiceType::class,
                 [
-                    // TODO: remove 'choices_as_values' option below in scope of BAP-15236
-                    'choices_as_values' => true,
                     'choices' => self::getAvailableLegalTypes(),
                 ]
             );
