@@ -16,7 +16,7 @@
     },
     "require": {
         "php": "7.1.*",
-        "oro/commerce": "3.0.*",
+        "oro/commerce": "3.0.x-dev",
         "besimple/soap-client": "^0.2.6"
     },
     "repositories": {
