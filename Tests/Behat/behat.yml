@@ -1,0 +1,44 @@
+oro_behat_extension:
+  suites:
+    OroInfinitePayBundle:
+      contexts:
+        - Oro\Bundle\TestFrameworkBundle\Tests\Behat\Context\OroMainContext
+        - OroApplicationBundle::CommerceMainContext
+        - OroFormBundle::FeatureContext
+        - OroFormBundle::FormContext
+        - OroConfigBundle::FeatureContext
+        - OroProductBundle::FeatureContext
+        - OroCheckoutBundle::FeatureContext
+        - OroShoppingListBundle::ShoppingListContext
+        - OroDataGridBundle::GridContext
+      paths:
+        - '@OroInfinitePayBundle/Tests/Behat/Features'
+
+  elements:
+    InfinitePayForm:
+      selector: 'form[name="oro_integration_channel_form"]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Name: 'oro_integration_channel_form[name]'
+          Label: 'oro_integration_channel_form[transport][infinitePayLabels][values][default]'
+          Short Label: 'oro_integration_channel_form[transport][infinitePayShortLabels][values][default]'
+          Client Reference: 'oro_integration_channel_form[transport][infinitePayClientRef]'
+          Username: 'oro_integration_channel_form[transport][infinitePayUsername]'
+          Password: 'oro_integration_channel_form[transport][infinitePayPassword]'
+          Secret: 'oro_integration_channel_form[transport][infinitePaySecret]'
+          Auto-Capture: 'oro_integration_channel_form[transport][infinitePayAutoCapture]'
+          Auto-Activation: 'oro_integration_channel_form[transport][infinitePayAutoActivate]'
+          Test Mode: 'oro_integration_channel_form[transport][infinitePayTestMode]'
+          Debug Mode: 'oro_integration_channel_form[transport][infinitePayDebugMode]'
+          Invoice Due Period: 'oro_integration_channel_form[transport][infinitePayInvoiceDuePeriod]'
+          Shipping Duration: 'oro_integration_channel_form[transport][infinitePayInvoiceShippingDuration]'
+    InfintePayEmailForm:
+      selector:
+        type: 'xpath'
+        locator: '//input[@id[starts-with(.,"oro_infinite_pay_debtor_data_email")]]/ancestor::div[contains(@class,"checkout-form__payment-methods-form")]'
+      class: Oro\Bundle\TestFrameworkBundle\Behat\Element\Form
+      options:
+        mapping:
+          Email: 'oro_infinite_pay_debtor_data[email]'
+          Legal Form: 'oro_infinite_pay_debtor_data[legal_form]'
