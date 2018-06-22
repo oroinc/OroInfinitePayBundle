@@ -10,6 +10,7 @@ Feature: VAT Id Validation
     And I click "Create Customer"
     And I fill form with:
       | Name            | My new customer |
+      | Organization    | My organization |
       | Country         | Germany         |
       | State           | Berlin          |
       | City            | Berlin          |
