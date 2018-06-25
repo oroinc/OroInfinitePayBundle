@@ -11,12 +11,12 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\RequestReservation;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ReserveOrder;
 use Oro\Bundle\OrderBundle\Entity\Order;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}
  */
-class AutomationProviderTest extends \PHPUnit_Framework_TestCase
+class AutomationProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var InvoiceDataProviderInterface

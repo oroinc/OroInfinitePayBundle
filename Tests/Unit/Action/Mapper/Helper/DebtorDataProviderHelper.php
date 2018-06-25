@@ -9,7 +9,7 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\DebtorData;
  * * @SuppressWarnings(PHPMD.TooManyFields)
  * {@inheritdoc}
  */
-class DebtorDataProviderHelper extends \PHPUnit_Framework_TestCase
+class DebtorDataProviderHelper extends \PHPUnit\Framework\TestCase
 {
     /** @var string */
     protected $companyDataIdNum = 'test_id_num';

@@ -11,7 +11,7 @@ use Oro\Bundle\OrderBundle\Entity\Order;
 /**
  * {@inheritdoc}
  */
-class InvoiceDataProviderTest extends \PHPUnit_Framework_TestCase
+class InvoiceDataProviderTest extends \PHPUnit\Framework\TestCase
 {
     protected $duePeriod = 30;
     protected $shippingDuration = 21;

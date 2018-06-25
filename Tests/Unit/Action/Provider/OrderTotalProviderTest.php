@@ -11,7 +11,7 @@ use Oro\Bundle\TaxBundle\Model\ResultElement;
 /**
  * {@inheritdoc}
  */
-class OrderTotalProviderTest extends \PHPUnit_Framework_TestCase
+class OrderTotalProviderTest extends \PHPUnit\Framework\TestCase
 {
     /** @var array */
     protected $subtotals = ['amount' => 10.00, 'currency' => 'EUR'];

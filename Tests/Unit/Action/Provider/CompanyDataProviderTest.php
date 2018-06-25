@@ -12,7 +12,7 @@ use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 /**
  * {@inheritdoc}
  */
-class CompanyDataProviderTest extends \PHPUnit_Framework_TestCase
+class CompanyDataProviderTest extends \PHPUnit\Framework\TestCase
 {
     protected $vatId = 'DE129274202';
 

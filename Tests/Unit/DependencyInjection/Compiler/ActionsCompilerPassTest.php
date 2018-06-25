@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * To define a TestCase
  *
- *   1) Implement a subclass of PHPUnit_Framework_TestCase.
+ *   1) Implement a subclass of PHPUnit\Framework\TestCase.
  *   2) Define instance variables that store the state of the fixture.
  *   3) Initialize the fixture state by overriding setUp().
  *   4) Clean-up after a test by overriding tearDown().
@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * <code>
  * <?php
- * class MathTest extends PHPUnit_Framework_TestCase
+ * class MathTest extends PHPUnit\Framework\TestCase
  * {
  *     public $value1;
  *     public $value2;
@@ -52,7 +52,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * @since Class available since Release 2.0.0
  */
-class ActionsCompilerPassTest extends \PHPUnit_Framework_TestCase
+class ActionsCompilerPassTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ActionsCompilerPass
@@ -60,7 +60,7 @@ class ActionsCompilerPassTest extends \PHPUnit_Framework_TestCase
     protected $compilerPass;
 
     /**
-     * @var ContainerBuilder|\PHPUnit_Framework_MockObject_MockObject
+     * @var ContainerBuilder|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $containerBuilder;
 

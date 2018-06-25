@@ -9,7 +9,7 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderArticleList;
 /**
  * {@inheritdoc}
  */
-class ArticleListProviderHelper extends \PHPUnit_Framework_TestCase
+class ArticleListProviderHelper extends \PHPUnit\Framework\TestCase
 {
     /** @var OrderArticleStub[] */
     protected $articles;

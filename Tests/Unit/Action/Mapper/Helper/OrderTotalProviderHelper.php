@@ -8,7 +8,7 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 /**
  * {@inheritdoc}
  */
-class OrderTotalProviderHelper extends \PHPUnit_Framework_TestCase
+class OrderTotalProviderHelper extends \PHPUnit\Framework\TestCase
 {
     /** @var string */
     protected $currency = 'EUR';

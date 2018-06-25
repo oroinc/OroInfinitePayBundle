@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * {@inheritdoc}
  */
-class RequestProviderTest extends \PHPUnit_Framework_TestCase
+class RequestProviderTest extends \PHPUnit\Framework\TestCase
 {
     /** @var RequestStack */
     protected $requestStack;

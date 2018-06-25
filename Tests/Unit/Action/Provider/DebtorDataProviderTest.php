@@ -14,7 +14,7 @@ use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 /**
  * {@inheritdoc}
  */
-class DebtorDataProviderTest extends \PHPUnit_Framework_TestCase
+class DebtorDataProviderTest extends \PHPUnit\Framework\TestCase
 {
     /** @var DebtorDataProviderInterface */
     protected $debtorDataProvider;

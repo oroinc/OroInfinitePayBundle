@@ -10,12 +10,12 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CaptureOrder;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ClientData;
 use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\OrderTotalProviderHelper;
 use Oro\Bundle\OrderBundle\Entity\Order;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}
  */
-class CaptureRequestMapperTest extends \PHPUnit_Framework_TestCase
+class CaptureRequestMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ClientDataProvider
@@ -43,7 +43,7 @@ class CaptureRequestMapperTest extends \PHPUnit_Framework_TestCase
 
     public function test()
     {
-        /** @var InfinitePayConfigInterface|PHPUnit_Framework_MockObject_MockObject $config */
+        /** @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject $config */
         $config = $this->createMock(InfinitePayConfigInterface::class);
 
         $captureRequestMapper = new CaptureRequestMapper($this->clientDataProvider, $this->orderTotalProvider);

@@ -12,7 +12,7 @@ use Oro\Bundle\TaxBundle\Model\ResultElement;
 /**
  * {@inheritdoc}
  */
-class InvoiceTotalsProviderTest extends \PHPUnit_Framework_TestCase
+class InvoiceTotalsProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var TotalProcessorProvider

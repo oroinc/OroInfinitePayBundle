@@ -11,7 +11,7 @@ use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 /**
  * {@inheritdoc}
  */
-class ReservationResponseMapperTest extends \PHPUnit_Framework_TestCase
+class ReservationResponseMapperTest extends \PHPUnit\Framework\TestCase
 {
     protected $orderReference = 'test_order_ref';
 

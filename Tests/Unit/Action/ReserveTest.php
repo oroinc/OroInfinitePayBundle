@@ -21,30 +21,30 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseData;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseReservation;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}
  */
-class ReserveTest extends \PHPUnit_Framework_TestCase
+class ReserveTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var RequestMapperInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var RequestMapperInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $requestMapper;
 
     /**
-     * @var ResponseMapperInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var ResponseMapperInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $responseMapper;
 
     /**
-     * @var InfinitePayConfigInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $config;
 
     /**
-     * @var InfinitePayConfigProviderInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var InfinitePayConfigProviderInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $configProvider;
 
@@ -73,7 +73,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
     {
         $responseSuccess = $this->getResponseReservation();
         $responseSuccess->getResponse()->getResponseData()->setStatus('1');
-        /** @var GatewayInterface|PHPUnit_Framework_MockObject_MockObject $gateway */
+        /** @var GatewayInterface|\PHPUnit\Framework\MockObject\MockObject $gateway */
         $gateway = $this->createMock(GatewayInterface::class);
         $gateway
             ->expects(static::once())
@@ -83,7 +83,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
             $gateway,
             $this->configProvider
         );
-        /** @var InvoiceDataProviderInterface|PHPUnit_Framework_MockObject_MockObject $invoiceDataProvider */
+        /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject $invoiceDataProvider */
         $invoiceDataProvider = $this->createMock(InvoiceDataProviderInterface::class);
         $automationProvider = new AutomationProvider($invoiceDataProvider);
 
@@ -105,7 +105,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
     {
         $responseFail = $this->getResponseReservation();
         $responseFail->getResponse()->getResponseData()->setStatus('0');
-        /** @var GatewayInterface|PHPUnit_Framework_MockObject_MockObject $gateway */
+        /** @var GatewayInterface|\PHPUnit\Framework\MockObject\MockObject $gateway */
         $gateway = $this->createMock(GatewayInterface::class);
         $gateway
             ->expects(static::once())
@@ -115,7 +115,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
             $gateway,
             $this->configProvider
         );
-        /** @var InvoiceDataProviderInterface|PHPUnit_Framework_MockObject_MockObject $invoiceDataProvider */
+        /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject $invoiceDataProvider */
         $invoiceDataProvider = $this->createMock(InvoiceDataProviderInterface::class);
         $automationProvider = new AutomationProvider($invoiceDataProvider);
 
@@ -138,7 +138,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
     {
         $responseSuccess = $this->getResponseReservation();
         $responseSuccess->getResponse()->getResponseData()->setStatus('1');
-        /** @var GatewayInterface|PHPUnit_Framework_MockObject_MockObject $gateway */
+        /** @var GatewayInterface|\PHPUnit\Framework\MockObject\MockObject $gateway */
         $gateway = $this->createMock(GatewayInterface::class);
         $gateway
             ->expects(static::exactly(2))
@@ -152,7 +152,7 @@ class ReserveTest extends \PHPUnit_Framework_TestCase
             $gateway,
             $this->configProvider
         );
-        /** @var InvoiceDataProviderInterface|PHPUnit_Framework_MockObject_MockObject $invoiceDataProvider */
+        /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject $invoiceDataProvider */
         $invoiceDataProvider = $this->createMock(InvoiceDataProvider::class);
         $automationProvider = new AutomationProvider($invoiceDataProvider);
 

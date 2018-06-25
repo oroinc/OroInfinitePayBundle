@@ -10,7 +10,7 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\InvoiceData;
 /**
  * {@inheritdoc}
  */
-class RequestProviderHelper extends \PHPUnit_Framework_TestCase
+class RequestProviderHelper extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param string $clientRef

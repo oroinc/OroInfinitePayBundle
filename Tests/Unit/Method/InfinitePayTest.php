@@ -9,25 +9,25 @@ use Oro\Bundle\InfinitePayBundle\Method\InfinitePay;
 use Oro\Bundle\InfinitePayBundle\Method\Provider\OrderProviderInterface;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}
  */
-class InfinitePayTest extends \PHPUnit_Framework_TestCase
+class InfinitePayTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var InfinitePayConfigInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $config;
 
     /**
-     * @var ActionRegistryInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var ActionRegistryInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $actionRegistry;
 
     /**
-     * @var OrderProviderInterface|PHPUnit_Framework_MockObject_MockObject
+     * @var OrderProviderInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $orderProvider;
 
@@ -50,7 +50,7 @@ class InfinitePayTest extends \PHPUnit_Framework_TestCase
 
     public function testExecute()
     {
-        /** @var ActionInterface|PHPUnit_Framework_MockObject_MockObject  $action */
+        /** @var ActionInterface|\PHPUnit\Framework\MockObject\MockObject  $action */
         $action = $this->createMock(ActionInterface::class);
         $action
             ->expects(static::once())

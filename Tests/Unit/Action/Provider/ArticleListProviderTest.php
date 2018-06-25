@@ -20,7 +20,7 @@ use Oro\Bundle\TaxBundle\Model\TaxResultElement;
 /**
  * {@inheritdoc}
  */
-class ArticleListProviderTest extends \PHPUnit_Framework_TestCase
+class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var InvoiceTotalsProviderInterface

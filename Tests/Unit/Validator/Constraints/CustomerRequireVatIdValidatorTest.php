@@ -12,11 +12,11 @@ use Oro\Component\Testing\Unit\EntityTrait;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
+class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
 {
     use EntityTrait;
 
-    /** @var FrontendHelper|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var FrontendHelper|\PHPUnit\Framework\MockObject\MockObject */
     private $frontendHelper;
 
     /** @var  CustomerRequireVatId */
@@ -43,7 +43,7 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateExceptionWhenInvalidArgumentType()
     {
-        /** @var Constraint|\PHPUnit_Framework_MockObject_MockObject $constraint */
+        /** @var Constraint|\PHPUnit\Framework\MockObject\MockObject $constraint */
         $constraint = $this->createMock(Constraint::class);
         $validator = new CustomerRequireVatIdValidator();
         $validator->validate(false, $constraint);
@@ -54,7 +54,7 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
         $this->frontendHelper->expects($this->once())
             ->method('isFrontendRequest')
             ->willReturn(true);
-        /** @var ExecutionContextInterface|\PHPUnit_Framework_MockObject_MockObject $context */
+        /** @var ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject $context */
         $context = $this->createMock(ExecutionContextInterface::class);
         $context->expects($this->never())
                 ->method('addViolation');
@@ -72,7 +72,7 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
         $this->frontendHelper->expects($this->once())
             ->method('isFrontendRequest')
             ->willReturn(false);
-        /** @var Customer|\PHPUnit_Framework_MockObject_MockObject $customer */
+        /** @var Customer|\PHPUnit\Framework\MockObject\MockObject $customer */
         $customer = $this->getMockBuilder(Customer::class)
             ->disableOriginalConstructor()
             ->setMethods(['getVatId', 'getAddresses'])
@@ -85,7 +85,7 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getAddresses')
             ->willReturn($addresses);
 
-        /** @var ExecutionContextInterface|\PHPUnit_Framework_MockObject_MockObject $context */
+        /** @var ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject $context */
         $context = $this->createMock(ExecutionContextInterface::class);
         if ($expectedViolation) {
             $context
@@ -175,7 +175,7 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
      * @param array $addressTypes
      * @param string $countryIso2
      * @param bool $isEmpty
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return \PHPUnit\Framework\MockObject\MockObject
      */
     protected function getTypedAddressMock(array $addressTypes, $countryIso2, $isEmpty = false)
     {

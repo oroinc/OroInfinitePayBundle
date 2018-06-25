@@ -11,7 +11,7 @@ use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 /**
  * {@inheritdoc}
  */
-class ActivationResponseMapperTest extends \PHPUnit_Framework_TestCase
+class ActivationResponseMapperTest extends \PHPUnit\Framework\TestCase
 {
     public function testMapResponseToPaymentTransactionSuccess()
     {

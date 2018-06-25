@@ -18,12 +18,12 @@ use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\ArticleListProv
 use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\DebtorDataProviderHelper;
 use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\OrderTotalProviderHelper;
 use Oro\Bundle\OrderBundle\Entity\Order;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}
  */
-class ReservationRequestMapperTest extends \PHPUnit_Framework_TestCase
+class ReservationRequestMapperTest extends \PHPUnit\Framework\TestCase
 {
     protected $userInputEmail = 'test@testemailde';
     protected $userInputLegalForm = 'eV';
@@ -78,7 +78,7 @@ class ReservationRequestMapperTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateRequestFromOrder()
     {
-        /** @var InfinitePayConfigInterface|PHPUnit_Framework_MockObject_MockObject $config */
+        /** @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject $config */
         $config = $this->createMock(InfinitePayConfigInterface::class);
 
         $order = new Order();
