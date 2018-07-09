@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action\Provider;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ClientData;
 
+/**
+ * This provider provides required data for InfinitePay API requests
+ */
 class ClientDataProvider implements ClientDataProviderInterface
 {
     /**
