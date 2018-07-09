@@ -4,7 +4,6 @@ namespace Oro\Bundle\InfinitePayBundle\Action\Provider;
 
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ClientData;
-use Zend\Crypt\Hmac;
 
 class ClientDataProvider implements ClientDataProviderInterface
 {
@@ -31,7 +30,7 @@ class ClientDataProvider implements ClientDataProviderInterface
      */
     private function generateSecurityCode($message, $secret)
     {
-        $hmac = Hmac::compute($secret, 'sha256', $message);
+        $hmac = hash_hmac('sha256', $message, $secret);
 
         return base64_encode($hmac);
     }
