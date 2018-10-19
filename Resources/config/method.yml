@@ -12,7 +12,7 @@ services:
         class: 'Oro\Bundle\InfinitePayBundle\Method\Config\Factory\InfinitePayConfigFactory'
         public: false
         arguments:
-            - '@oro_security.encoder.mcrypt'
+            - '@oro_security.encoder.default'
             - '@oro_locale.helper.localization'
             - '@oro_infinite_pay.method.generator.identifier.infinite_pay'
 
