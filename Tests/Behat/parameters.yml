@@ -1,0 +1,3 @@
+services:
+    oro_infinite_pay.client.factory:
+        class: Oro\Bundle\InfinitePayBundle\Tests\Behat\Mock\Service\InfinitePay\Factory\InfinitePayClientFactoryMock
