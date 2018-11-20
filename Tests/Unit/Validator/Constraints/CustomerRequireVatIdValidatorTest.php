@@ -37,6 +37,17 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
         $this->validator->setFrontendHelper($this->frontendHelper);
     }
 
+    public function testValidateWhenNullCustomer()
+    {
+        /** @var ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject $context */
+        $context = $this->createMock(ExecutionContextInterface::class);
+        $context->expects($this->never())
+            ->method('addViolation');
+
+        $this->validator->initialize($context);
+        $this->validator->validate(null, $this->constraint);
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Value must be instance of "Oro\Bundle\CustomerBundle\Entity\Customer", "boolean" given
@@ -195,11 +206,11 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit_Framework_TestCase
             ->method('getTypes')
             ->will($this->returnValue($addressTypeEntities));
 
-        $address->expects($this->once())
+        $address->expects($this->any())
             ->method('isEmpty')
             ->will($this->returnValue($isEmpty));
 
-        $address->expects($this->once())
+        $address->expects($this->any())
             ->method('getCountryIso2')
             ->will($this->returnValue($countryIso2));
 
