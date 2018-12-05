@@ -33,18 +33,7 @@ Feature: Process order submission with InfinitePay payment method guest checkout
     When I save and close form
     Then I should see "Integration saved" flash message
     And I should see InfinitePay in grid
-
-  Scenario: Create new Payment Rule for InfinitePay integration
-    Given I go to System/Payment Rules
-    And I click "Create Payment Rule"
-    And I fill form with:
-      | Name       | InfinitePay |
-      | Enabled    | true        |
-      | Sort Order | 1           |
-      | Method     | InfinitePay |
-    And I click "Add Method Button"
-    When I save and close form
-    Then I should see "Payment rule has been saved" flash message
+    And I create payment rule with "InfinitePay" payment method
 
   Scenario: Enable guest shopping list setting
     Given I go to System/ Configuration
