@@ -11,6 +11,8 @@ oro_behat_extension:
         - OroCheckoutBundle::FeatureContext
         - OroShoppingListBundle::ShoppingListContext
         - OroDataGridBundle::GridContext
+        - OroWorkflowBundle::FeatureContext
+        - OroPaymentBundle::FeatureContext
       paths:
         - '@OroInfinitePayBundle/Tests/Behat/Features'
 

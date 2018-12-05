@@ -31,27 +31,11 @@ Feature: Process order submission with InfinitePay payment method single page ch
     When I save and close form
     Then I should see "Integration saved" flash message
     And I should see InfinitePay in grid
-
-  Scenario: Create new Payment Rule for InfinitePay integration
-    Given I go to System/Payment Rules
-    And I click "Create Payment Rule"
-    And I fill form with:
-      | Name       | InfinitePay |
-      | Enabled    | true        |
-      | Sort Order | 1           |
-      | Method     | InfinitePay |
-    And I press "Add Method Button"
-    When I save and close form
-    Then I should see "Payment rule has been saved" flash message
-
-  Scenario: Enable SinglePage checkout
-    Given go to System/Workflows
-    When I click "Activate" on row "Single Page Checkout" in grid
-    And I click "Activate"
-    Then I should see "Workflow activated" flash message
+    And I create payment rule with "InfinitePay" payment method
 
   Scenario: Unsuccessful order payment with InfinitePay
-    Given I proceed as the User
+    Given I activate "Single Page Checkout" workflow
+    And I proceed as the User
     And There are products in the system available for order
     And I signed in as AmandaRCole@example.org on the store frontend
     When I open page with shopping list List 1
