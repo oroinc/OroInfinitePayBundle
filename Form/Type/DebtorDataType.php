@@ -53,6 +53,7 @@ class DebtorDataType extends AbstractType
                 'email',
                 TextType::class,
                 [
+                    'label' => 'oro.infinite_pay.methods.debtor_data.email',
                     'constraints' => [new NotBlank(), new Email()],
                 ]
             )
@@ -60,6 +61,7 @@ class DebtorDataType extends AbstractType
                 'legal_form',
                 ChoiceType::class,
                 [
+                    'label' => 'oro.infinite_pay.methods.debtor_data.legal_form',
                     'choices' => self::getAvailableLegalTypes(),
                 ]
             );
