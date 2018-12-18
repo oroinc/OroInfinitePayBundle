@@ -19,7 +19,10 @@ oro:
             invoice_due_period.label: 'Invoice Due Period (in days)'
             invoice_shipping_duration.label: 'Shipping Duration (in days)'
         methods:
-            debtor_data.label:  'Debtor Data'
+            debtor_data:
+                label:  'Debtor Data'
+                email: 'Email'
+                legal_form: 'Legal form'
     payment:
         admin:
             infinite_pay.label: 'Infinite Pay'
