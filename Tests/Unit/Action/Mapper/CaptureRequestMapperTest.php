@@ -10,7 +10,6 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CaptureOrder;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ClientData;
 use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\OrderTotalProviderHelper;
 use Oro\Bundle\OrderBundle\Entity\Order;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}

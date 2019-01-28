@@ -9,7 +9,6 @@ use Oro\Bundle\InfinitePayBundle\Method\InfinitePay;
 use Oro\Bundle\InfinitePayBundle\Method\Provider\OrderProviderInterface;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}

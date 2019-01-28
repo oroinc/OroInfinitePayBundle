@@ -11,8 +11,6 @@ use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceDataProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Action\RequestMapperInterface;
 use Oro\Bundle\InfinitePayBundle\Action\Reserve;
 use Oro\Bundle\InfinitePayBundle\Gateway\GatewayInterface;
-use Oro\Bundle\InfinitePayBundle\Gateway\SoapGateway;
-use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfig;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Method\Config\Provider\InfinitePayConfigProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ReserveOrder;
@@ -21,7 +19,6 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseData;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseReservation;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}

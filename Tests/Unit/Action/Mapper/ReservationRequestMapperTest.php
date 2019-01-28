@@ -18,7 +18,6 @@ use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\ArticleListProv
 use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\DebtorDataProviderHelper;
 use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\OrderTotalProviderHelper;
 use Oro\Bundle\OrderBundle\Entity\Order;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}

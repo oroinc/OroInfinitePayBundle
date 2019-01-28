@@ -3,7 +3,6 @@
 namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper;
 
 use Oro\Bundle\AddressBundle\Entity\Country;
-use Oro\Bundle\CustomerBundle\Entity\Account;
 use Oro\Bundle\CustomerBundle\Entity\Customer;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProviderInterface;

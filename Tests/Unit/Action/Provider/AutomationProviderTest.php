@@ -6,12 +6,10 @@ use Oro\Bundle\InfinitePayBundle\Action\Provider\AutomationProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceDataProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceDataProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfig;
-use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\RequestReservation;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ReserveOrder;
 use Oro\Bundle\OrderBundle\Entity\Order;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * {@inheritdoc}
