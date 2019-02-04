@@ -15,7 +15,7 @@
         "exclude-from-classmap": ["/Tests/"]
     },
     "require": {
-        "oro/commerce": "3.1.*",
+        "oro/commerce": "~3.1.1",
         "besimple/soap-client": "^0.2.6"
     },
     "repositories": {
