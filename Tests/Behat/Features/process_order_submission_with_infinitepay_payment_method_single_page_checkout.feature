@@ -1,5 +1,6 @@
 @regression
 @fixture-OroFlatRateShippingBundle:FlatRateIntegration.yml
+@fixture-OroCheckoutBundle:Shipping.yml
 @fixture-OroAuthorizeNetBundle:AuthorizeNetFixture.yml
 Feature: Process order submission with InfinitePay payment method single page checkout
   In order to be able to purchase products
