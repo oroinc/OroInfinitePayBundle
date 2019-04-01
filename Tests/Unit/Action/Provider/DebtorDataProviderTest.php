@@ -88,6 +88,8 @@ class DebtorDataProviderTest extends \PHPUnit\Framework\TestCase
 
     public function testGetDebtorData()
     {
+        $this->markTestSkipped('Should be refactored to avoid gethostbyaddr(); usage in the unit test. See BB-16557');
+
         $order = new Order();
         $order->setCustomer(new Customer());
         $debtorDataActual = $this->debtorDataProvider->getDebtorData($order);
