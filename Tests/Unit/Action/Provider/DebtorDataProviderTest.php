@@ -10,6 +10,7 @@ use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CompanyData;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\OrderBundle\Entity\OrderAddress;
+use Oro\Component\PhpUtils\Network\DnsResolver;
 
 /**
  * {@inheritdoc}
@@ -83,13 +84,18 @@ class DebtorDataProviderTest extends \PHPUnit_Framework_TestCase
             ->method('extractAddress')
             ->willReturn($this->getOrderAddress());
 
+        $dnsResolver = $this->createMock(DnsResolver::class);
+        $dnsResolver->expects($this->any())
+            ->method('getHostnameByIp')
+            ->willReturn($this->isp);
+
         $this->debtorDataProvider = new DebtorDataProvider($companyDataProvider, $requestProvider, $addressExtractor);
+
+        $this->debtorDataProvider->setDnsResolver($dnsResolver);
     }
 
     public function testGetDebtorData()
     {
-        $this->markTestSkipped('Should be refactored to avoid gethostbyaddr(); usage in the unit test. See BB-16557');
-
         $order = new Order();
         $order->setCustomer(new Customer());
         $debtorDataActual = $this->debtorDataProvider->getDebtorData($order);
