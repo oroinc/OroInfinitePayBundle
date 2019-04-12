@@ -22,12 +22,18 @@ services:
         arguments:
             - '@oro_pricing.subtotal_processor.total_processor_provider'
 
+    oro_infinite_pay.dns_resolver:
+        class: Oro\Component\PhpUtils\Network\DnsResolver
+        public: false
+
     oro_infinite_pay.provider.debtor_data:
         class: 'Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProvider'
         arguments:
             - '@oro_infinite_pay.provider.company_data'
             - '@oro_infinite_pay.provider.request'
             - '@oro_payment.provider.address_extractor'
+        calls:
+            - [setDnsResolver, ['@oro_infinite_pay.dns_resolver']]
 
     oro_infinite_pay.provider.order_total:
         class: 'Oro\Bundle\InfinitePayBundle\Action\Provider\OrderTotalProvider'
