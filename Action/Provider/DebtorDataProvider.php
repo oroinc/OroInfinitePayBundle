@@ -6,7 +6,11 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\DebtorData;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 use Oro\Bundle\PaymentBundle\Provider\AddressExtractor;
+use Oro\Component\PhpUtils\Network\DnsResolver;
 
+/**
+ * Converts company data into format used by requests
+ */
 class DebtorDataProvider implements DebtorDataProviderInterface
 {
     const NOT_AVAILABLE = 'na';
@@ -25,14 +29,25 @@ class DebtorDataProvider implements DebtorDataProviderInterface
     /** @var AddressExtractor */
     protected $addressExtractorProvider;
 
+    /** @var DnsResolver */
+    protected $dnsResolver;
+
+    /**
+     * @param CompanyDataProviderInterface $companyDataProvider
+     * @param RequestProvider $requestProvider
+     * @param AddressExtractor $addressExtractor
+     * @param DnsResolver $dnsResolver
+     */
     public function __construct(
         CompanyDataProviderInterface $companyDataProvider,
         RequestProvider $requestProvider,
-        AddressExtractor $addressExtractor
+        AddressExtractor $addressExtractor,
+        DnsResolver $dnsResolver
     ) {
         $this->companyDataProvider = $companyDataProvider;
         $this->requestProvider = $requestProvider;
         $this->addressExtractorProvider = $addressExtractor;
+        $this->dnsResolver = $dnsResolver;
     }
 
     /**
@@ -57,7 +72,7 @@ class DebtorDataProvider implements DebtorDataProviderInterface
             ->setNegPayHist(self::NEG_PAY_HIST_FALSE)
             ->setBdSalut(static::NOT_AVAILABLE)
             ->setIpAdd($ipAddress)
-            ->setIsp(gethostbyaddr($ipAddress))
+            ->setIsp($this->dnsResolver->getHostnameByIp($ipAddress))
             ->setBdZip($billingAddress->getPostalCode())
             ->setBdCountry($billingAddress->getCountryIso3())
             ->setBdStreet($billingAddress->getStreet())
