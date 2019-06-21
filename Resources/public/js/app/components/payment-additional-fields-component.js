@@ -45,9 +45,11 @@ define(function(require) {
             mediator.on('checkout:payment:before-form-serialization', this.beforeTransit, this);
             mediator.on('checkout:payment:before-restore-filled-form', this.updateDebtorDataFormIdentifier, this);
 
+            this.validate = this.validate.bind(this);
+
             this.getForm()
-                .on('focusout', 'input,textarea', $.proxy(this.validate, this))
-                .on('change', 'select', $.proxy(this.validate, this));
+                .on('focusout', 'input,textarea', this.validate)
+                .on('change', 'select', this.validate);
 
             mediator.on('checkout:payment:method:changed', this.onPaymentMethodChanged, this);
             mediator.on('checkout:payment:before-transit', this.validateBeforeTransit, this);
@@ -115,6 +117,11 @@ define(function(require) {
             if (this.disposed) {
                 return;
             }
+
+            this.getForm()
+                .off('focusout', 'input,textarea', this.validate)
+                .off('change', 'select', this.validate);
+
             PaymentAdditionalFieldsComponent.__super__.dispose.call(this);
         },
 
