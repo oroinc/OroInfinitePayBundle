@@ -64,7 +64,7 @@ class OrderTotalProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             new \DateTime(),
             \DateTime::createFromFormat('Ymd His', $actualOrderTotals->getTrsDt()),
-            null,
+            '',
             2.0
         );
         $this->assertEquals('3', $actualOrderTotals->getTotalGrossCalcMethod());
