@@ -1,15 +1,14 @@
 define(function(require) {
     'use strict';
 
-    var PaymentAdditionalFieldsComponent;
-    var mediator = require('oroui/js/mediator');
-    var _ = require('underscore');
-    var $ = require('jquery');
+    const mediator = require('oroui/js/mediator');
+    const _ = require('underscore');
+    const $ = require('jquery');
     require('jquery.validate');
 
-    var BaseComponent = require('oroui/js/app/components/base/component');
+    const BaseComponent = require('oroui/js/app/components/base/component');
 
-    PaymentAdditionalFieldsComponent = BaseComponent.extend({
+    const PaymentAdditionalFieldsComponent = BaseComponent.extend({
         /**
          * @property {jQuery}
          */
@@ -31,8 +30,8 @@ define(function(require) {
         /**
          * @inheritDoc
          */
-        constructor: function PaymentAdditionalFieldsComponent() {
-            PaymentAdditionalFieldsComponent.__super__.constructor.apply(this, arguments);
+        constructor: function PaymentAdditionalFieldsComponent(options) {
+            PaymentAdditionalFieldsComponent.__super__.constructor.call(this, options);
         },
 
         /**
@@ -67,8 +66,8 @@ define(function(require) {
          */
         beforeTransit: function(eventData) {
             if (eventData.paymentMethod === this.options.paymentMethod) {
-                var email = this.getEmailElement().val();
-                var legalForm = this.getLegalFormElement().val();
+                const email = this.getEmailElement().val();
+                const legalForm = this.getLegalFormElement().val();
 
                 this.setAdditionalData(email, legalForm);
             }
@@ -79,7 +78,7 @@ define(function(require) {
          * @param {String} legalForm
          */
         setAdditionalData: function(email, legalForm) {
-            var additionalData = {
+            const additionalData = {
                 email: email,
                 legalForm: legalForm
             };
@@ -159,10 +158,10 @@ define(function(require) {
          * @returns {Boolean}
          */
         validate: function(event) {
-            var appendElement;
+            let appendElement;
             if (event !== undefined && event.target) {
-                var element = $(event.target);
-                var parentForm = element.closest('form');
+                const element = $(event.target);
+                const parentForm = element.closest('form');
 
                 if (parentForm.length) {
                     return element.validate().form();
@@ -173,15 +172,15 @@ define(function(require) {
                 appendElement = this.getForm().clone();
             }
 
-            var virtualForm = $('<form>');
+            const virtualForm = $('<form>');
             virtualForm.append(appendElement);
 
-            var self = this;
-            var validator = virtualForm.validate({
+            const self = this;
+            const validator = virtualForm.validate({
                 ignore: '', // required to validate all fields in virtual form
                 errorPlacement: function(error, element) {
-                    var $el = self.getForm().find('#' + $(element).attr('id'));
-                    var parentWithValidation = $el.parents('[data-validation]');
+                    const $el = self.getForm().find('#' + $(element).attr('id'));
+                    const parentWithValidation = $el.parents('[data-validation]');
 
                     $el.addClass('error');
 
@@ -202,7 +201,7 @@ define(function(require) {
             // Add validator to form
             $.data(virtualForm, 'validator', validator);
 
-            var errors;
+            let errors;
 
             if (event) {
                 errors = $(event.target).parent();
