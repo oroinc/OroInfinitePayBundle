@@ -1,6 +1,6 @@
 <?php
 
-namespace Oro\Bundle\InvoiceBundle\Migrations\Schema;
+namespace Oro\Bundle\InfinitePayBundle\Migrations\Schema;
 
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\EntityBundle\EntityConfig\DatagridScope;
