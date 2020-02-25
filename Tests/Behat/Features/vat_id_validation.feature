@@ -26,7 +26,7 @@ Feature: VAT Id Validation
 
   Scenario: Customer Address validation on frontend for EU countries
     Given I signed in as AmandaRCole@example.org on the store frontend
-    When I click "Account"
+    When I follow "Account"
     And click "Address Book"
     And click "New Company Address"
     And I fill form with:
