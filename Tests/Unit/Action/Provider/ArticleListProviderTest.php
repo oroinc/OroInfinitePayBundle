@@ -9,9 +9,9 @@ use Oro\Bundle\InfinitePayBundle\Action\Provider\ArticleListProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceTotalsProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceTotalsProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderArticle;
-use Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\OrderBundle\Entity\OrderLineItem;
+use Oro\Bundle\ProductBundle\Entity\ProductName;
 use Oro\Bundle\ProductBundle\Tests\Unit\Entity\Stub\Product;
 use Oro\Bundle\TaxBundle\Model\Result;
 use Oro\Bundle\TaxBundle\Model\ResultElement;
@@ -77,7 +77,7 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
         $item = new OrderLineItem();
 
         $product = new Product();
-        $product->addName((new LocalizedFallbackValue())->setString($name));
+        $product->addName((new ProductName())->setString($name));
         $product->setSku($sku);
         $item->setProduct($product);
         $item->setPrice((new Price())->setValue($priceNet));
