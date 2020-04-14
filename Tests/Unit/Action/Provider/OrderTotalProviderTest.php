@@ -61,10 +61,9 @@ class OrderTotalProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('1', $actualOrderTotals->getPayType());
         $this->assertEquals('250', $actualOrderTotals->getRabateNet());
         $this->assertEquals('1', $actualOrderTotals->getTermsAccepted());
-        $this->assertEquals(
+        $this->assertEqualsWithDelta(
             new \DateTime(),
             \DateTime::createFromFormat('Ymd His', $actualOrderTotals->getTrsDt()),
-            '',
             2.0
         );
         $this->assertEquals('3', $actualOrderTotals->getTotalGrossCalcMethod());
