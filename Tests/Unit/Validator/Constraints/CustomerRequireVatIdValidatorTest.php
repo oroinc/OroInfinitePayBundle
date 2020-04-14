@@ -48,12 +48,13 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
         $this->validator->validate(null, $this->constraint);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Value must be instance of "Oro\Bundle\CustomerBundle\Entity\Customer", "boolean" given
-     */
     public function testValidateExceptionWhenInvalidArgumentType()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Value must be instance of "Oro\Bundle\CustomerBundle\Entity\Customer", "boolean" given'
+        );
+
         /** @var Constraint|\PHPUnit\Framework\MockObject\MockObject $constraint */
         $constraint = $this->createMock(Constraint::class);
         $validator = new CustomerRequireVatIdValidator();
