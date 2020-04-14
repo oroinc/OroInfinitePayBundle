@@ -17,7 +17,7 @@ class RequestProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $request = new Request([], [], [], [], [], ['REMOTE_ADDR' => '127.0.0.1'], [], json_encode([
             'foo' => 'bar',

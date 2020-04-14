@@ -26,7 +26,7 @@ class OrderTotalProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $invoiceTotalsProvider = $this
             ->getMockBuilder(InvoiceTotalsProvider::class)

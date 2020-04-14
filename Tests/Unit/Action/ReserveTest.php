@@ -48,7 +48,7 @@ class ReserveTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->config = $this->createMock(InfinitePayConfigInterface::class);
 

@@ -28,7 +28,7 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->constraint = new CustomerRequireVatId();

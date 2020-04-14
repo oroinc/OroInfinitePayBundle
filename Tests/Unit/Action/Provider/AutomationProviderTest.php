@@ -24,7 +24,7 @@ class AutomationProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->invoiceDataProvider = $this
             ->getMockBuilder(InvoiceDataProvider::class)->disableOriginalConstructor()->getMock();

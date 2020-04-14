@@ -33,7 +33,7 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->invoiceTotalsProvider = $this
             ->getMockBuilder(InvoiceTotalsProvider::class)

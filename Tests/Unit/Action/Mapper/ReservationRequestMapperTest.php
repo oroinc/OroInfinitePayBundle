@@ -60,7 +60,7 @@ class ReservationRequestMapperTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->clientDataProvider = $this
             ->getMockBuilder(ClientDataProvider::class)->disableOriginalConstructor()->getMock();

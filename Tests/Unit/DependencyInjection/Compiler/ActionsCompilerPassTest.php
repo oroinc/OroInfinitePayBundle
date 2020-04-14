@@ -28,8 +28,8 @@ use Symfony\Component\DependencyInjection\Reference;
  *     public $value1;
  *     public $value2;
  *
- *     protected function setUp()
- *     {
+ *     protected function setUp(): void
+    *     {
  *         $this->value1 = 2;
  *         $this->value2 = 3;
  *     }
@@ -68,7 +68,7 @@ class ActionsCompilerPassTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->containerBuilder = $this
             ->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
@@ -81,7 +81,7 @@ class ActionsCompilerPassTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->compilerPass, $this->containerBuilder);
     }

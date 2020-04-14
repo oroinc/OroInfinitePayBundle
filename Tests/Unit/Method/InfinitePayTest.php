@@ -33,7 +33,7 @@ class InfinitePayTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->config = $this->createMock(InfinitePayConfigInterface::class);
         $this->actionRegistry = $this->createMock(ActionRegistryInterface::class);

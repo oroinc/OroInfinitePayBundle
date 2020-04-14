@@ -25,7 +25,7 @@ class InvoiceDataProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->invoiceNumberGenerator = new InvoiceNumberGenerator();
 

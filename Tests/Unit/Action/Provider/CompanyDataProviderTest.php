@@ -39,7 +39,7 @@ class CompanyDataProviderTest extends \PHPUnit\Framework\TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->billingCountry = (new Country('DE'))->setIso3Code('DEU');
         $this->propertyAccessor = $this
