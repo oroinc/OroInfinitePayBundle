@@ -1,8 +1,8 @@
 # OroInfinitePayBundle
 
-OroInfinitePayBundle adds [Infinite Pay](https://www.infinitepay.de/) [integration](https://github.com/oroinc/platform/tree/master/src/Oro/Bundle/IntegrationBundle) into Oro applications.
+OroInfinitePayBundle adds [Infinite Pay](https://www.infinitepay.de/) [integration](https://github.com/oroinc/platform/tree/4.1/src/Oro/Bundle/IntegrationBundle) into Oro applications.
  
-The bundle helps admin users to enable and configure Infinite Pay [payment methods](https://github.com/oroinc/orocommerce/tree/master/src/Oro/Bundle/PaymentBundle) for customer orders, and therefore allows customers to pay for orders with Invoices attested by Infinite Pay service.
+The bundle helps admin users to enable and configure Infinite Pay [payment methods](https://github.com/oroinc/orocommerce/tree/4.1/src/Oro/Bundle/PaymentBundle) for customer orders, and therefore allows customers to pay for orders with Invoices attested by Infinite Pay service.
 
 Table of Contents
 -----------------
