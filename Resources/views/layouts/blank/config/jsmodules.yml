@@ -1,4 +1,4 @@
 dynamic-imports:
-    oroinfinitepay:
+    oropayment:
         - oroinfinitepay/js/app/components/payment-additional-fields-component
         - oroinfinitepay/js/app/components/payment-method-component
