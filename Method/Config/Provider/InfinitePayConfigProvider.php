@@ -2,7 +2,7 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Method\Config\Provider;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Oro\Bundle\InfinitePayBundle\Entity\InfinitePaySettings;
 use Oro\Bundle\InfinitePayBundle\Method\Config\Factory\InfinitePayConfigFactoryInterface;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
