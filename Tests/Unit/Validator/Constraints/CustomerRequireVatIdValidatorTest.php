@@ -19,10 +19,10 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
     /** @var FrontendHelper|\PHPUnit\Framework\MockObject\MockObject */
     private $frontendHelper;
 
-    /** @var  CustomerRequireVatId */
+    /** @var CustomerRequireVatId */
     protected $constraint;
 
-    /** @var  CustomerRequireVatIdValidator */
+    /** @var CustomerRequireVatIdValidator */
     protected $validator;
 
     /**
