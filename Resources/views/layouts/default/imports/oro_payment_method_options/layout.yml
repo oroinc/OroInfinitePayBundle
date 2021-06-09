@@ -2,4 +2,4 @@ layout:
     actions:
         - '@setBlockTheme':
             themes:
-                - 'OroInfinitePayBundle:layouts:default/imports/oro_payment_method_options/layout.html.twig'
+                - '@OroInfinitePay/layouts/default/imports/oro_payment_method_options/layout.html.twig'
