@@ -4,48 +4,38 @@ namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Validator\Constraints;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Oro\Bundle\AddressBundle\Entity\AddressType;
+use Oro\Bundle\CustomerBundle\Entity\AbstractDefaultTypedAddress;
 use Oro\Bundle\CustomerBundle\Entity\Customer;
 use Oro\Bundle\FrontendBundle\Request\FrontendHelper;
 use Oro\Bundle\InfinitePayBundle\Validator\Constraints\CustomerRequireVatId;
 use Oro\Bundle\InfinitePayBundle\Validator\Constraints\CustomerRequireVatIdValidator;
-use Oro\Component\Testing\Unit\EntityTrait;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
-class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
+class CustomerRequireVatIdValidatorTest extends ConstraintValidatorTestCase
 {
-    use EntityTrait;
-
     /** @var FrontendHelper|\PHPUnit\Framework\MockObject\MockObject */
     private $frontendHelper;
 
-    /** @var CustomerRequireVatId */
-    protected $constraint;
-
-    /** @var CustomerRequireVatIdValidator */
-    protected $validator;
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
-        parent::setUp();
-        $this->constraint = new CustomerRequireVatId();
-        $this->validator = new CustomerRequireVatIdValidator();
         $this->frontendHelper = $this->createMock(FrontendHelper::class);
-        $this->validator->setFrontendHelper($this->frontendHelper);
+        parent::setUp();
+    }
+
+    protected function createValidator()
+    {
+        $validator = new CustomerRequireVatIdValidator();
+        $validator->setFrontendHelper($this->frontendHelper);
+
+        return $validator;
     }
 
     public function testValidateWhenNullCustomer()
     {
-        /** @var ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject $context */
-        $context = $this->createMock(ExecutionContextInterface::class);
-        $context->expects($this->never())
-            ->method('addViolation');
+        $constraint = new CustomerRequireVatId();
+        $this->validator->validate(null, $constraint);
 
-        $this->validator->initialize($context);
-        $this->validator->validate(null, $this->constraint);
+        $this->assertNoViolation();
     }
 
     public function testValidateExceptionWhenInvalidArgumentType()
@@ -55,10 +45,8 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
             'Value must be instance of "Oro\Bundle\CustomerBundle\Entity\Customer", "boolean" given'
         );
 
-        /** @var Constraint|\PHPUnit\Framework\MockObject\MockObject $constraint */
-        $constraint = $this->createMock(Constraint::class);
-        $validator = new CustomerRequireVatIdValidator();
-        $validator->validate(false, $constraint);
+        $constraint = new CustomerRequireVatId();
+        $this->validator->validate(false, $constraint);
     }
 
     public function testValidateWhenFrontendRequest()
@@ -66,30 +54,102 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
         $this->frontendHelper->expects($this->once())
             ->method('isFrontendRequest')
             ->willReturn(true);
-        /** @var ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject $context */
-        $context = $this->createMock(ExecutionContextInterface::class);
-        $context->expects($this->never())
-                ->method('addViolation');
 
-        $this->validator->initialize($context);
-        $this->validator->validate(new Customer(), $this->constraint);
+        $constraint = new CustomerRequireVatId();
+        $this->validator->validate(new Customer(), $constraint);
+
+        $this->assertNoViolation();
     }
 
     /**
-     * @dataProvider addressesDataProvider
-     * @param array $addresses
+     * @dataProvider isValidDataProvider
      */
-    public function testValidation($vatId, $addresses, $expectedViolation)
+    public function testValid(?string $vatId, array $addresses)
     {
+        $customer = $this->getCustomer($vatId, $addresses);
+
         $this->frontendHelper->expects($this->once())
             ->method('isFrontendRequest')
             ->willReturn(false);
-        /** @var Customer|\PHPUnit\Framework\MockObject\MockObject $customer */
+
+        $constraint = new CustomerRequireVatId();
+        $this->validator->validate($customer, $constraint);
+
+        $this->assertNoViolation();
+    }
+
+    public function isValidDataProvider()
+    {
+        return [
+            'empty_addresses_no_vatid'               => [
+                'vatId'     => null,
+                'addresses' => []
+            ],
+            'eu_two_shipping_addresses_no_vatid'     => [
+                'vatId'     => null,
+                'addresses' => [
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'DE'),
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
+                ]
+            ],
+            'eu_two_shipping_addresses_vatid'        => [
+                'vatId'     => 'a vat id',
+                'addresses' => [
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'DE'),
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
+                ]
+            ],
+            'non_eu_two_shipping_addresses_no_vatid' => [
+                'vatId'     => null,
+                'addresses' => [
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'US'),
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'AO')
+                ]
+            ],
+            'non_eu_billing_addresses_no_vatid'      => [
+                'vatId'     => null,
+                'addresses' => [
+                    $this->getTypedAddress([AddressType::TYPE_BILLING => 'billing label'], 'US'),
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'AO')
+                ]
+            ],
+            'eu_one_billing_addresses_vatid'         => [
+                'vatId'     => 'a vat id',
+                'addresses' => [
+                    $this->getTypedAddress([AddressType::TYPE_BILLING => 'billing label'], 'DE'),
+                    $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
+                ]
+            ]
+        ];
+    }
+
+    public function testInvalidEuOneBillingAddresses()
+    {
+        $vatId = null;
+        $addresses = [
+            $this->getTypedAddress([AddressType::TYPE_BILLING => 'billing label'], 'DE'),
+            $this->getTypedAddress([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
+        ];
+        $customer = $this->getCustomer($vatId, $addresses);
+
+        $this->frontendHelper->expects($this->once())
+            ->method('isFrontendRequest')
+            ->willReturn(false);
+
+        $constraint = new CustomerRequireVatId();
+        $this->validator->validate($customer, $constraint);
+
+        $this->buildViolation($constraint->message)
+            ->assertRaised();
+    }
+
+    private function getCustomer(?string $vatId, array $addresses): Customer
+    {
         $customer = $this->getMockBuilder(Customer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getVatId', 'getAddresses'])
+            ->onlyMethods(['getAddresses'])
+            ->addMethods(['getVatId'])
             ->getMock();
-
         $customer->expects(self::any())
             ->method('getVatId')
             ->willReturn($vatId);
@@ -97,105 +157,14 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
             ->method('getAddresses')
             ->willReturn($addresses);
 
-        /** @var ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject $context */
-        $context = $this->createMock(ExecutionContextInterface::class);
-        if ($expectedViolation) {
-            $context
-                ->expects($this->once())
-                ->method('addViolation')
-                ->with('oro.infinite_pay.validators.vat_id_required');
-        } else {
-            $context
-                ->expects($this->never())
-                ->method('addViolation');
-        }
-
-        $this->validator->initialize($context);
-        $this->validator->validate($customer, $this->constraint);
+        return $customer;
     }
 
-    public function addressesDataProvider()
-    {
-        return [
-            'empty_addresses_no_vatid' =>
-                [
-                    'vatId' => null,
-                    'addresses' => [],
-                    'expectedViolation' => false
-                ],
-            'eu_two_shipping_addresses_no_vatid' =>
-                [
-                    'vatId' => null,
-                    'addresses' => [
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'DE'),
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
-                    ],
-                    'expectedViolation' => false
-                ],
-            'eu_two_shipping_addresses_vatid' =>
-                [
-                    'vatId' => 'a vat id',
-                    'addresses' => [
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'DE'),
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
-                    ],
-                    'expectedViolation' => false
-                ],
-            'non_eu_two_shipping_addresses_no_vatid' =>
-                [
-                    'vatId' => null,
-                    'addresses' => [
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'US'),
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'AO')
-                    ],
-                    'expectedViolation' => false
-                ],
-            'non_eu_billing_addresses_no_vatid' =>
-                [
-                    'vatId' => null,
-                    'addresses' => [
-                        $this->getTypedAddressMock([AddressType::TYPE_BILLING => 'billing label'], 'US'),
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'AO')
-                    ],
-                    'expectedViolation' => false
-                ],
-            'eu_one_billing_addresses_no_vatid' =>
-                [
-                    'vatId' => null,
-                    'addresses' => [
-                        $this->getTypedAddressMock([AddressType::TYPE_BILLING => 'billing label'], 'DE'),
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
-                    ],
-                    'expectedViolation' => true
-                ],
-            'eu_one_billing_addresses_vatid' =>
-                [
-                    'vatId' => 'a vat id',
-                    'addresses' => [
-                        $this->getTypedAddressMock([AddressType::TYPE_BILLING => 'billing label'], 'DE'),
-                        $this->getTypedAddressMock([AddressType::TYPE_SHIPPING => 'shipping label'], 'PT')
-                    ],
-                    'expectedViolation' => false
-                ]
-
-        ];
-    }
-
-    /**
-     * Get address mock.
-     *
-     * @param array $addressTypes
-     * @param string $countryIso2
-     * @param bool $isEmpty
-     * @return \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected function getTypedAddressMock(array $addressTypes, $countryIso2, $isEmpty = false)
-    {
-        $address = $this->getMockBuilder('Oro\Bundle\CustomerBundle\Entity\AbstractDefaultTypedAddress')
-            ->disableOriginalConstructor()
-            ->setMethods(['getTypes', 'isEmpty', 'getCountryIso2'])
-            ->getMockForAbstractClass();
-
+    private function getTypedAddress(
+        array $addressTypes,
+        string $countryIso2,
+        bool $isEmpty = false
+    ): AbstractDefaultTypedAddress {
         $addressTypeEntities = new ArrayCollection();
         foreach ($addressTypes as $name => $label) {
             $addressType = new AddressType($name);
@@ -203,17 +172,20 @@ class CustomerRequireVatIdValidatorTest extends \PHPUnit\Framework\TestCase
             $addressTypeEntities->add($addressType);
         }
 
+        $address = $this->getMockBuilder(AbstractDefaultTypedAddress::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getTypes', 'isEmpty', 'getCountryIso2'])
+            ->getMockForAbstractClass();
         $address->expects($this->any())
             ->method('getTypes')
-            ->will($this->returnValue($addressTypeEntities));
-
+            ->willReturn($addressTypeEntities);
         $address->expects($this->any())
             ->method('isEmpty')
-            ->will($this->returnValue($isEmpty));
+            ->willReturn($isEmpty);
 
         $address->expects($this->any())
             ->method('getCountryIso2')
-            ->will($this->returnValue($countryIso2));
+            ->willReturn($countryIso2);
 
         return $address;
     }
