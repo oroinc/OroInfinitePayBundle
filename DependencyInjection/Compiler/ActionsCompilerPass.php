@@ -13,9 +13,6 @@ class ActionsCompilerPass implements CompilerPassInterface
 
     const TAG_PAYMENT_ACTION = 'payment_action';
 
-    /**
-     * @param ContainerBuilder $container
-     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition(static::REGISTRY_PAYMENT_ACTIONS)) {

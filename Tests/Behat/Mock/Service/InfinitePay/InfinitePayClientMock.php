@@ -42,10 +42,6 @@ class InfinitePayClientMock implements InfinitePayClientInterface
     /** @var array */
     protected $options;
 
-    /**
-     * @param InfinitePayConfigInterface $config
-     * @param array $options
-     */
     public function __construct(InfinitePayConfigInterface $config, array $options = [])
     {
         $this->config = $config;

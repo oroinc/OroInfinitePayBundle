@@ -18,9 +18,6 @@ class CustomerRequireVatIdValidator extends ConstraintValidator
     /** @var FrontendHelper */
     private $frontendHelper;
 
-    /**
-     * @param FrontendHelper $frontendHelper
-     */
     public function setFrontendHelper(FrontendHelper $frontendHelper)
     {
         $this->frontendHelper = $frontendHelper;
@@ -53,11 +50,6 @@ class CustomerRequireVatIdValidator extends ConstraintValidator
         }
     }
 
-    /**
-     * @param Customer $customer
-     *
-     * @return bool
-     */
     private function hasEuropeanUnionBillingAddresses(Customer $customer): bool
     {
         $result = false;

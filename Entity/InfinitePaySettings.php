@@ -182,7 +182,6 @@ class InfinitePaySettings extends Transport
         return $this->settings;
     }
 
-
     /**
      * Add InfinitePayLabel
      *
@@ -262,7 +261,6 @@ class InfinitePaySettings extends Transport
     {
         return $this->infinitePayShortLabels;
     }
-
 
     /**
      * @return string
@@ -389,7 +387,6 @@ class InfinitePaySettings extends Transport
         $this->infinitePayTestMode = $testMode;
         return $this;
     }
-
 
     /**
      * @return bool

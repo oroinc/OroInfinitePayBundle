@@ -16,9 +16,6 @@ class SoapGateway implements GatewayInterface
      */
     protected $clientFactory;
 
-    /**
-     * @param InfinitePayClientFactoryInterface $clientFactory
-     */
     public function __construct(InfinitePayClientFactoryInterface $clientFactory)
     {
         $this->clientFactory = $clientFactory;
