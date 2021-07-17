@@ -19,11 +19,6 @@ class InfinitePayViewProvider extends AbstractPaymentMethodViewProvider
      */
     private $configProvider;
 
-
-    /**
-     * @param InfinitePayViewFactoryInterface    $factory
-     * @param InfinitePayConfigProviderInterface $configProvider
-     */
     public function __construct(
         InfinitePayViewFactoryInterface $factory,
         InfinitePayConfigProviderInterface $configProvider
@@ -44,9 +39,6 @@ class InfinitePayViewProvider extends AbstractPaymentMethodViewProvider
         }
     }
 
-    /**
-     * @param InfinitePayConfigInterface $config
-     */
     protected function addInfinitePayView(InfinitePayConfigInterface $config)
     {
         $this->addView(

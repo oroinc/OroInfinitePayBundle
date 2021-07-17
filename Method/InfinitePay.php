@@ -30,11 +30,6 @@ class InfinitePay implements PaymentMethodInterface
      */
     protected $orderProvider;
 
-    /**
-     * @param InfinitePayConfigInterface $config
-     * @param ActionRegistryInterface    $actionRegistry
-     * @param OrderProviderInterface     $orderProvider
-     */
     public function __construct(
         InfinitePayConfigInterface $config,
         ActionRegistryInterface $actionRegistry,

@@ -13,9 +13,6 @@ class OrderTotalProvider implements OrderTotalProviderInterface
      */
     protected $invoiceTotalsProvider;
 
-    /**
-     * @param InvoiceTotalsProviderInterface $invoiceTotalsProvider
-     */
     public function __construct(InvoiceTotalsProviderInterface $invoiceTotalsProvider)
     {
         $this->invoiceTotalsProvider = $invoiceTotalsProvider;

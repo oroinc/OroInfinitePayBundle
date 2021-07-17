@@ -20,7 +20,6 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     const INVOICE_DUE_PERIOD_KEY = 'invoice_due_period';
     const INVOICE_SHIPPING_DURATION_KEY = 'invoice_shipping_duration';
 
-
     /**
      * @return bool
      */

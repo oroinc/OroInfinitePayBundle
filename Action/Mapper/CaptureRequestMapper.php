@@ -53,9 +53,6 @@ class CaptureRequestMapper implements RequestMapperInterface
         return $request;
     }
 
-    /**
-     * @param Order $order
-     */
     public function getInvoiceData(Order $order)
     {
     }

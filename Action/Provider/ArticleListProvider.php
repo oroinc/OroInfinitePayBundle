@@ -17,8 +17,6 @@ class ArticleListProvider implements ArticleListProviderInterface
 
     /**
      * ArticleListProvider constructor.
-     *
-     * @param InvoiceTotalsProviderInterface $invoiceTotalsProvider
      */
     public function __construct(InvoiceTotalsProviderInterface $invoiceTotalsProvider)
     {

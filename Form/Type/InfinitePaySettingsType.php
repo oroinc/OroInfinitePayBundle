@@ -22,9 +22,6 @@ class InfinitePaySettingsType extends AbstractType
     const BLOCK_PREFIX = 'oro_infinitepay_settings';
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     *
      * @throws ConstraintDefinitionException
      * @throws InvalidOptionsException
      * @throws MissingOptionsException
@@ -84,8 +81,6 @@ class InfinitePaySettingsType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
-     *
      * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
