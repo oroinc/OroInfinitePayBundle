@@ -15,8 +15,6 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
 
     /**
      * InvoiceTotalsProvider constructor.
-     *
-     * @param TotalProcessorProvider $totalProcessorProvider
      */
     public function __construct(TotalProcessorProvider $totalProcessorProvider)
     {

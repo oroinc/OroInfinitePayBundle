@@ -17,7 +17,6 @@ class DebtorDataType extends AbstractType
 {
     const BLOCK_PREFIX = 'oro_infinite_pay_debtor_data';
 
-
     public static function getAvailableLegalTypes()
     {
         return [
@@ -67,9 +66,6 @@ class DebtorDataType extends AbstractType
             );
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

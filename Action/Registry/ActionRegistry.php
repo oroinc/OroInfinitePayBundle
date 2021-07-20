@@ -11,10 +11,6 @@ class ActionRegistry implements ActionRegistryInterface
      */
     protected $actions = [];
 
-    /**
-     * @param $actionType
-     * @param ActionInterface $actionClass
-     */
     public function addAction($actionType, ActionInterface $actionClass)
     {
         $this->actions[$actionType] = $actionClass;

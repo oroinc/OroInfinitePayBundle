@@ -74,11 +74,6 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
         'RESPONSE_ACTIVATION' => 'Oro\\Bundle\\InfinitePayBundle\\Service\\InfinitePay\\ResponseActivation',
     ];
 
-    /**
-     * @param InfinitePayConfigInterface    $config
-     * @param InfinitePayAPILoggerInterface $logger
-     * @param array                         $options
-     */
     public function __construct(
         InfinitePayConfigInterface $config,
         InfinitePayAPILoggerInterface $logger,

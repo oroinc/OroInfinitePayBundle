@@ -32,12 +32,6 @@ class DebtorDataProvider implements DebtorDataProviderInterface
     /** @var DnsResolver */
     protected $dnsResolver;
 
-    /**
-     * @param CompanyDataProviderInterface $companyDataProvider
-     * @param RequestProvider $requestProvider
-     * @param AddressExtractor $addressExtractor
-     * @param DnsResolver $dnsResolver
-     */
     public function __construct(
         CompanyDataProviderInterface $companyDataProvider,
         RequestProvider $requestProvider,
