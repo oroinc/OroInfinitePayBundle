@@ -19,10 +19,6 @@ class InfinitePayProvider extends AbstractPaymentMethodProvider
      */
     private $configProvider;
 
-    /**
-     * @param InfinitePayConfigProviderInterface $configProvider
-     * @param InfinitePayFactoryInterface $factory
-     */
     public function __construct(
         InfinitePayConfigProviderInterface $configProvider,
         InfinitePayFactoryInterface $factory
@@ -43,9 +39,6 @@ class InfinitePayProvider extends AbstractPaymentMethodProvider
         }
     }
 
-    /**
-     * @param InfinitePayConfigInterface $config
-     */
     protected function addInfinitePayMethod(InfinitePayConfigInterface $config)
     {
         $this->addMethod(

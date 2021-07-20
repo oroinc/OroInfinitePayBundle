@@ -44,8 +44,6 @@ class OroInfititePayBundleInstaller implements Installation
 
     /**
      * Create oro_infinitepay_lbl table
-     *
-     * @param Schema $schema
      */
     protected function createOroInfinitepayLblTable(Schema $schema)
     {
@@ -59,8 +57,6 @@ class OroInfititePayBundleInstaller implements Installation
 
     /**
      * Create oro_infinitepay_short_lbl table
-     *
-     * @param Schema $schema
      */
     protected function createOroInfinitepayShortLblTable(Schema $schema)
     {
@@ -74,8 +70,6 @@ class OroInfititePayBundleInstaller implements Installation
 
     /**
      * Update oro_integration_transport table
-     *
-     * @param Schema $schema
      */
     protected function updateOroIntegrationTransportTable(Schema $schema)
     {
@@ -94,8 +88,6 @@ class OroInfititePayBundleInstaller implements Installation
 
     /**
      * Add oro_infinitepay_lbl foreign keys.
-     *
-     * @param Schema $schema
      */
     protected function addOroInfinitepayLblForeignKeys(Schema $schema)
     {
@@ -116,8 +108,6 @@ class OroInfititePayBundleInstaller implements Installation
 
     /**
      * Add oro_infinitepay_short_lbl foreign keys.
-     *
-     * @param Schema $schema
      */
     protected function addOroInfinitepayShortLblForeignKeys(Schema $schema)
     {
@@ -136,9 +126,6 @@ class OroInfititePayBundleInstaller implements Installation
         );
     }
 
-    /**
-     * @param Schema $schema
-     */
     protected function addVatId(Schema $schema)
     {
         $table = $schema->getTable('oro_customer');

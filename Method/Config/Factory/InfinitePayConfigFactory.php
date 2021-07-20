@@ -27,11 +27,6 @@ class InfinitePayConfigFactory implements InfinitePayConfigFactoryInterface
      */
     private $identifierGenerator;
 
-    /**
-     * @param SymmetricCrypterInterface $encoder
-     * @param LocalizationHelper $localizationHelper
-     * @param IntegrationIdentifierGeneratorInterface $identifierGenerator
-     */
     public function __construct(
         SymmetricCrypterInterface $encoder,
         LocalizationHelper $localizationHelper,

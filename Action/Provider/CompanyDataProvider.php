@@ -11,7 +11,6 @@ use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 
 class CompanyDataProvider implements CompanyDataProviderInterface
 {
-
     /**
      * @var CustomerPropertyAccessor
      */

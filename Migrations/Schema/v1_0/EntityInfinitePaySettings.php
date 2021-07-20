@@ -27,8 +27,6 @@ class EntityInfinitePaySettings implements Migration
 
     /**
      * Create oro_infinitepay_lbl table
-     *
-     * @param Schema $schema
      */
     protected function createOroInfinitepayLblTable(Schema $schema)
     {
@@ -42,8 +40,6 @@ class EntityInfinitePaySettings implements Migration
 
     /**
      * Create oro_infinitepay_short_lbl table
-     *
-     * @param Schema $schema
      */
     protected function createOroInfinitepayShortLblTable(Schema $schema)
     {
@@ -57,8 +53,6 @@ class EntityInfinitePaySettings implements Migration
 
     /**
      * Update oro_integration_transport table
-     *
-     * @param Schema $schema
      */
     protected function updateOroIntegrationTransportTable(Schema $schema)
     {
@@ -77,8 +71,6 @@ class EntityInfinitePaySettings implements Migration
 
     /**
      * Add oro_infinitepay_lbl foreign keys.
-     *
-     * @param Schema $schema
      */
     protected function addOroInfinitepayLblForeignKeys(Schema $schema)
     {
@@ -99,8 +91,6 @@ class EntityInfinitePaySettings implements Migration
 
     /**
      * Add oro_infinitepay_short_lbl foreign keys.
-     *
-     * @param Schema $schema
      */
     protected function addOroInfinitepayShortLblForeignKeys(Schema $schema)
     {
