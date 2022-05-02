@@ -8,9 +8,13 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class OroInfinitePayBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new ActionsCompilerPass());
         parent::build($container);
+
+        $container->addCompilerPass(new ActionsCompilerPass());
     }
 }

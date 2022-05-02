@@ -9,8 +9,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class OroInfinitePayExtension extends Extension
 {
-    const ALIAS = 'oro_infinite_pay';
-
+    /**
+     * {@inheritDoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
@@ -21,13 +22,5 @@ class OroInfinitePayExtension extends Extension
         $loader->load('action_mappers.yml');
         $loader->load('form_types.yml');
         $loader->load('request_providers.yml');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAlias()
-    {
-        return static::ALIAS;
     }
 }
