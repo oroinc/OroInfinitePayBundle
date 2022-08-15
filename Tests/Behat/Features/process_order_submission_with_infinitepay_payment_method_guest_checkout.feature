@@ -60,7 +60,7 @@ Feature: Process order submission with InfinitePay payment method guest checkout
     And I click "Search Button"
     And I click "product1"
     And I click "Add to Shopping List"
-    And I should see "Product has been added to" flash message
+    And I should see "Product has been added to" flash message and I close it
     And I click "Shopping List"
     Then I should see "product1"
 
