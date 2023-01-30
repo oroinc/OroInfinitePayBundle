@@ -48,7 +48,7 @@ class ArticleListProviderHelper extends \PHPUnit\Framework\TestCase
                 ->setArticlePriceNet($articleData->getPriceNet())
                 ->setArticleQuantity($articleData->getQuantity())
                 ->setArticleVatPerc($articleData->getVatPercentage())
-                ;
+            ;
             $articles[] = $orderArticle;
         }
 

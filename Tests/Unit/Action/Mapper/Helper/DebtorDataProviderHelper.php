@@ -62,7 +62,7 @@ class DebtorDataProviderHelper extends \PHPUnit\Framework\TestCase
             ->setBdStreet($this->bdStreet)
             ->setBdNameFs($this->bdFirstName)
             ->setBdNameLs($this->bdLastName)
-            ;
+        ;
 
         $debtorDataProvider
             ->method('getDebtorData')
@@ -287,7 +287,7 @@ class DebtorDataProviderHelper extends \PHPUnit\Framework\TestCase
             ->setCompanyName($this->companyDataName)
             ->setOwnerFsName($this->companyDataFsName)
             ->setOwnerLsName($this->companyDataLsName)
-            ;
+        ;
 
         return $companyData;
     }

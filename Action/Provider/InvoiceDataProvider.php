@@ -50,6 +50,6 @@ class InvoiceDataProvider implements InvoiceDataProviderInterface
         return (new \DateTime())
             ->modify(sprintf('+ %s days', $daysUntilDue))
             ->format('Ymd')
-            ;
+        ;
     }
 }

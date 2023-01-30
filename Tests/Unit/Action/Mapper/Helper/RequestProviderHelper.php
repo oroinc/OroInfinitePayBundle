@@ -80,6 +80,6 @@ class RequestProviderHelper extends \PHPUnit\Framework\TestCase
         return (new \DateTime())
             ->modify(sprintf('+ %s days', $daysUntilDue))
             ->format('Ymd')
-            ;
+        ;
     }
 }

@@ -135,7 +135,7 @@ class DebtorDataProviderTest extends \PHPUnit\Framework\TestCase
             ->setCity($this->billingCity)
             ->setStreet($this->street)
             ->setPostalCode($this->zip)
-            ;
+        ;
 
         return $address;
     }
