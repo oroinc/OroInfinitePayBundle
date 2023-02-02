@@ -7,6 +7,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Provider\InvoiceNumberGeneratorInterface
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\InvoiceData;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Provides invoice data for an order.
+ */
 class InvoiceDataProvider implements InvoiceDataProviderInterface
 {
     /**
