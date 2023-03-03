@@ -4,16 +4,19 @@ namespace Oro\Bundle\InfinitePayBundle\Action\PropertyAccessor;
 
 use Oro\Bundle\InfinitePayBundle\Exception\ValueNotSetException;
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
-use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
+/**
+ * Customer property accessor wrapper.
+ */
 class CustomerPropertyAccessor
 {
     const PROPERTY_PATH = 'vat_id';
 
-    /** @var PropertyAccessor */
+    /** @var PropertyAccessorInterface */
     protected $propertyAccessor;
 
-    public function __construct(PropertyAccessor $propertyAccessor)
+    public function __construct(PropertyAccessorInterface $propertyAccessor)
     {
         $this->propertyAccessor = $propertyAccessor;
     }
