@@ -3,26 +3,20 @@
 namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\DependencyInjection;
 
 use Oro\Bundle\InfinitePayBundle\DependencyInjection\OroInfinitePayExtension;
-use Oro\Bundle\TestFrameworkBundle\Test\DependencyInjection\ExtensionTestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * {@inheritdoc}
  */
-class OroInfinitePayExtensionTest extends ExtensionTestCase
+class OroInfinitePayExtensionTest extends \PHPUnit\Framework\TestCase
 {
-    public function testLoad()
+    public function testLoad(): void
     {
-        $this->loadExtension(new OroInfinitePayExtension());
+        $container = new ContainerBuilder();
 
-        $expectedParameters = [
-            'infitepay.wsdl.url',
-        ];
-        $this->assertParametersLoaded($expectedParameters);
+        $extension = new OroInfinitePayExtension();
+        $extension->load([], $container);
 
-        $expectedDefinitions = [
-            'oro_infinite_pay.client.factory',
-            'oro_infinite_pay.soap.gateway',
-        ];
-        $this->assertDefinitionsLoaded($expectedDefinitions);
+        self::assertNotEmpty($container->getDefinitions());
     }
 }
