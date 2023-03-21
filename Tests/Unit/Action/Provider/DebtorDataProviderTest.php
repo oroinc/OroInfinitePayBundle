@@ -4,87 +4,55 @@ namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper;
 
 use Oro\Bundle\AddressBundle\Entity\Country;
 use Oro\Bundle\CustomerBundle\Entity\Customer;
+use Oro\Bundle\InfinitePayBundle\Action\Provider\CompanyDataProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProviderInterface;
+use Oro\Bundle\InfinitePayBundle\Action\Provider\RequestProvider;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CompanyData;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\OrderBundle\Entity\OrderAddress;
+use Oro\Bundle\PaymentBundle\Provider\AddressExtractor;
 use Oro\Component\PhpUtils\Network\DnsResolver;
 
-/**
- * {@inheritdoc}
- */
 class DebtorDataProviderTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var DebtorDataProviderInterface */
-    protected $debtorDataProvider;
+    private DebtorDataProviderInterface $debtorDataProvider;
+    private string $companyDataIdNum = 'test_id_num';
+    private string $companyDataIdType = 'freelance';
+    private string $companyDataName = 'test_company';
+    private string $companyDataFsName = 'test_first_name';
+    private string $companyDataLsName = 'test_last_name';
+    private string $clientIp = '8.8.8.8';
+    private string $isp = 'google-public-dns-a.google.com';
+    private Country $billingCountry;
+    private string $billingCity = 'Mainz';
+    private string $street = 'Am Rosengarten 1';
+    private string $zip = '55131';
 
-    /** @var string */
-    protected $companyDataIdNum = 'test_id_num';
-
-    /** @var string */
-    protected $companyDataIdType = 'freelance';
-
-    /** @var string */
-    protected $companyDataName = 'test_company';
-
-    /** @var string */
-    protected $companyDataFsName = 'test_first_name';
-
-    /** @var string */
-    protected $companyDataLsName = 'test_last_name';
-
-    /** @var string */
-    protected $clientIp = '8.8.8.8';
-
-    /** @var string */
-    protected $isp = 'google-public-dns-a.google.com';
-
-    /** @var Country */
-    protected $billingCountry;
-    /** @var string */
-    protected $billingCity = 'Mainz';
-    /** @var string */
-    protected $street = 'Am Rosengarten 1';
-    /** @var string */
-    protected $zip = '55131';
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->billingCountry = (new Country('DE'))->setIso3Code('DEU');
 
-        $companyDataProvider = $this
-            ->getMockBuilder('Oro\Bundle\InfinitePayBundle\Action\Provider\CompanyDataProvider')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $companyDataProvider = $this->createMock(CompanyDataProvider::class);
 
-        $companyDataProvider
+        $companyDataProvider->expects(self::any())
             ->method('getCompanyData')
-            ->willReturn($this->returnValue($this->getCompanyData()));
+            ->willReturn($this->getCompanyData());
 
-        $requestProvider = $this
-            ->getMockBuilder('Oro\Bundle\InfinitePayBundle\Action\Provider\RequestProvider')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $requestProvider = $this->createMock(RequestProvider::class);
 
-        $requestProvider
+        $requestProvider->expects(self::any())
             ->method('getClientIp')
             ->willReturn($this->clientIp);
 
-        $addressExtractor = $this
-            ->getMockBuilder('Oro\Bundle\PaymentBundle\Provider\AddressExtractor')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $addressExtractor = $this->createMock(AddressExtractor::class);
 
-        $addressExtractor
+        $addressExtractor->expects(self::any())
             ->method('extractAddress')
             ->willReturn($this->getOrderAddress());
 
         $dnsResolver = $this->createMock(DnsResolver::class);
-        $dnsResolver->expects($this->any())
+        $dnsResolver->expects(self::any())
             ->method('getHostnameByIp')
             ->willReturn($this->isp);
 
@@ -112,31 +80,24 @@ class DebtorDataProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->companyDataLsName, $debtorDataActual->getBdNameLs());
     }
 
-    private function getCompanyData()
+    private function getCompanyData(): CompanyData
     {
-        $companyData = (new CompanyData())
+        return (new CompanyData())
             ->setComIdNum($this->companyDataIdNum)
             ->setComIdType($this->companyDataIdType)
             ->setCompanyName($this->companyDataName)
             ->setOwnerFsName($this->companyDataFsName)
-            ->setOwnerLsName($this->companyDataLsName)
-        ;
-
-        return $companyData;
+            ->setOwnerLsName($this->companyDataLsName);
     }
 
-    private function getOrderAddress()
+    private function getOrderAddress(): OrderAddress
     {
-        $address = new OrderAddress();
-        $address
+        return (new OrderAddress())
             ->setFirstName($this->companyDataFsName)
             ->setLastName($this->companyDataLsName)
             ->setCountry($this->billingCountry)
             ->setCity($this->billingCity)
             ->setStreet($this->street)
-            ->setPostalCode($this->zip)
-        ;
-
-        return $address;
+            ->setPostalCode($this->zip);
     }
 }

@@ -22,7 +22,10 @@ class CustomerRequireVatIdValidatorTest extends ConstraintValidatorTestCase
         parent::setUp();
     }
 
-    protected function createValidator()
+    /**
+     * {@inheritDoc}
+     */
+    protected function createValidator(): CustomerRequireVatIdValidator
     {
         $validator = new CustomerRequireVatIdValidator();
         $validator->setFrontendHelper($this->frontendHelper);
@@ -78,7 +81,7 @@ class CustomerRequireVatIdValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    public function isValidDataProvider()
+    public function isValidDataProvider(): array
     {
         return [
             'empty_addresses_no_vatid'               => [

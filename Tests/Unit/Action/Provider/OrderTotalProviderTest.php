@@ -8,50 +8,50 @@ use Oro\Bundle\InfinitePayBundle\Action\Provider\OrderTotalProvider;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\TaxBundle\Model\ResultElement;
 
-/**
- * {@inheritdoc}
- */
 class OrderTotalProviderTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var array */
-    protected $subtotals = ['amount' => 10.00, 'currency' => 'EUR'];
-    protected $shipping = ['amount' => 5.00];
-    protected $discount = ['amount' => 2.5];
-    protected $totalGrossAmount = 14.87;
-    /**
-     * @var InvoiceTotalsProviderInterface
-     */
-    protected $invoiceTotalsProvider;
+    private array $subtotals = ['amount' => 10.00, 'currency' => 'EUR'];
+    private array $discount = ['amount' => 2.5];
+    private float $totalGrossAmount = 14.87;
 
-    /**
-     * {@inheritdoc}
-     */
+    /** @var InvoiceTotalsProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $invoiceTotalsProvider;
+
+    /** @var OrderTotalProvider */
+    private $orderTotalProvider;
+
     protected function setUp(): void
     {
-        $invoiceTotalsProvider = $this
-            ->getMockBuilder(InvoiceTotalsProvider::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->invoiceTotalsProvider = $this->createMock(InvoiceTotalsProvider::class);
 
-        $invoiceTotalsProvider->method('getDiscount')->willReturn($this->discount);
-        $invoiceTotalsProvider->method('getTotalGrossAmount')->willReturn($this->totalGrossAmount);
+        $this->invoiceTotalsProvider->expects(self::any())
+            ->method('getDiscount')
+            ->willReturn($this->discount);
+        $this->invoiceTotalsProvider->expects(self::any())
+            ->method('getTotalGrossAmount')
+            ->willReturn($this->totalGrossAmount);
+
         $taxTotals = new ResultElement();
         $taxTotals->offsetSet('excludingTax', 15.0);
-        $invoiceTotalsProvider->method('getTaxTotals')->willReturn($taxTotals);
+        $this->invoiceTotalsProvider->expects(self::any())
+            ->method('getTaxTotals')
+            ->willReturn($taxTotals);
+
         $taxShipping = new ResultElement();
         $taxShipping->offsetSet('excludingTax', 8.43);
         $taxShipping->offsetSet('includingTax', 10);
+        $this->invoiceTotalsProvider->expects(self::any())
+            ->method('getTaxShipping')
+            ->willReturn($taxShipping);
 
-        $invoiceTotalsProvider->method('getTaxShipping')->willReturn($taxShipping);
-
-        $this->invoiceTotalsProvider = $invoiceTotalsProvider;
+        $this->orderTotalProvider = new OrderTotalProvider($this->invoiceTotalsProvider);
     }
 
     public function testGetOrderTotal()
     {
-        $orderTotalProvider = new OrderTotalProvider($this->invoiceTotalsProvider);
         $order = (new Order())->setCurrency('EUR');
-        $actualOrderTotals = $orderTotalProvider->getOrderTotal($order);
+
+        $actualOrderTotals = $this->orderTotalProvider->getOrderTotal($order);
 
         $this->assertEquals('1487', $actualOrderTotals->getTrsAmtGross());
         $this->assertEquals('1500', $actualOrderTotals->getTrsAmtNet());

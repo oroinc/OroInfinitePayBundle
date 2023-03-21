@@ -8,33 +8,22 @@ use Oro\Bundle\InfinitePayBundle\Method\Provider\InvoiceNumberGenerator;
 use Oro\Bundle\InfinitePayBundle\Method\Provider\InvoiceNumberGeneratorInterface;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
-/**
- * {@inheritdoc}
- */
 class InvoiceDataProviderTest extends \PHPUnit\Framework\TestCase
 {
-    protected $duePeriod = 30;
-    protected $shippingDuration = 21;
-    protected $identifier = 'test_identifier';
-    /** @var InvoiceNumberGeneratorInterface */
-    protected $invoiceNumberGenerator;
+    private int $duePeriod = 30;
+    private int $shippingDuration = 21;
+    private string $identifier = 'test_identifier';
+    private InvoiceNumberGeneratorInterface $invoiceNumberGenerator;
+    private InfinitePayConfig $config;
 
-    /** @var InfinitePayConfig */
-    protected $config;
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->invoiceNumberGenerator = new InvoiceNumberGenerator();
 
-        $this->config = new InfinitePayConfig(
-            [
-                InfinitePayConfig::INVOICE_DUE_PERIOD_KEY => $this->duePeriod,
-                InfinitePayConfig::INVOICE_SHIPPING_DURATION_KEY => $this->shippingDuration
-            ]
-        );
+        $this->config = new InfinitePayConfig([
+            InfinitePayConfig::INVOICE_DUE_PERIOD_KEY => $this->duePeriod,
+            InfinitePayConfig::INVOICE_SHIPPING_DURATION_KEY => $this->shippingDuration
+        ]);
     }
 
     public function testGetInvoiceData()

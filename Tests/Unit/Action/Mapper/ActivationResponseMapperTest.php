@@ -8,9 +8,6 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseActivation;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseData;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
-/**
- * {@inheritdoc}
- */
 class ActivationResponseMapperTest extends \PHPUnit\Framework\TestCase
 {
     public function testMapResponseToPaymentTransactionSuccess()
@@ -31,16 +28,11 @@ class ActivationResponseMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($actualPaymentTransaction->isSuccessful());
     }
 
-    /**
-     * @param $status
-     *
-     * @return ActivateOrderResponse
-     */
-    private function getResponse($status)
+    private function getResponse(string $status): ActivateOrderResponse
     {
         $responseActivation = new ResponseActivation();
         $responseActivation->setResponseData((new ResponseData())->setStatus($status));
 
-        return (new ActivateOrderResponse())->setRESPONSE($responseActivation);
+        return (new ActivateOrderResponse())->setResponse($responseActivation);
     }
 }

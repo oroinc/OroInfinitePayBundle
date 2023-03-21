@@ -20,49 +20,34 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseReservation;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
-/**
- * {@inheritdoc}
- */
 class ReserveTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var RequestMapperInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $requestMapper;
+    /** @var RequestMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $requestMapper;
 
-    /**
-     * @var ResponseMapperInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $responseMapper;
+    /** @var ResponseMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $responseMapper;
 
-    /**
-     * @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $config;
+    /** @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $config;
 
-    /**
-     * @var InfinitePayConfigProviderInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $configProvider;
+    /** @var InfinitePayConfigProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $configProvider;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->config = $this->createMock(InfinitePayConfigInterface::class);
-
         $this->configProvider = $this->createMock(InfinitePayConfigProviderInterface::class);
-        $this->configProvider
-            ->expects(static::any())
+        $this->requestMapper = $this->createMock(ReservationRequestMapper::class);
+
+        $this->configProvider->expects(self::any())
             ->method('getPaymentConfig')
             ->willReturn($this->config);
 
-        $this->requestMapper = $this->createMock(ReservationRequestMapper::class);
-        $this->requestMapper
-            ->expects(static::any())
+        $this->requestMapper->expects(self::any())
             ->method('createRequestFromOrder')
             ->willReturn(new ReserveOrder());
+
         $this->responseMapper = new ReservationResponseMapper();
     }
 
@@ -70,17 +55,14 @@ class ReserveTest extends \PHPUnit\Framework\TestCase
     {
         $responseSuccess = $this->getResponseReservation();
         $responseSuccess->getResponse()->getResponseData()->setStatus('1');
-        /** @var GatewayInterface|\PHPUnit\Framework\MockObject\MockObject $gateway */
         $gateway = $this->createMock(GatewayInterface::class);
-        $gateway
-            ->expects(static::once())
+        $gateway->expects(self::once())
             ->method('reserve')
             ->willReturn($responseSuccess);
         $actionReserve = new Reserve(
             $gateway,
             $this->configProvider
         );
-        /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject $invoiceDataProvider */
         $invoiceDataProvider = $this->createMock(InvoiceDataProviderInterface::class);
         $automationProvider = new AutomationProvider($invoiceDataProvider);
 
@@ -102,17 +84,14 @@ class ReserveTest extends \PHPUnit\Framework\TestCase
     {
         $responseFail = $this->getResponseReservation();
         $responseFail->getResponse()->getResponseData()->setStatus('0');
-        /** @var GatewayInterface|\PHPUnit\Framework\MockObject\MockObject $gateway */
         $gateway = $this->createMock(GatewayInterface::class);
-        $gateway
-            ->expects(static::once())
+        $gateway->expects(self::once())
             ->method('reserve')
             ->willReturn($responseFail);
         $actionReserve = new Reserve(
             $gateway,
             $this->configProvider
         );
-        /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject $invoiceDataProvider */
         $invoiceDataProvider = $this->createMock(InvoiceDataProviderInterface::class);
         $automationProvider = new AutomationProvider($invoiceDataProvider);
 
@@ -135,21 +114,17 @@ class ReserveTest extends \PHPUnit\Framework\TestCase
     {
         $responseSuccess = $this->getResponseReservation();
         $responseSuccess->getResponse()->getResponseData()->setStatus('1');
-        /** @var GatewayInterface|\PHPUnit\Framework\MockObject\MockObject $gateway */
         $gateway = $this->createMock(GatewayInterface::class);
-        $gateway
-            ->expects(static::exactly(2))
+        $gateway->expects(self::exactly(2))
             ->method('reserve')
             ->willReturn($responseSuccess);
-        $this->config
-            ->expects(static::exactly(2))
+        $this->config->expects(self::exactly(2))
             ->method('isAutoActivateEnabled')
             ->willReturn(true);
         $actionReserve = new Reserve(
             $gateway,
             $this->configProvider
         );
-        /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject $invoiceDataProvider */
         $invoiceDataProvider = $this->createMock(InvoiceDataProvider::class);
         $automationProvider = new AutomationProvider($invoiceDataProvider);
 
@@ -171,14 +146,11 @@ class ReserveTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($reserveResponse['success']);
     }
 
-    /**
-     * @return ReserveOrderResponse
-     */
-    private function getResponseReservation()
+    private function getResponseReservation(): ReserveOrderResponse
     {
         $reserveOrderResponse = new ReserveOrderResponse();
         $responseReservation = new ResponseReservation();
-        $reserveOrderResponse->setRESPONSE($responseReservation);
+        $reserveOrderResponse->setResponse($responseReservation);
         $responseReservation->setResponseData(new ResponseData());
 
         return $reserveOrderResponse;

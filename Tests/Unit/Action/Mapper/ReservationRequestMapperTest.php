@@ -3,86 +3,101 @@
 namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper;
 
 use Oro\Bundle\InfinitePayBundle\Action\Mapper\ReservationRequestMapper;
+use Oro\Bundle\InfinitePayBundle\Action\Provider\ArticleListProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\ArticleListProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\ClientDataProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\ClientDataProviderInterface;
+use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\DebtorDataProviderInterface;
-use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceDataProvider;
-use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceDataProviderInterface;
-use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceTotalsProviderInterface;
+use Oro\Bundle\InfinitePayBundle\Action\Provider\OrderTotalProvider;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\OrderTotalProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ClientData;
+use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CompanyData;
+use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\DebtorData;
+use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ReserveOrder;
-use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\ArticleListProviderHelper;
-use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\DebtorDataProviderHelper;
-use Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper\Helper\OrderTotalProviderHelper;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
-/**
- * {@inheritdoc}
- */
 class ReservationRequestMapperTest extends \PHPUnit\Framework\TestCase
 {
-    protected $userInputEmail = 'test@testemailde';
-    protected $userInputLegalForm = 'eV';
-    protected $orderId = 'order_id';
-    /**
-     * @var ClientDataProviderInterface
-     */
-    protected $clientDataProvider;
+    /** @var ClientDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $clientDataProvider;
 
-    /**
-     * @var InvoiceDataProviderInterface
-     */
-    protected $invoiceDataProvider;
+    /** @var DebtorDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $debtorDataProvider;
 
-    /**
-     * @var InvoiceTotalsProviderInterface
-     */
-    protected $invoiceTotalsProvider;
+    /** @var OrderTotalProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $orderTotalProvider;
 
-    /**
-     * @var DebtorDataProviderInterface
-     */
-    protected $debtorDataProvider;
+    /** @var ArticleListProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $articleListProvider;
 
-    /**
-     * @var OrderTotalProviderInterface
-     */
-    protected $orderTotalProvider;
-
-    /**
-     * @var ArticleListProviderInterface
-     */
-    protected $articleListProvider;
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
-        $this->clientDataProvider = $this
-            ->getMockBuilder(ClientDataProvider::class)->disableOriginalConstructor()->getMock();
+        $this->clientDataProvider = $this->createMock(ClientDataProvider::class);
+        $this->orderTotalProvider = $this->createMock(OrderTotalProvider::class);
+        $this->debtorDataProvider = $this->createMock(DebtorDataProvider::class);
+        $this->articleListProvider = $this->createMock(ArticleListProvider::class);
+
         $clientData = (new ClientData())->setClientRef('client_ref')->setSecurityCd('security_cd');
-        $this->clientDataProvider->method('getClientData')->willReturn($clientData);
+        $this->clientDataProvider->expects(self::any())
+            ->method('getClientData')
+            ->willReturn($clientData);
 
-        $this->invoiceDataProvider = $this
-            ->getMockBuilder(InvoiceDataProvider::class)->disableOriginalConstructor()->getMock();
+        $orderData = (new OrderTotal())
+            ->setTrsCurrency('EUR')
+            ->setTrsAmtGross(1190)
+            ->setTrsAmtNet(1000)
+            ->setPayType(OrderTotalProviderInterface::PAY_TYPE_INVOICE)
+            ->setRabateGross(0)
+            ->setRabateNet(0)
+            ->setShippingPriceGross(500)
+            ->setShippingPriceNet(420)
+            ->setTermsAccepted('1')
+            ->setTrsDt('20170101 12:00:00')
+            ->setTotalGrossCalcMethod(OrderTotalProviderInterface::TOTAL_CALC_B2B_TAX_PER_ITEM);
+        $this->orderTotalProvider->expects(self::any())
+            ->method('getOrderTotal')
+            ->willReturn($orderData);
 
-        $this->debtorDataProvider = (new DebtorDataProviderHelper())->getDebtorDataProvider();
-        $this->orderTotalProvider = (new OrderTotalProviderHelper())->getOrderTotalProvider();
-        $this->articleListProvider = (new ArticleListProviderHelper())->getArticleListProvider();
+        $companyData = (new CompanyData())
+            ->setComIdNum('test_id_num')
+            ->setComIdType('freelance')
+            ->setCompanyName('test_company')
+            ->setOwnerFsName('test_first_name')
+            ->setOwnerLsName('test_last_name');
+        $debtorData = (new DebtorData())
+            ->setCompanyData($companyData)
+            ->setBdEmai('test_email')
+            ->setDbNew('2')
+            ->setNegPayHist('0')
+            ->setBdSalut('n/a')
+            ->setIpAdd('8.8.8.8')
+            ->setIsp('test isp')
+            ->setBdZip('55131')
+            ->setBdCountry('DE')
+            ->setBdCity('Mainz')
+            ->setBdStreet('Am Rosengarten 1')
+            ->setBdNameFs('Anton')
+            ->setBdNameLs('Müller');
+        $this->debtorDataProvider->expects(self::any())
+            ->method('getDebtorData')
+            ->willReturn($debtorData);
     }
 
     public function testCreateRequestFromOrder()
     {
-        /** @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject $config */
-        $config = $this->createMock(InfinitePayConfigInterface::class);
-
+        $orderId = 'order_id';
         $order = new Order();
         $order->setCurrency('EUR');
-        $order->setIdentifier($this->orderId);
+        $order->setIdentifier($orderId);
+
+        $config = $this->createMock(InfinitePayConfigInterface::class);
+
+        $userInputEmail = 'test@testemailde';
+        $userInputLegalForm = 'eV';
+        $userInput = ['email' => $userInputEmail, 'legalForm' => $userInputLegalForm];
 
         $reservationRequestMapper = new ReservationRequestMapper(
             $this->clientDataProvider,
@@ -90,15 +105,14 @@ class ReservationRequestMapperTest extends \PHPUnit\Framework\TestCase
             $this->orderTotalProvider,
             $this->articleListProvider
         );
-
-        $userInput = ['email' => $this->userInputEmail, 'legalForm' => $this->userInputLegalForm];
         $actualResult = $reservationRequestMapper->createRequestFromOrder($order, $config, $userInput);
+
         $this->assertInstanceOf(ReserveOrder::class, $actualResult);
-        $actualRequest = $actualResult->getREQUEST();
-        $this->assertEquals($this->userInputEmail, $actualRequest->getDebtorData()->getBdEmail());
-        $this->assertEquals($this->userInputLegalForm, $actualRequest->getDebtorData()->getComOrPer());
+        $actualRequest = $actualResult->getRequest();
+        $this->assertEquals($userInputEmail, $actualRequest->getDebtorData()->getBdEmail());
+        $this->assertEquals($userInputLegalForm, $actualRequest->getDebtorData()->getComOrPer());
         $this->assertEquals('0', $actualRequest->getOrderData()->getAutoActivate());
         $this->assertEquals('0', $actualRequest->getOrderData()->getAutoCapture());
-        $this->assertEquals($this->orderId, $actualRequest->getOrderData()->getOrderId());
+        $this->assertEquals($orderId, $actualRequest->getOrderData()->getOrderId());
     }
 }

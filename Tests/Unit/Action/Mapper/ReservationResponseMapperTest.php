@@ -8,12 +8,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseData;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseReservation;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
-/**
- * {@inheritdoc}
- */
 class ReservationResponseMapperTest extends \PHPUnit\Framework\TestCase
 {
-    protected $orderReference = 'test_order_ref';
+    private string $orderReference = 'test_order_ref';
 
     public function testMapResponseToPaymentTransactionSuccess()
     {
@@ -35,17 +32,11 @@ class ReservationResponseMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->orderReference, $actualPaymentTransaction->getReference());
     }
 
-    /**
-     * @param $orderReference
-     * @param $status
-     *
-     * @return ReserveOrderResponse
-     */
-    private function getResponse($orderReference, $status)
+    private function getResponse(string $orderReference, string $status): ReserveOrderResponse
     {
         $responseReservation = new ResponseReservation();
         $responseReservation->setResponseData((new ResponseData())->setRefNo($orderReference)->setStatus($status));
 
-        return  (new ReserveOrderResponse())->setRESPONSE($responseReservation);
+        return  (new ReserveOrderResponse())->setResponse($responseReservation);
     }
 }

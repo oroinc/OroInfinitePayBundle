@@ -5,10 +5,7 @@ namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Provider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Oro\Bundle\CurrencyBundle\Entity\Price;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\ArticleListProvider;
-use Oro\Bundle\InfinitePayBundle\Action\Provider\ArticleListProviderInterface;
 use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceTotalsProvider;
-use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceTotalsProviderInterface;
-use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderArticle;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\OrderBundle\Entity\OrderLineItem;
 use Oro\Bundle\ProductBundle\Entity\ProductName;
@@ -17,43 +14,30 @@ use Oro\Bundle\TaxBundle\Model\Result;
 use Oro\Bundle\TaxBundle\Model\ResultElement;
 use Oro\Bundle\TaxBundle\Model\TaxResultElement;
 
-/**
- * {@inheritdoc}
- */
 class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var InvoiceTotalsProviderInterface
-     */
-    protected $invoiceTotalsProvider;
+    private ArticleListProvider $articleListProvider;
 
-    /** @var ArticleListProviderInterface */
-    protected $articleListProvider;
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
-        $this->invoiceTotalsProvider = $this
-            ->getMockBuilder(InvoiceTotalsProvider::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $invoiceTotalsProvider = $this->createMock(InvoiceTotalsProvider::class);
+        $invoiceTotalsProvider->expects(self::any())
+            ->method('getTax')
+            ->willReturn($this->getTaxArray());
 
-        $taxArray = $this->getTaxArray();
-        $this->invoiceTotalsProvider->method('getTax')->willReturn($taxArray);
-        $this->articleListProvider = new ArticleListProvider($this->invoiceTotalsProvider);
+        $this->articleListProvider = new ArticleListProvider($invoiceTotalsProvider);
     }
 
     public function testGetArticleList()
     {
-        $order = $this->getMockBuilder(Order::class)->disableOriginalConstructor()->getMock();
-        $order->method('getLineItems')->willReturn(new ArrayCollection([
-            $this->getLineItem('1GB82', 'Women’s Slip-On Clog', '1998.9999999999998', 2),
-            $this->getLineItem('0RT28', '220 Lumen Rechargeable Headlamp', '9999.0', 1),
-        ]));
+        $order = $this->createMock(Order::class);
+        $order->expects(self::any())
+            ->method('getLineItems')
+            ->willReturn(new ArrayCollection([
+                $this->getLineItem('1GB82', 'Women’s Slip-On Clog', '1998.9999999999998', 2),
+                $this->getLineItem('0RT28', '220 Lumen Rechargeable Headlamp', '9999.0', 1),
+            ]));
 
-        /** @var OrderArticle[] $list */
         $list = $this->articleListProvider->getArticleList($order)->getARTICLE();
 
         $this->assertEquals(237880, $list[0]->getArticlePriceGross());
@@ -64,15 +48,7 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(999900, $list[1]->getArticlePriceNet());
     }
 
-    /**
-     * @param string $sku
-     * @param string $name
-     * @param float  $priceNet
-     * @param int    $quantity
-     *
-     * @return OrderLineItem
-     */
-    private function getLineItem($sku, $name, $priceNet, $quantity)
+    private function getLineItem(string $sku, string $name, float $priceNet, int $quantity): OrderLineItem
     {
         $item = new OrderLineItem();
 
@@ -86,7 +62,7 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
         return $item;
     }
 
-    private function getTaxArray()
+    private function getTaxArray(): array
     {
         $taxTotal = new ResultElement();
         $taxTotal->offsetSet('excludingTax', 12.34);
@@ -116,7 +92,8 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
             'shipping' => $taxShipping,
             'items' => $taxItems,
         ];
-        $tax = [
+
+        return [
             'type' => 'tax',
             'label' => 'Tax',
             'amount' => '12.59',
@@ -124,7 +101,5 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
             'visible' => true,
             'data' => $taxData,
         ];
-
-        return $tax;
     }
 }

@@ -11,87 +11,65 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\RequestReservation;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ReserveOrder;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
-/**
- * {@inheritdoc}
- */
 class AutomationProviderTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var InvoiceDataProviderInterface
-     */
-    protected $invoiceDataProvider;
+    private InvoiceDataProviderInterface $invoiceDataProvider;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
-        $this->invoiceDataProvider = $this
-            ->getMockBuilder(InvoiceDataProvider::class)->disableOriginalConstructor()->getMock();
+        $this->invoiceDataProvider = $this->createMock(InvoiceDataProvider::class);
     }
 
     public function testCaptureOnActivationOff()
     {
-        /** @var InfinitePayConfig $config */
-        $config = new InfinitePayConfig(
-            [
-                InfinitePayConfig::AUTO_CAPTURE_KEY => true,
-                InfinitePayConfig::AUTO_ACTIVATE_KEY => false
-            ]
-        );
+        $config = new InfinitePayConfig([
+            InfinitePayConfig::AUTO_CAPTURE_KEY => true,
+            InfinitePayConfig::AUTO_ACTIVATE_KEY => false
+        ]);
 
         $automationProvider = new AutomationProvider($this->invoiceDataProvider);
         $reserveOrder = $this->getReserveOrder();
         $actualReserveOrder = $automationProvider->setAutomation($reserveOrder, new Order(), $config);
-        $this->assertEquals('1', $actualReserveOrder->getREQUEST()->getOrderData()->getAutoCapture());
-        $this->assertNull($actualReserveOrder->getREQUEST()->getOrderData()->getAutoActivate());
+        $this->assertEquals('1', $actualReserveOrder->getRequest()->getOrderData()->getAutoCapture());
+        $this->assertNull($actualReserveOrder->getRequest()->getOrderData()->getAutoActivate());
     }
 
     public function testCaptureOnActivationOn()
     {
-        /** @var InfinitePayConfig $config */
-        $config = new InfinitePayConfig(
-            [
-                InfinitePayConfig::AUTO_CAPTURE_KEY => true,
-                InfinitePayConfig::AUTO_ACTIVATE_KEY => true
-            ]
-        );
+        $config = new InfinitePayConfig([
+            InfinitePayConfig::AUTO_CAPTURE_KEY => true,
+            InfinitePayConfig::AUTO_ACTIVATE_KEY => true
+        ]);
 
         $automationProvider = new AutomationProvider($this->invoiceDataProvider);
         $reserveOrder = $this->getReserveOrder();
         $actualReserveOrder = $automationProvider->setAutomation($reserveOrder, new Order(), $config);
-        $this->assertEquals('1', $actualReserveOrder->getREQUEST()->getOrderData()->getAutoCapture());
-        $this->assertEquals('1', $actualReserveOrder->getREQUEST()->getOrderData()->getAutoActivate());
+        $this->assertEquals('1', $actualReserveOrder->getRequest()->getOrderData()->getAutoCapture());
+        $this->assertEquals('1', $actualReserveOrder->getRequest()->getOrderData()->getAutoActivate());
     }
 
     public function testCaptureOffActivationOff()
     {
-        /** @var InfinitePayConfig $config */
-        $config = new InfinitePayConfig(
-            [
-                InfinitePayConfig::AUTO_CAPTURE_KEY => false,
-                InfinitePayConfig::AUTO_ACTIVATE_KEY => false
-            ]
-        );
+        $config = new InfinitePayConfig([
+            InfinitePayConfig::AUTO_CAPTURE_KEY => false,
+            InfinitePayConfig::AUTO_ACTIVATE_KEY => false
+        ]);
 
         $automationProvider = new AutomationProvider($this->invoiceDataProvider);
         $reserveOrder = $this->getReserveOrder();
         $actualReserveOrder = $automationProvider->setAutomation($reserveOrder, new Order(), $config);
-        $this->assertNull($actualReserveOrder->getREQUEST()->getOrderData()->getAutoCapture());
-        $this->assertNull($actualReserveOrder->getREQUEST()->getOrderData()->getAutoActivate());
+        $this->assertNull($actualReserveOrder->getRequest()->getOrderData()->getAutoCapture());
+        $this->assertNull($actualReserveOrder->getRequest()->getOrderData()->getAutoActivate());
     }
 
-    /**
-     * @return ReserveOrder
-     */
-    private function getReserveOrder()
+    private function getReserveOrder(): ReserveOrder
     {
-        $orderData = new OrderTotal();
         $requestReservation = new RequestReservation();
-        $reserverOrder = new ReserveOrder();
-        $requestReservation->setOrderData($orderData);
-        $reserverOrder->setRequest($requestReservation);
+        $requestReservation->setOrderData(new OrderTotal());
 
-        return $reserverOrder;
+        $reserveOrder = new ReserveOrder();
+        $reserveOrder->setRequest($requestReservation);
+
+        return $reserveOrder;
     }
 }

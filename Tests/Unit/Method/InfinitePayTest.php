@@ -10,63 +10,53 @@ use Oro\Bundle\InfinitePayBundle\Method\Provider\OrderProviderInterface;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
-/**
- * {@inheritdoc}
- */
 class InfinitePayTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $config;
+    /** @var InfinitePayConfigInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $config;
 
-    /**
-     * @var ActionRegistryInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $actionRegistry;
+    /** @var ActionRegistryInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $actionRegistry;
 
-    /**
-     * @var OrderProviderInterface|\PHPUnit\Framework\MockObject\MockObject
-     */
-    protected $orderProvider;
+    /** @var OrderProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
+    private $orderProvider;
 
-    /**
-     * {@inheritdoc}
-     */
+    /** @var InfinitePay */
+    private $infinitePay;
+
     protected function setUp(): void
     {
         $this->config = $this->createMock(InfinitePayConfigInterface::class);
         $this->actionRegistry = $this->createMock(ActionRegistryInterface::class);
         $this->orderProvider = $this->createMock(OrderProviderInterface::class);
+
+        $this->infinitePay = new InfinitePay($this->config, $this->actionRegistry, $this->orderProvider);
     }
 
     public function testSupports()
     {
-        $infinitePay = new InfinitePay($this->config, $this->actionRegistry, $this->orderProvider);
-        $this->assertTrue($infinitePay->supports('purchase'));
-        $this->assertFalse($infinitePay->supports('unknown_method'));
+        $this->assertTrue($this->infinitePay->supports('purchase'));
+        $this->assertFalse($this->infinitePay->supports('unknown_method'));
     }
 
     public function testExecute()
     {
-        /** @var ActionInterface|\PHPUnit\Framework\MockObject\MockObject  $action */
         $action = $this->createMock(ActionInterface::class);
-        $action
-            ->expects(static::once())
+        $action->expects(self::once())
             ->method('execute')
             ->willReturn(['action return value']);
-        $this->actionRegistry
-            ->expects(static::once())
+        $this->actionRegistry->expects(self::once())
             ->method('getActionByType')
             ->with('purchase')
             ->willReturn($action);
-        $this->orderProvider = $this->createMock(OrderProviderInterface::class);
-        $this->orderProvider
-            ->expects(static::once())
+
+        $this->orderProvider->expects(self::once())
             ->method('getDataObjectFromPaymentTransaction')
             ->willReturn(new Order());
 
-        $infinitePay = new InfinitePay($this->config, $this->actionRegistry, $this->orderProvider);
-        $this->assertEquals(['action return value'], $infinitePay->execute('purchase', new PaymentTransaction()));
+        $this->assertEquals(
+            ['action return value'],
+            $this->infinitePay->execute('purchase', new PaymentTransaction())
+        );
     }
 }

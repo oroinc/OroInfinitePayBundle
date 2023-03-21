@@ -8,12 +8,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseCapture;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseData;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
-/**
- * {@inheritdoc}
- */
 class CaptureResponseMapperTest extends \PHPUnit\Framework\TestCase
 {
-    protected $orderReference = 'test_order_ref';
+    private string $orderReference = 'test_order_ref';
 
     public function testMapResponseToPaymentTransactionSuccess()
     {
@@ -36,17 +33,11 @@ class CaptureResponseMapperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->orderReference, $actualPaymentTransaction->getReference());
     }
 
-    /**
-     * @param $orderReference
-     * @param $status
-     *
-     * @return CaptureOrderResponse
-     */
-    private function getResponse($orderReference, $status)
+    private function getResponse(string $orderReference, string $status): CaptureOrderResponse
     {
         $responseCapture = new ResponseCapture();
         $responseCapture->setResponseData((new ResponseData())->setRefNo($orderReference)->setStatus($status));
 
-        return (new CaptureOrderResponse())->setRESPONSE($responseCapture);
+        return (new CaptureOrderResponse())->setResponse($responseCapture);
     }
 }

@@ -6,22 +6,13 @@ use Oro\Bundle\InfinitePayBundle\Action\Provider\RequestProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-/**
- * {@inheritdoc}
- */
 class RequestProviderTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var RequestStack */
-    protected $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
-        $request = new Request([], [], [], [], [], ['REMOTE_ADDR' => '127.0.0.1'], [], json_encode([
-            'foo' => 'bar',
-        ]));
+        $request = new Request([], [], [], [], [], ['REMOTE_ADDR' => '127.0.0.1'], []);
 
         $this->requestStack = new RequestStack();
         $this->requestStack->push($request);

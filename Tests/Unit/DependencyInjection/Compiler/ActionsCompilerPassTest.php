@@ -8,8 +8,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ActionsCompilerPassTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var ActionsCompilerPass */
-    private $compiler;
+    private ActionsCompilerPass $compiler;
 
     protected function setUp(): void
     {

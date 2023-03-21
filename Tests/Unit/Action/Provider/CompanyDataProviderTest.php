@@ -8,50 +8,32 @@ use Oro\Bundle\InfinitePayBundle\Action\PropertyAccessor\CustomerPropertyAccesso
 use Oro\Bundle\InfinitePayBundle\Action\Provider\CompanyDataProvider;
 use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 
-/**
- * {@inheritdoc}
- */
 class CompanyDataProviderTest extends \PHPUnit\Framework\TestCase
 {
-    protected $vatId = 'DE129274202';
+    private string $vatId = 'DE129274202';
+    private string $companyDataName = 'test_company';
+    private string $companyDataFsName = 'test_first_name';
+    private string $companyDataLsName = 'test_last_name';
+    private Country $billingCountry;
+    private string $billingCity = 'Mainz';
+    private string $street = 'Am Rosengarten 1';
+    private string $zip = '55131';
+    private CompanyDataProvider $companyDataProvider;
 
-    /** @var string */
-    protected $companyDataName = 'test_company';
-
-    /** @var string */
-    protected $companyDataFsName = 'test_first_name';
-
-    /** @var string */
-    protected $companyDataLsName = 'test_last_name';
-
-    /** @var Country */
-    protected $billingCountry;
-    /** @var string */
-    protected $billingCity = 'Mainz';
-    /** @var string */
-    protected $street = 'Am Rosengarten 1';
-    /** @var string */
-    protected $zip = '55131';
-
-    /** @var CustomerPropertyAccessor */
-    protected $propertyAccessor;
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->billingCountry = (new Country('DE'))->setIso3Code('DEU');
-        $this->propertyAccessor = $this
-            ->getMockBuilder(CustomerPropertyAccessor::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->propertyAccessor->method('extractVatId')->willReturn($this->vatId);
+
+        $propertyAccessor = $this->createMock(CustomerPropertyAccessor::class);
+        $propertyAccessor->expects(self::any())
+            ->method('extractVatId')
+            ->willReturn($this->vatId);
+
+        $this->companyDataProvider = new CompanyDataProvider($propertyAccessor);
     }
 
     public function testGetCompanyData()
     {
-        $companyDataProvider = new CompanyDataProvider($this->propertyAccessor);
         $billingAddress = new OrderAddress();
         $billingAddress
             ->setFirstName($this->companyDataFsName)
@@ -60,11 +42,10 @@ class CompanyDataProviderTest extends \PHPUnit\Framework\TestCase
             ->setCity($this->billingCity)
             ->setStreet($this->street)
             ->setPostalCode($this->zip)
-            ->setOrganization($this->companyDataName)
-        ;
+            ->setOrganization($this->companyDataName);
 
         $customer = new Customer();
-        $actualCompanyData = $companyDataProvider->getCompanyData($billingAddress, $customer);
+        $actualCompanyData = $this->companyDataProvider->getCompanyData($billingAddress, $customer);
 
         $this->assertEquals($this->companyDataName, $actualCompanyData->getCompanyName());
         $this->assertEquals($this->companyDataFsName, $actualCompanyData->getOwnerFsName());

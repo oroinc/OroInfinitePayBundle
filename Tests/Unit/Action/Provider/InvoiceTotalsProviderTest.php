@@ -9,32 +9,14 @@ use Oro\Bundle\PricingBundle\SubtotalProcessor\TotalProcessorProvider;
 use Oro\Bundle\TaxBundle\Model\Result;
 use Oro\Bundle\TaxBundle\Model\ResultElement;
 
-/**
- * {@inheritdoc}
- */
 class InvoiceTotalsProviderTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var TotalProcessorProvider
-     */
-    protected $totalsProvider;
+    private InvoiceTotalsProviderInterface $invoiceTotalsProvider;
 
-    /**
-     * @var InvoiceTotalsProviderInterface
-     */
-    protected $invoiceTotalsProvider;
-
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
-        $totalsProvider = $this
-            ->getMockBuilder(TotalProcessorProvider::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $totalsProvider
+        $totalsProvider = $this->createMock(TotalProcessorProvider::class);
+        $totalsProvider->expects(self::any())
             ->method('getTotalWithSubtotalsAsArray')
             ->willReturn($this->getTotals());
 
@@ -68,10 +50,7 @@ class InvoiceTotalsProviderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(['amount' => 0], $actualDiscount);
     }
 
-    /**
-     * @return array
-     */
-    private function getTotals()
+    private function getTotals(): array
     {
         $total = [
             'type' => 'total',
@@ -121,11 +100,10 @@ class InvoiceTotalsProviderTest extends \PHPUnit\Framework\TestCase
         ];
 
         $subtotal = [$subtotalSubtotal, $shippingCost, $tax];
-        $result = [
+
+        return [
             'total' => $total,
             'subtotals' => $subtotal,
         ];
-
-        return $result;
     }
 }
