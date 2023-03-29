@@ -3,6 +3,7 @@
 @fixture-OroCheckoutBundle:Shipping.yml
 @fixture-OroPaymentBundle:ProductsAndShoppingListsForPayments.yml
 @skip
+@behat-test-env
 # will be implemented in BB-14782
 Feature: Process order submission with InfinitePay payment method guest checkout
   In order to be able to purchase products
