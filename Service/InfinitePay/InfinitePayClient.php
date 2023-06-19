@@ -7,6 +7,9 @@ use BeSimple\SoapClient\WsSecurityFilter;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\Logger\InfinitePayAPILoggerInterface;
 
+/**
+ * Client for InfinitePay API
+ */
 class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
 {
     const TEST_WSDL = 'https://test.infinitepay.de/ws/InfinitePayAPI?wsdl';
@@ -86,7 +89,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
         $options = $this->setOptions($options);
 
         parent::__construct(
-            $this->config->isTestModeEnabled()?static::TEST_WSDL:static::LIVE_WSDL,
+            $this->config->isTestModeEnabled() ? static::TEST_WSDL : static::LIVE_WSDL,
             $options
         );
 
