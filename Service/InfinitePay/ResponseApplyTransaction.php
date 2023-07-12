@@ -35,7 +35,7 @@ class ResponseApplyTransaction extends GenericResponse
     protected $TRS_TYPE;
 
     /**
-     * @param \DateTime $ACCOUNTING_DT
+     * @param \DateTime|null $ACCOUNTING_DT
      * @param float     $GUAR_AMT
      * @param int       $REF_NO
      * @param float     $TRS_AMT
@@ -77,7 +77,7 @@ class ResponseApplyTransaction extends GenericResponse
     /**
      * @param \DateTime $ACCOUNTING_DT
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseApplyTransaction
+     * @return ResponseApplyTransaction
      */
     public function setAccountingDt(\DateTime $ACCOUNTING_DT)
     {
@@ -97,7 +97,7 @@ class ResponseApplyTransaction extends GenericResponse
     /**
      * @param float $GUAR_AMT
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseApplyTransaction
+     * @return ResponseApplyTransaction
      */
     public function setGuarAmt($GUAR_AMT)
     {
@@ -117,7 +117,7 @@ class ResponseApplyTransaction extends GenericResponse
     /**
      * @param int $REF_NO
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseApplyTransaction
+     * @return ResponseApplyTransaction
      */
     public function setRefNo($REF_NO)
     {
@@ -137,7 +137,7 @@ class ResponseApplyTransaction extends GenericResponse
     /**
      * @param float $TRS_AMT
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseApplyTransaction
+     * @return ResponseApplyTransaction
      */
     public function setTrsAmt($TRS_AMT)
     {
@@ -157,7 +157,7 @@ class ResponseApplyTransaction extends GenericResponse
     /**
      * @param string $TRS_CURRENCY
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseApplyTransaction
+     * @return ResponseApplyTransaction
      */
     public function setTrsCurrency($TRS_CURRENCY)
     {
@@ -177,7 +177,7 @@ class ResponseApplyTransaction extends GenericResponse
     /**
      * @param string $TRS_TYPE
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseApplyTransaction
+     * @return ResponseApplyTransaction
      */
     public function setTrsType($TRS_TYPE)
     {

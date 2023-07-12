@@ -22,9 +22,9 @@ class ErrorDataList
     }
 
     /**
-     * @param ErrorData[] $ERROR
+     * @param ErrorData[]|null $ERROR
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ErrorDataList
+     * @return ErrorDataList
      */
     public function setError(array $ERROR = null)
     {
