@@ -22,9 +22,9 @@ class OrderArticleList
     }
 
     /**
-     * @param OrderArticle[] $ARTICLE
+     * @param OrderArticle[]|null $ARTICLE
      *
-     * @return \Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderArticleList
+     * @return OrderArticleList
      */
     public function setARTICLE(array $ARTICLE = null)
     {
