@@ -19,7 +19,7 @@ class VatIdType extends TextType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return static::NAME;
     }
