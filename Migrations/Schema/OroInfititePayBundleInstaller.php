@@ -15,17 +15,17 @@ use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 class OroInfititePayBundleInstaller implements Installation
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function getMigrationVersion()
+    public function getMigrationVersion(): string
     {
         return 'v1_0';
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    public function up(Schema $schema, QueryBag $queries)
+    public function up(Schema $schema, QueryBag $queries): void
     {
         /** Tables update */
         $this->updateOroIntegrationTransportTable($schema);
@@ -45,33 +45,33 @@ class OroInfititePayBundleInstaller implements Installation
     /**
      * Create oro_infinitepay_lbl table
      */
-    protected function createOroInfinitepayLblTable(Schema $schema)
+    private function createOroInfinitepayLblTable(Schema $schema): void
     {
         $table = $schema->createTable('oro_infinitepay_lbl');
-        $table->addColumn('transport_id', 'integer', []);
-        $table->addColumn('localized_value_id', 'integer', []);
+        $table->addColumn('transport_id', 'integer');
+        $table->addColumn('localized_value_id', 'integer');
         $table->setPrimaryKey(['transport_id', 'localized_value_id']);
         $table->addUniqueIndex(['localized_value_id'], 'UNIQ_A5EE03E2EB576E89');
-        $table->addIndex(['transport_id'], 'IDX_A5EE03E29909C13F', []);
+        $table->addIndex(['transport_id'], 'IDX_A5EE03E29909C13F');
     }
 
     /**
      * Create oro_infinitepay_short_lbl table
      */
-    protected function createOroInfinitepayShortLblTable(Schema $schema)
+    private function createOroInfinitepayShortLblTable(Schema $schema): void
     {
         $table = $schema->createTable('oro_infinitepay_short_lbl');
-        $table->addColumn('transport_id', 'integer', []);
-        $table->addColumn('localized_value_id', 'integer', []);
+        $table->addColumn('transport_id', 'integer');
+        $table->addColumn('localized_value_id', 'integer');
         $table->setPrimaryKey(['transport_id', 'localized_value_id']);
         $table->addUniqueIndex(['localized_value_id'], 'UNIQ_1C78A0ACEB576E89');
-        $table->addIndex(['transport_id'], 'IDX_1C78A0AC9909C13F', []);
+        $table->addIndex(['transport_id'], 'IDX_1C78A0AC9909C13F');
     }
 
     /**
      * Update oro_integration_transport table
      */
-    protected function updateOroIntegrationTransportTable(Schema $schema)
+    private function updateOroIntegrationTransportTable(Schema $schema): void
     {
         $table = $schema->getTable('oro_integration_transport');
         $table->addColumn('ipay_client_ref', 'string', ['notnull' => false, 'length' => 255]);
@@ -89,7 +89,7 @@ class OroInfititePayBundleInstaller implements Installation
     /**
      * Add oro_infinitepay_lbl foreign keys.
      */
-    protected function addOroInfinitepayLblForeignKeys(Schema $schema)
+    private function addOroInfinitepayLblForeignKeys(Schema $schema): void
     {
         $table = $schema->getTable('oro_infinitepay_lbl');
         $table->addForeignKeyConstraint(
@@ -109,7 +109,7 @@ class OroInfititePayBundleInstaller implements Installation
     /**
      * Add oro_infinitepay_short_lbl foreign keys.
      */
-    protected function addOroInfinitepayShortLblForeignKeys(Schema $schema)
+    private function addOroInfinitepayShortLblForeignKeys(Schema $schema): void
     {
         $table = $schema->getTable('oro_infinitepay_short_lbl');
         $table->addForeignKeyConstraint(
@@ -126,7 +126,7 @@ class OroInfititePayBundleInstaller implements Installation
         );
     }
 
-    protected function addVatId(Schema $schema)
+    private function addVatId(Schema $schema): void
     {
         $table = $schema->getTable('oro_customer');
         $table->addColumn(
