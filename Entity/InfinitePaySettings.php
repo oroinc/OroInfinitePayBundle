@@ -4,14 +4,18 @@ namespace Oro\Bundle\InfinitePayBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Oro\Bundle\InfinitePayBundle\Entity\Repository\InfinitePaySettingsRepository;
 use Oro\Bundle\IntegrationBundle\Entity\Transport;
 use Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
- * @ORM\Entity(repositoryClass="Oro\Bundle\InfinitePayBundle\Entity\Repository\InfinitePaySettingsRepository")
- */
+* Entity that represents Infinite Pay Settings
+*
+*/
+#[ORM\Entity(repositoryClass: InfinitePaySettingsRepository::class)]
 class InfinitePaySettings extends Transport
 {
     const LABELS_KEY = 'infinite_pay_labels';
@@ -40,114 +44,52 @@ class InfinitePaySettings extends Transport
     protected $settings;
 
     /**
-     * @var Collection|LocalizedFallbackValue[]
-     *
-     * @ORM\ManyToMany(
-     *      targetEntity="Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue",
-     *      cascade={"ALL"},
-     *      orphanRemoval=true
-     * )
-     * @ORM\JoinTable(
-     *      name="oro_infinitepay_lbl",
-     *      joinColumns={
-     *          @ORM\JoinColumn(name="transport_id", referencedColumnName="id", onDelete="CASCADE")
-     *      },
-     *      inverseJoinColumns={
-     *          @ORM\JoinColumn(name="localized_value_id", referencedColumnName="id", onDelete="CASCADE", unique=true)
-     *      }
-     * )
+     * @var Collection<int, LocalizedFallbackValue>
      */
-    protected $infinitePayLabels;
+    #[ORM\ManyToMany(targetEntity: LocalizedFallbackValue::class, cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'oro_infinitepay_lbl')]
+    #[ORM\JoinColumn(name: 'transport_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\InverseJoinColumn(name: 'localized_value_id', referencedColumnName: 'id', unique: true, onDelete: 'CASCADE')]
+    protected ?Collection $infinitePayLabels = null;
 
     /**
-     * @var Collection|LocalizedFallbackValue[]
-     *
-     * @ORM\ManyToMany(
-     *      targetEntity="Oro\Bundle\LocaleBundle\Entity\LocalizedFallbackValue",
-     *      cascade={"ALL"},
-     *      orphanRemoval=true
-     * )
-     * @ORM\JoinTable(
-     *      name="oro_infinitepay_short_lbl",
-     *      joinColumns={
-     *          @ORM\JoinColumn(name="transport_id", referencedColumnName="id", onDelete="CASCADE")
-     *      },
-     *      inverseJoinColumns={
-     *          @ORM\JoinColumn(name="localized_value_id", referencedColumnName="id", onDelete="CASCADE", unique=true)
-     *      }
-     * )
+     * @var Collection<int, LocalizedFallbackValue>
      */
-    protected $infinitePayShortLabels;
+    #[ORM\ManyToMany(targetEntity: LocalizedFallbackValue::class, cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'oro_infinitepay_short_lbl')]
+    #[ORM\JoinColumn(name: 'transport_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\InverseJoinColumn(name: 'localized_value_id', referencedColumnName: 'id', unique: true, onDelete: 'CASCADE')]
+    protected ?Collection $infinitePayShortLabels = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ipay_client_ref", type="string", length=255, nullable=false)
-     */
-    protected $infinitePayClientRef;
+    #[ORM\Column(name: 'ipay_client_ref', type: Types::STRING, length: 255, nullable: false)]
+    protected ?string $infinitePayClientRef = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ipay_username", type="string", length=255, nullable=false)
-     */
-    protected $infinitePayUsername;
+    #[ORM\Column(name: 'ipay_username', type: Types::STRING, length: 255, nullable: false)]
+    protected ?string $infinitePayUsername = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ipay_password", type="string", length=255, nullable=false)
-     */
-    protected $infinitePayPassword;
+    #[ORM\Column(name: 'ipay_password', type: Types::STRING, length: 255, nullable: false)]
+    protected ?string $infinitePayPassword = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ipay_secret", type="string", length=255, nullable=false)
-     */
-    protected $infinitePaySecret;
+    #[ORM\Column(name: 'ipay_secret', type: Types::STRING, length: 255, nullable: false)]
+    protected ?string $infinitePaySecret = null;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="ipay_auto_capture", type="boolean", options={"default"=false})
-     */
-    protected $infinitePayAutoCapture = false;
+    #[ORM\Column(name: 'ipay_auto_capture', type: Types::BOOLEAN, options: ['default' => false])]
+    protected ?bool $infinitePayAutoCapture = false;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="ipay_auto_activate", type="boolean", options={"default"=false})
-     */
-    protected $infinitePayAutoActivate = false;
+    #[ORM\Column(name: 'ipay_auto_activate', type: Types::BOOLEAN, options: ['default' => false])]
+    protected ?bool $infinitePayAutoActivate = false;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="ipay_test_mode", type="boolean", options={"default"=false})
-     */
-    protected $infinitePayTestMode = false;
+    #[ORM\Column(name: 'ipay_test_mode', type: Types::BOOLEAN, options: ['default' => false])]
+    protected ?bool $infinitePayTestMode = false;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="ipay_debug_mode", type="boolean", options={"default"=false})
-     */
-    protected $infinitePayDebugMode = false;
+    #[ORM\Column(name: 'ipay_debug_mode', type: Types::BOOLEAN, options: ['default' => false])]
+    protected ?bool $infinitePayDebugMode = false;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="ipay_invoice_due_period", type="smallint")
-     */
-    protected $infinitePayInvoiceDuePeriod = self::INVOICE_DUE_PERIOD_DEFAULT;
+    #[ORM\Column(name: 'ipay_invoice_due_period', type: Types::SMALLINT)]
+    protected ?int $infinitePayInvoiceDuePeriod = self::INVOICE_DUE_PERIOD_DEFAULT;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="ipay_invoice_shipping_duration", type="smallint")
-     */
-    protected $infinitePayInvoiceShippingDuration = self::INVOICE_SHIPPING_DURATION_DEFAULT;
+    #[ORM\Column(name: 'ipay_invoice_shipping_duration', type: Types::SMALLINT)]
+    protected ?int $infinitePayInvoiceShippingDuration = self::INVOICE_SHIPPING_DURATION_DEFAULT;
 
     public function __construct()
     {
