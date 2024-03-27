@@ -1,0 +1,8 @@
+oro_sanitize:
+    entity:
+        oro_integration_transport:
+            fields:
+                ipay_client_ref: md5
+                ipay_username: md5
+                ipay_password: md5
+                ipay_secret: md5
