@@ -1,3 +1,4 @@
+@regression
 @fixture-OroCustomerBundle:CustomerUserFixture.yml
 Feature: VAT Id Validation
   In order to manage Customer Addresses
