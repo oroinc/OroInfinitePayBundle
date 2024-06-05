@@ -67,7 +67,7 @@ class OrderTotalProvider implements OrderTotalProviderInterface
     private function convertToCentInt($input)
     {
         return round($input * 100, 0, PHP_ROUND_HALF_UP);
-//        return $input * 100;
+        //        return $input * 100;
     }
 
     /**
