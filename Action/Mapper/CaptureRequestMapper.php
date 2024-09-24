@@ -36,6 +36,7 @@ class CaptureRequestMapper implements RequestMapperInterface
      * @param array $additionalData
      * @return CaptureOrder
      */
+    #[\Override]
     public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData = [])
     {
         $captureRequest = new RequestCapture();

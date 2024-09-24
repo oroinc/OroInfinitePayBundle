@@ -19,6 +19,7 @@ class AutomationProvider implements AutomationProviderInterface
         $this->invoiceDataProvider = $invoiceDataProvider;
     }
 
+    #[\Override]
     public function setAutomation(ReserveOrder $reserveOrder, Order $order, InfinitePayConfigInterface $config)
     {
         if (!$config->isAutoCaptureEnabled()) {

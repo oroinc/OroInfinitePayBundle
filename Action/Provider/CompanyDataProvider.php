@@ -27,6 +27,7 @@ class CompanyDataProvider implements CompanyDataProviderInterface
      * @return CompanyData
      * @throws UserDataMissingException
      */
+    #[\Override]
     public function getCompanyData(OrderAddress $billingAddress, Customer $customer)
     {
         $companyData = new CompanyData();

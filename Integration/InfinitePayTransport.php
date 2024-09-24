@@ -13,30 +13,25 @@ class InfinitePayTransport implements TransportInterface
     /** @var ParameterBag */
     protected $settings;
 
+    #[\Override]
     public function init(Transport $transportEntity)
     {
         $this->settings = $transportEntity->getSettingsBag();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getSettingsFormType()
     {
         return InfinitePaySettingsType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getSettingsEntityFQCN()
     {
         return InfinitePaySettings::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getLabel()
     {
         return 'oro.infinite_pay.settings.label';

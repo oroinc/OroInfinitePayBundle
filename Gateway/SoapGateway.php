@@ -27,6 +27,7 @@ class SoapGateway implements GatewayInterface
      * @param InfinitePayConfigInterface $config
      * @return SOAP\ReserveOrderResponse
      */
+    #[\Override]
     public function reserve(SOAP\ReserveOrder $reservation, InfinitePayConfigInterface $config)
     {
         $client = $this->clientFactory->create($config);
@@ -39,6 +40,7 @@ class SoapGateway implements GatewayInterface
      * @param InfinitePayConfigInterface $config
      * @return SOAP\CaptureOrderResponse
      */
+    #[\Override]
     public function capture(SOAP\CaptureOrder $capture, InfinitePayConfigInterface $config)
     {
         $client = $this->clientFactory->create($config);
@@ -51,6 +53,7 @@ class SoapGateway implements GatewayInterface
      * @param InfinitePayConfigInterface $config
      * @return SOAP\ActivateOrderResponse
      */
+    #[\Override]
     public function activate(SOAP\ActivateOrder $activateOrder, InfinitePayConfigInterface $config)
     {
         $client = $this->clientFactory->create($config);
@@ -63,6 +66,7 @@ class SoapGateway implements GatewayInterface
      * @param InfinitePayConfigInterface $config
      * @return SOAP\ApplyTransactionResponse
      */
+    #[\Override]
     public function applyTransaction(SOAP\ApplyTransaction $applyTransactionRequest, InfinitePayConfigInterface $config)
     {
         $client = $this->clientFactory->create($config);

@@ -18,6 +18,7 @@ class InfinitePayAPILogger implements InfinitePayAPILoggerInterface
      * @param string $request
      * @param string $response
      */
+    #[\Override]
     public function logApiError($request, $response)
     {
         $debugLog = [

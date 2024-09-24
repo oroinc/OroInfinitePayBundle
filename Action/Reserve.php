@@ -33,6 +33,7 @@ class Reserve extends ActionAbstract
      *
      * @return array
      */
+    #[\Override]
     public function execute(PaymentTransaction $paymentTransaction, Order $order)
     {
         $additionalData = $this->getAdditionalDataFromPaymentTransaction($paymentTransaction);

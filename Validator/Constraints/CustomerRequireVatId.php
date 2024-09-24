@@ -8,9 +8,7 @@ class CustomerRequireVatId extends Constraint
 {
     public $message = 'oro.infinite_pay.validators.vat_id_required';
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getTargets(): string|array
     {
         return [self::PROPERTY_CONSTRAINT, self::CLASS_CONSTRAINT];

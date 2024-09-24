@@ -10,9 +10,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-/**
- * {@inheritdoc}
- */
 class DebtorDataType extends AbstractType
 {
     const BLOCK_PREFIX = 'oro_infinite_pay_debtor_data';
@@ -42,9 +39,7 @@ class DebtorDataType extends AbstractType
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -66,6 +61,7 @@ class DebtorDataType extends AbstractType
             );
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -74,9 +70,7 @@ class DebtorDataType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return self::BLOCK_PREFIX;

@@ -26,6 +26,7 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
      *
      * @return array
      */
+    #[\Override]
     public function getTax(Order $order)
     {
         return $this->getSubtotalComponentByType('tax', $order);
@@ -36,6 +37,7 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
      *
      * @return ResultElement
      */
+    #[\Override]
     public function getTaxTotals(Order $order)
     {
         return $this->getAmountsByType('total', $order);
@@ -46,6 +48,7 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
      *
      * @return array
      */
+    #[\Override]
     public function getTaxShipping(Order $order)
     {
         return $this->getAmountsByType('shipping', $order);
@@ -56,6 +59,7 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
      *
      * @return array
      */
+    #[\Override]
     public function getDiscount(Order $order)
     {
         return $this->getSubtotalComponentByType('discount', $order);
@@ -66,6 +70,7 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
      *
      * @return string|null
      */
+    #[\Override]
     public function getTotalGrossAmount(Order $order)
     {
         $totals = $this->getTotalsByTypeArray('total', $order);

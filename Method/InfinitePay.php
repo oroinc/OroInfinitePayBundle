@@ -46,6 +46,7 @@ class InfinitePay implements PaymentMethodInterface
      *
      * @return array
      */
+    #[\Override]
     public function execute($actionName, PaymentTransaction $paymentTransaction)
     {
         if (!$this->supports($actionName)) {
@@ -62,14 +63,13 @@ class InfinitePay implements PaymentMethodInterface
     /**
      * @return string
      */
+    #[\Override]
     public function getIdentifier()
     {
         return $this->config->getPaymentMethodIdentifier();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function isApplicable(PaymentContextInterface $context)
     {
         return !empty($context->getCustomer()->getVatId());
@@ -80,6 +80,7 @@ class InfinitePay implements PaymentMethodInterface
      *
      * @return bool
      */
+    #[\Override]
     public function supports($actionName)
     {
         return in_array(

@@ -25,6 +25,7 @@ class ActivationRequestMapperTest extends \PHPUnit\Framework\TestCase
     /** @var InvoiceDataProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $invoiceDataProvider;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->clientDataProvider = $this->createMock(ClientDataProvider::class);

@@ -48,57 +48,43 @@ class InfinitePayClientMock implements InfinitePayClientInterface
         $this->options = $options;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function reserveOrder(ReserveOrder $parameters)
     {
         return new ReserveOrderResponse($this->fillResponse(new ResponseReservation(), $parameters));
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function callCaptureOrder(CaptureOrder $parameters)
     {
         return new CaptureOrderResponse();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function activateOrder(ActivateOrder $parameters)
     {
         return new ActivateOrderResponse();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function applyTransactionOnActivatedOrder(ApplyTransaction $parameters)
     {
         return new ApplyTransactionResponse();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function cancelOrder(CancelOrder $parameters)
     {
         return new CancelOrderResponse();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function modifyReservedOrder(ModifyReservedOrder $parameters)
     {
         return new ModifyReservedOrderResponse();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function checkStatusOrder(CheckStatusOrder $parameters)
     {
         return new CheckStatusOrderResponse();

@@ -12,6 +12,7 @@ class ActivateOrderResponse implements ResponseBodyInterface
     /**
      * @return ResponseActivation
      */
+    #[\Override]
     public function getResponse()
     {
         return $this->RESPONSE;

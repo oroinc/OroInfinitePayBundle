@@ -8,17 +8,13 @@ class VatIdType extends TextType
 {
     const NAME = 'oro_infinitepay.form_type.vat_id';
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return static::NAME;

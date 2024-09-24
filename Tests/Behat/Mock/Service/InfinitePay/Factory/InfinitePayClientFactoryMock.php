@@ -8,9 +8,7 @@ use Oro\Bundle\InfinitePayBundle\Tests\Behat\Mock\Service\InfinitePay\InfinitePa
 
 class InfinitePayClientFactoryMock implements InfinitePayClientFactoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function create(InfinitePayConfigInterface $config, array $options = [])
     {
         return new InfinitePayClientMock($config, $options);

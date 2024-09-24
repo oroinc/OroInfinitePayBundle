@@ -22,6 +22,7 @@ class GenericResponse implements GenericResponseInterface
     /**
      * @return ErrorDataList
      */
+    #[\Override]
     public function getErrorData()
     {
         return $this->ERROR_DATA;
@@ -32,6 +33,7 @@ class GenericResponse implements GenericResponseInterface
      *
      * @return GenericResponse
      */
+    #[\Override]
     public function setErrorData($ERROR_DATA)
     {
         $this->ERROR_DATA = $ERROR_DATA;
@@ -42,6 +44,7 @@ class GenericResponse implements GenericResponseInterface
     /**
      * @return int
      */
+    #[\Override]
     public function getRequestId()
     {
         return $this->REQUEST_ID;
@@ -52,6 +55,7 @@ class GenericResponse implements GenericResponseInterface
      *
      * @return GenericResponse
      */
+    #[\Override]
     public function setRequestId($REQUEST_ID)
     {
         $this->REQUEST_ID = $REQUEST_ID;
@@ -62,6 +66,7 @@ class GenericResponse implements GenericResponseInterface
     /**
      * @return ResponseData
      */
+    #[\Override]
     public function getResponseData()
     {
         return $this->RESPONSE_DATA;
@@ -72,6 +77,7 @@ class GenericResponse implements GenericResponseInterface
      *
      * @return GenericResponse
      */
+    #[\Override]
     public function setResponseData($RESPONSE_DATA)
     {
         $this->RESPONSE_DATA = $RESPONSE_DATA;

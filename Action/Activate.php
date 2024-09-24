@@ -13,6 +13,7 @@ class Activate extends ActionAbstract
      *
      * @return array
      */
+    #[\Override]
     public function execute(PaymentTransaction $paymentTransaction, Order $order)
     {
         $paymentMethodConfig = $this->getPaymentMethodConfig($paymentTransaction->getPaymentMethod());

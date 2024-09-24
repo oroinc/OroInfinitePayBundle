@@ -27,9 +27,7 @@ class InfinitePayFactory implements InfinitePayFactoryInterface
         $this->orderProvider = $orderProvider;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     public function create(InfinitePayConfigInterface $config)
     {
         return new InfinitePay(

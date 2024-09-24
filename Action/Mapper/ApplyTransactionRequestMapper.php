@@ -29,6 +29,7 @@ class ApplyTransactionRequestMapper implements RequestMapperInterface
      * @param array $additionalData
      * @return ApplyTransaction
      */
+    #[\Override]
     public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData)
     {
         $request = new ApplyTransaction();

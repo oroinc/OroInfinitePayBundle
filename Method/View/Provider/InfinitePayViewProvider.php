@@ -28,9 +28,7 @@ class InfinitePayViewProvider extends AbstractPaymentMethodViewProvider
         parent::__construct();
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     protected function buildViews()
     {
         $configs = $this->configProvider->getPaymentConfigs();

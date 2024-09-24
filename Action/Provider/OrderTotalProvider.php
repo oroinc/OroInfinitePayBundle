@@ -23,6 +23,7 @@ class OrderTotalProvider implements OrderTotalProviderInterface
      *
      * @return OrderTotal
      */
+    #[\Override]
     public function getOrderTotal(Order $order)
     {
         $discount = $this->invoiceTotalsProvider->getDiscount($order);

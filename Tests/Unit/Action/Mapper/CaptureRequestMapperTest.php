@@ -20,6 +20,7 @@ class CaptureRequestMapperTest extends \PHPUnit\Framework\TestCase
     /** @var OrderTotalProvider|\PHPUnit\Framework\MockObject\MockObject */
     private $orderTotalProvider;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->clientDataProvider = $this->createMock(ClientDataProvider::class);

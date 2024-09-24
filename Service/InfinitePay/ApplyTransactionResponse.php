@@ -12,6 +12,7 @@ class ApplyTransactionResponse implements ResponseBodyInterface
     /**
      * @return ResponseApplyTransaction
      */
+    #[\Override]
     public function getResponse()
     {
         return $this->RESPONSE;

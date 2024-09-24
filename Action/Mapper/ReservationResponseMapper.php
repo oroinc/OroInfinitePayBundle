@@ -13,6 +13,7 @@ class ReservationResponseMapper implements ResponseMapperInterface
      *
      * @return PaymentTransaction
      */
+    #[\Override]
     public function mapResponseToPaymentTransaction(
         PaymentTransaction $paymentTransaction,
         ResponseBodyInterface $response

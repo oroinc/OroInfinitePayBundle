@@ -97,9 +97,7 @@ class InfinitePaySettings extends Transport
         $this->infinitePayShortLabels = new ArrayCollection();
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     public function getSettingsBag()
     {
         if (null === $this->settings) {

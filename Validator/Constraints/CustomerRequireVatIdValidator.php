@@ -27,6 +27,7 @@ class CustomerRequireVatIdValidator extends ConstraintValidator
      * @param Customer   $value
      * @param Constraint $constraint
      */
+    #[\Override]
     public function validate($value, Constraint $constraint)
     {
         if (null === $value) {

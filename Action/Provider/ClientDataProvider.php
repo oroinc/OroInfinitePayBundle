@@ -10,9 +10,7 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ClientData;
  */
 class ClientDataProvider implements ClientDataProviderInterface
 {
-    /**
-     * @inheritdoc
-     */
+    #[\Override]
     public function getClientData($orderId, InfinitePayConfigInterface $config)
     {
         $clientData = new ClientData();

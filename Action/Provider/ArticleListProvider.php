@@ -28,6 +28,7 @@ class ArticleListProvider implements ArticleListProviderInterface
      *
      * @return OrderArticleList
      */
+    #[\Override]
     public function getArticleList(Order $order)
     {
         $tax = $this->invoiceTotalsProvider->getTax($order);

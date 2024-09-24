@@ -18,6 +18,7 @@ class ArticleListProviderTest extends \PHPUnit\Framework\TestCase
 {
     private ArticleListProvider $articleListProvider;
 
+    #[\Override]
     protected function setUp(): void
     {
         $invoiceTotalsProvider = $this->createMock(InvoiceTotalsProvider::class);
