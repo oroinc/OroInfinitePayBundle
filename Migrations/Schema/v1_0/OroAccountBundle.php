@@ -11,9 +11,7 @@ use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
 class OroAccountBundle implements Migration, OrderedMigrationInterface
 {
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function up(Schema $schema, QueryBag $queries)
     {
         $table = $schema->getTable('oro_customer');
@@ -30,9 +28,7 @@ class OroAccountBundle implements Migration, OrderedMigrationInterface
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function getOrder()
     {
         return 1;

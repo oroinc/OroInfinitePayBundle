@@ -23,6 +23,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return bool
      */
+    #[\Override]
     public function isAutoCaptureEnabled()
     {
         return (bool) $this->get(self::AUTO_CAPTURE_KEY);
@@ -31,6 +32,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return bool
      */
+    #[\Override]
     public function isAutoActivateEnabled()
     {
         return (bool) $this->get(self::AUTO_ACTIVATE_KEY);
@@ -39,6 +41,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return bool
      */
+    #[\Override]
     public function isTestModeEnabled()
     {
         return (bool) $this->get(self::TEST_MODE_KEY);
@@ -47,6 +50,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return bool
      */
+    #[\Override]
     public function isDebugModeEnabled()
     {
         return (bool) $this->get(self::DEBUG_MODE_KEY);
@@ -55,6 +59,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return string
      */
+    #[\Override]
     public function getClientRef()
     {
         return (string) $this->get(self::CLIENT_REF_KEY);
@@ -63,6 +68,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return string
      */
+    #[\Override]
     public function getUsername()
     {
         return (string) $this->get(self::USERNAME_KEY);
@@ -71,6 +77,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return string
      */
+    #[\Override]
     public function getPassword()
     {
         return (string) $this->get(self::PASSWORD_KEY);
@@ -79,6 +86,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return string
      */
+    #[\Override]
     public function getSecret()
     {
         return (string) $this->get(self::SECRET_KEY);
@@ -87,6 +95,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return int
      */
+    #[\Override]
     public function getInvoiceDuePeriod()
     {
         return (int) $this->get(self::INVOICE_DUE_PERIOD_KEY);
@@ -95,6 +104,7 @@ class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements Inf
     /**
      * @return int
      */
+    #[\Override]
     public function getShippingDuration()
     {
         return (int) $this->get(self::INVOICE_SHIPPING_DURATION_KEY);

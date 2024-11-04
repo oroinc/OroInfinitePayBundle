@@ -19,9 +19,7 @@ class InfinitePayViewFactory implements InfinitePayViewFactoryInterface
         $this->formFactory = $formFactory;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     public function create(InfinitePayConfigInterface $config)
     {
         return new InfinitePayView($config, $this->formFactory);

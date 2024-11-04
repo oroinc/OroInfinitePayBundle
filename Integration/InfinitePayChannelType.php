@@ -9,17 +9,13 @@ class InfinitePayChannelType implements ChannelInterface, IconAwareIntegrationIn
 {
     const TYPE = 'infinite_pay';
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getLabel()
     {
         return 'oro.infinite_pay.channel_type.infinite_pay.label';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getIcon()
     {
         return 'bundles/oroinfinitepay/img/infinitepay-logo.png';

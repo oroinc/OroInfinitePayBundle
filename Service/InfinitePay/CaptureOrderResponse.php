@@ -16,6 +16,7 @@ class CaptureOrderResponse extends GenericResponse implements ResponseBodyInterf
     /**
      * @return ResponseCapture
      */
+    #[\Override]
     public function getResponse()
     {
         return $this->RESPONSE;

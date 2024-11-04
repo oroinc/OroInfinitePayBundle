@@ -27,6 +27,7 @@ class InfinitePaySettingsType extends AbstractType
      * @throws MissingOptionsException
      * @throws \InvalidArgumentException
      */
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -83,6 +84,7 @@ class InfinitePaySettingsType extends AbstractType
     /**
      * @throws AccessException
      */
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -90,9 +92,7 @@ class InfinitePaySettingsType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     public function getBlockPrefix(): string
     {
         return self::BLOCK_PREFIX;

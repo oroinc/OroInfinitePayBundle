@@ -33,6 +33,7 @@ class ReservationRequestMapperTest extends \PHPUnit\Framework\TestCase
     /** @var ArticleListProviderInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $articleListProvider;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->clientDataProvider = $this->createMock(ClientDataProvider::class);

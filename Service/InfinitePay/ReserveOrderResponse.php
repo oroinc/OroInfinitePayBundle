@@ -17,6 +17,7 @@ class ReserveOrderResponse implements ResponseBodyInterface
     /**
      * @return ResponseReservation
      */
+    #[\Override]
     public function getResponse()
     {
         return $this->RESPONSE;

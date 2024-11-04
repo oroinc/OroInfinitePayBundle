@@ -18,9 +18,7 @@ class InfinitePayClientFactory implements InfinitePayClientFactoryInterface
         $this->logger = $logger;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     public function create(InfinitePayConfigInterface $config, array $options = [])
     {
         return new InfinitePayClient($config, $this->logger, $options);

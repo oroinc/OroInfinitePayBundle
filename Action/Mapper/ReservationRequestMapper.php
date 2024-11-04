@@ -61,6 +61,7 @@ class ReservationRequestMapper implements RequestMapperInterface
      *
      * @return ReserveOrder
      */
+    #[\Override]
     public function createRequestFromOrder(Order $order, InfinitePayConfigInterface $config, array $additionalData)
     {
         $orderId = $order->getIdentifier();

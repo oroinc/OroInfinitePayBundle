@@ -11,6 +11,7 @@ class InvoiceNumberGenerator implements InvoiceNumberGeneratorInterface
      *
      * @return string
      */
+    #[\Override]
     public function getInvoiceNumberFromOrder(Order $order)
     {
         return $order->getIdentifier();

@@ -15,6 +15,7 @@ class AutomationProviderTest extends \PHPUnit\Framework\TestCase
 {
     private InvoiceDataProviderInterface $invoiceDataProvider;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->invoiceDataProvider = $this->createMock(InvoiceDataProvider::class);

@@ -24,6 +24,7 @@ class InfinitePayTest extends \PHPUnit\Framework\TestCase
     /** @var InfinitePay */
     private $infinitePay;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->config = $this->createMock(InfinitePayConfigInterface::class);

@@ -35,9 +35,6 @@ class InfinitePayConfigProvider implements InfinitePayConfigProviderInterface
      */
     protected $configs = [];
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(
         ManagerRegistry $doctrine,
         LoggerInterface $logger,
@@ -55,6 +52,7 @@ class InfinitePayConfigProvider implements InfinitePayConfigProviderInterface
      *
      * @return bool
      */
+    #[\Override]
     public function hasPaymentConfig($identifier)
     {
         $configs = $this->getPaymentConfigs();
@@ -70,9 +68,7 @@ class InfinitePayConfigProvider implements InfinitePayConfigProviderInterface
         return $this->type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getPaymentConfigs()
     {
         if (0 === count($this->configs)) {
@@ -82,9 +78,7 @@ class InfinitePayConfigProvider implements InfinitePayConfigProviderInterface
         return $this->configs;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getPaymentConfig($identifier)
     {
         if (!$this->hasPaymentConfig($identifier)) {

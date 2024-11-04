@@ -11,6 +11,7 @@ class ActionRegistry implements ActionRegistryInterface
      */
     protected $actions = [];
 
+    #[\Override]
     public function addAction($actionType, ActionInterface $actionClass)
     {
         $this->actions[$actionType] = $actionClass;
@@ -23,6 +24,7 @@ class ActionRegistry implements ActionRegistryInterface
      *
      * @throws \InvalidArgumentException
      */
+    #[\Override]
     public function getActionByType($actionType)
     {
         if (!array_key_exists($actionType, $this->actions)) {

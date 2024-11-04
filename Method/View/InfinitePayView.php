@@ -34,6 +34,7 @@ class InfinitePayView implements PaymentMethodViewInterface
      * @return array
      * @throws InvalidOptionsException
      */
+    #[\Override]
     public function getOptions(PaymentContextInterface $context)
     {
         $formView = $this->formFactory->create(DebtorDataType::class)->createView();
@@ -47,14 +48,13 @@ class InfinitePayView implements PaymentMethodViewInterface
     /**
      * @return string
      */
+    #[\Override]
     public function getBlock()
     {
         return '_payment_methods_infinite_pay_widget';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getAdminLabel()
     {
         return $this->config->getAdminLabel();
@@ -63,14 +63,13 @@ class InfinitePayView implements PaymentMethodViewInterface
     /**
      * @return string
      */
+    #[\Override]
     public function getLabel()
     {
         return $this->config->getLabel();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    #[\Override]
     public function getShortLabel()
     {
         return $this->config->getShortLabel();
@@ -79,6 +78,7 @@ class InfinitePayView implements PaymentMethodViewInterface
     /**
      * @return string
      */
+    #[\Override]
     public function getPaymentMethodIdentifier()
     {
         return $this->config->getPaymentMethodIdentifier();

@@ -16,15 +16,14 @@ class CustomerRequireVatIdValidatorTest extends ConstraintValidatorTestCase
     /** @var FrontendHelper|\PHPUnit\Framework\MockObject\MockObject */
     private $frontendHelper;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->frontendHelper = $this->createMock(FrontendHelper::class);
         parent::setUp();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    #[\Override]
     protected function createValidator(): CustomerRequireVatIdValidator
     {
         $validator = new CustomerRequireVatIdValidator();

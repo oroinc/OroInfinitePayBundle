@@ -37,9 +37,7 @@ class InfinitePayConfigFactory implements InfinitePayConfigFactoryInterface
         $this->identifierGenerator = $identifierGenerator;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     public function createConfig(InfinitePaySettings $settings)
     {
         $params = [];

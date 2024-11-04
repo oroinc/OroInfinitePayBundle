@@ -49,6 +49,7 @@ class DebtorDataProvider implements DebtorDataProviderInterface
      *
      * @return DebtorData
      */
+    #[\Override]
     public function getDebtorData(Order $order)
     {
         /** @var OrderAddress $billingAddress */

@@ -22,9 +22,7 @@ class InvoiceDataProvider implements InvoiceDataProviderInterface
         $this->invoiceNumberGenerator = $numberGenerator;
     }
 
-    /**
-     * @inheritdoc
-     */
+    #[\Override]
     public function getInvoiceData(Order $order, InfinitePayConfigInterface $config, $delayInDays = 0)
     {
         $duePeriod = $config->getInvoiceDuePeriod();

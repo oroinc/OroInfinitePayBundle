@@ -28,9 +28,7 @@ class InfinitePayProvider extends AbstractPaymentMethodProvider
         $this->factory = $factory;
     }
 
-    /**
-     * @inheritDoc
-     */
+    #[\Override]
     protected function collectMethods()
     {
         $configs = $this->configProvider->getPaymentConfigs();

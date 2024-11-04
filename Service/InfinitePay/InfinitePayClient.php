@@ -101,6 +101,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return reserveOrderResponse
      */
+    #[\Override]
     public function reserveOrder(ReserveOrder $parameters)
     {
         /** @var reserveOrderResponse $response */
@@ -118,6 +119,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return CaptureOrderResponse
      */
+    #[\Override]
     public function callCaptureOrder(CaptureOrder $parameters)
     {
         $response = $this->__soapCall('captureOrder', [$parameters]);
@@ -134,6 +136,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return ActivateOrderResponse
      */
+    #[\Override]
     public function activateOrder(ActivateOrder $parameters)
     {
         $response = $this->__soapCall('activateOrder', [$parameters]);
@@ -150,6 +153,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return ApplyTransactionResponse
      */
+    #[\Override]
     public function applyTransactionOnActivatedOrder(ApplyTransaction $parameters)
     {
         return $this->__soapCall('applyTransactionOnActivatedOrder', [$parameters]);
@@ -160,6 +164,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return CancelOrderResponse
      */
+    #[\Override]
     public function cancelOrder(CancelOrder $parameters)
     {
         return $this->__soapCall('cancelOrder', [$parameters]);
@@ -170,6 +175,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return ModifyReservedOrderResponse
      */
+    #[\Override]
     public function modifyReservedOrder(ModifyReservedOrder $parameters)
     {
         return $this->__soapCall('modifyReservedOrder', [$parameters]);
@@ -180,6 +186,7 @@ class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
      *
      * @return CheckStatusOrderResponse
      */
+    #[\Override]
     public function checkStatusOrder(CheckStatusOrder $parameters)
     {
         return $this->__soapCall('checkStatusOrder', [$parameters]);

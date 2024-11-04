@@ -31,6 +31,7 @@ class CheckoutOrderProvider implements OrderProviderInterface
      *
      * @return array|null
      */
+    #[\Override]
     public function getDataObjectFromPaymentTransaction(PaymentTransaction $paymentTransaction)
     {
         $entity = $this->retrieveEntity($paymentTransaction);
