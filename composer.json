@@ -1,13 +1,13 @@
 {
     "name": "oro/commerce-infinitepay",
     "description": "OroCommerce InfinitePay Integration",
-    "homepage": "https://github.com/orocommerce/OroInfinitePayBundle.git",
-    "license": "OSL-3.0",
+    "homepage": "https://github.com/oroinc/OroInfinitePayBundle.git",
     "keywords": ["Oro", "InfinitePay", "Integration"],
+    "license": "OSL-3.0",
     "authors": [
         {
             "name": "Oro, Inc",
-            "homepage": "http://www.orocommerce.com"
+            "homepage": "https://oroinc.com/"
         }
     ],
     "autoload": {
@@ -21,7 +21,7 @@
     "repositories": {
         "oro": {
             "type": "composer",
-            "url": "https://packagist.orocrm.com"
+            "url": "https://packagist.oroinc.com"
         }
     },
     "minimum-stability": "dev",
