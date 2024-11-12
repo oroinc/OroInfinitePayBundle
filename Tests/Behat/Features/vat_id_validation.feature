@@ -38,5 +38,5 @@ Feature: VAT Id Validation
       | Zip/Postal Code | 555         |
       | Billing         | 1           |
     And I save form
-    Then I should not see "VAT Id is required to define an EU billing address"
-    And I should see "Customer Address has been saved" flash message
+    Then I should see "Customer Address has been saved" flash message
+    And I should not see "VAT Id is required to define an EU billing address"
