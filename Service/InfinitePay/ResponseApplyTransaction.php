@@ -43,12 +43,12 @@ class ResponseApplyTransaction extends GenericResponse
      * @param string    $TRS_TYPE
      */
     public function __construct(
-        \DateTime $ACCOUNTING_DT = null,
-        $GUAR_AMT = null,
-        $REF_NO = null,
-        $TRS_AMT = null,
-        $TRS_CURRENCY = null,
-        $TRS_TYPE = null
+        ?\DateTime $ACCOUNTING_DT = null,
+                   $GUAR_AMT = null,
+                   $REF_NO = null,
+                   $TRS_AMT = null,
+                   $TRS_CURRENCY = null,
+                   $TRS_TYPE = null
     ) {
         $this->ACCOUNTING_DT = $ACCOUNTING_DT ? $ACCOUNTING_DT->format(\DateTime::ATOM) : null;
         $this->GUAR_AMT = $GUAR_AMT;

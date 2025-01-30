@@ -9,7 +9,7 @@ class ReserveOrderResponse implements ResponseBodyInterface
      */
     protected $RESPONSE;
 
-    public function __construct(ResponseReservation $responseReservation = null)
+    public function __construct(?ResponseReservation $responseReservation = null)
     {
         $this->RESPONSE = $responseReservation;
     }

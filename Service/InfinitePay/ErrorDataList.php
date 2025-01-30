@@ -26,7 +26,7 @@ class ErrorDataList
      *
      * @return ErrorDataList
      */
-    public function setError(array $ERROR = null)
+    public function setError(?array $ERROR = null)
     {
         $this->ERROR = $ERROR;
 

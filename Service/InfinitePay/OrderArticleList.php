@@ -26,7 +26,7 @@ class OrderArticleList
      *
      * @return OrderArticleList
      */
-    public function setARTICLE(array $ARTICLE = null)
+    public function setARTICLE(?array $ARTICLE = null)
     {
         $this->ARTICLE = $ARTICLE;
 
