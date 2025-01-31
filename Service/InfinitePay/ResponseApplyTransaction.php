@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents the response data for an applied transaction in the InfinitePay service.
+ */
 class ResponseApplyTransaction extends GenericResponse
 {
     /**
@@ -44,11 +47,11 @@ class ResponseApplyTransaction extends GenericResponse
      */
     public function __construct(
         ?\DateTime $ACCOUNTING_DT = null,
-                   $GUAR_AMT = null,
-                   $REF_NO = null,
-                   $TRS_AMT = null,
-                   $TRS_CURRENCY = null,
-                   $TRS_TYPE = null
+        $GUAR_AMT = null,
+        $REF_NO = null,
+        $TRS_AMT = null,
+        $TRS_CURRENCY = null,
+        $TRS_TYPE = null
     ) {
         $this->ACCOUNTING_DT = $ACCOUNTING_DT ? $ACCOUNTING_DT->format(\DateTime::ATOM) : null;
         $this->GUAR_AMT = $GUAR_AMT;
