@@ -39,3 +39,12 @@ services:
             - [setFrontendHelper, ['@oro_frontend.request.frontend_helper']]
         tags:
             - { name: validator.constraint_validator, alias: oro_infinite_pay_customer_require_vat_id_validator }
+
+    Oro\Bundle\InfinitePayBundle\Entity\Repository\InfinitePaySettingsRepository:
+        parent: oro_entity.abstract_repository
+        arguments:
+            - 'Oro\Bundle\InfinitePayBundle\Entity\InfinitePaySettings'
+        calls:
+            - [ setAclHelper, [ '@oro_security.acl_helper' ] ]
+        tags:
+            - { name: doctrine.repository_service }
