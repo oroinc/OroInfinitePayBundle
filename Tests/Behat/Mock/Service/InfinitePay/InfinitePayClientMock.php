@@ -25,16 +25,16 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseReservation;
 
 class InfinitePayClientMock implements InfinitePayClientInterface
 {
-    const EMAIL_SUCCESS = 'email_for_success_emulation@test.com';
+    public const EMAIL_SUCCESS = 'email_for_success_emulation@test.com';
 
-    const TEST_ADD_INFO = 'test add info';
-    const TEST_ORDER_ID = 'test order id';
-    const TEST_DB_ID = 'test bd id';
-    const TEST_GUAR_AMT = 'test guar amt';
-    const TEST_REF_NO = 'test ref no';
-    const TEST_STATUS_SUCCESS = '1';
-    const TEST_STATUS_FAIL = '0';
-    const TEST_ERROR_MESSAGE = 'test error message';
+    public const TEST_ADD_INFO = 'test add info';
+    public const TEST_ORDER_ID = 'test order id';
+    public const TEST_DB_ID = 'test bd id';
+    public const TEST_GUAR_AMT = 'test guar amt';
+    public const TEST_REF_NO = 'test ref no';
+    public const TEST_STATUS_SUCCESS = '1';
+    public const TEST_STATUS_FAIL = '0';
+    public const TEST_ERROR_MESSAGE = 'test error message';
 
     /** @var InfinitePayConfigInterface */
     protected $config;

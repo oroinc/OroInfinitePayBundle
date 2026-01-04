@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DebtorDataType extends AbstractType
 {
-    const BLOCK_PREFIX = 'oro_infinite_pay_debtor_data';
+    public const BLOCK_PREFIX = 'oro_infinite_pay_debtor_data';
 
     public static function getAvailableLegalTypes()
     {

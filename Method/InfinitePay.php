@@ -13,7 +13,7 @@ use Oro\Bundle\ReminderBundle\Exception\MethodNotSupportedException;
 
 class InfinitePay implements PaymentMethodInterface
 {
-    const ACTIVATE = 'activate';
+    public const ACTIVATE = 'activate';
 
     /**
      * @var InfinitePayConfigInterface

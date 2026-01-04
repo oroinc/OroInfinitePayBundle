@@ -18,25 +18,25 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 #[ORM\Entity(repositoryClass: InfinitePaySettingsRepository::class)]
 class InfinitePaySettings extends Transport
 {
-    const LABELS_KEY = 'infinite_pay_labels';
-    const SHORT_LABELS_KEY = 'infinite_pay_short_labels';
+    public const LABELS_KEY = 'infinite_pay_labels';
+    public const SHORT_LABELS_KEY = 'infinite_pay_short_labels';
 
-    const CLIENT_REF_KEY = 'client_ref';
-    const USERNAME_KEY = 'username';
-    const PASSWORD_KEY = 'password';
-    const SECRET_KEY = 'secret';
+    public const CLIENT_REF_KEY = 'client_ref';
+    public const USERNAME_KEY = 'username';
+    public const PASSWORD_KEY = 'password';
+    public const SECRET_KEY = 'secret';
 
-    const AUTO_CAPTURE_KEY = 'auto_capture';
-    const AUTO_ACTIVATE_KEY = 'auto_activate';
+    public const AUTO_CAPTURE_KEY = 'auto_capture';
+    public const AUTO_ACTIVATE_KEY = 'auto_activate';
 
-    const TEST_MODE_KEY = 'test_mode';
-    const API_DEBUG_MODE_KEY = 'debug_mode';
+    public const TEST_MODE_KEY = 'test_mode';
+    public const API_DEBUG_MODE_KEY = 'debug_mode';
 
-    const INVOICE_DUE_PERIOD_KEY = 'invoice_due_period';
-    const INVOICE_SHIPPING_DURATION_KEY = 'invoice_shipping_duration';
+    public const INVOICE_DUE_PERIOD_KEY = 'invoice_due_period';
+    public const INVOICE_SHIPPING_DURATION_KEY = 'invoice_shipping_duration';
 
-    const INVOICE_DUE_PERIOD_DEFAULT = 30;
-    const INVOICE_SHIPPING_DURATION_DEFAULT = 21;
+    public const INVOICE_DUE_PERIOD_DEFAULT = 30;
+    public const INVOICE_SHIPPING_DURATION_DEFAULT = 21;
 
     /**
      * @var ParameterBag

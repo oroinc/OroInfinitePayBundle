@@ -11,7 +11,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
  */
 class CustomerPropertyAccessor
 {
-    const PROPERTY_PATH = 'vat_id';
+    public const PROPERTY_PATH = 'vat_id';
 
     /** @var PropertyAccessorInterface */
     protected $propertyAccessor;

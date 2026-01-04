@@ -6,19 +6,19 @@ use Oro\Bundle\PaymentBundle\Method\Config\ParameterBag\AbstractParameterBagPaym
 
 class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements InfinitePayConfigInterface
 {
-    const CLIENT_REF_KEY = 'client_ref';
-    const USERNAME_KEY = 'username';
-    const PASSWORD_KEY = 'password';
-    const SECRET_KEY = 'secret';
+    public const CLIENT_REF_KEY = 'client_ref';
+    public const USERNAME_KEY = 'username';
+    public const PASSWORD_KEY = 'password';
+    public const SECRET_KEY = 'secret';
 
-    const AUTO_CAPTURE_KEY = 'auto_capture';
-    const AUTO_ACTIVATE_KEY = 'auto_activate';
+    public const AUTO_CAPTURE_KEY = 'auto_capture';
+    public const AUTO_ACTIVATE_KEY = 'auto_activate';
 
-    const TEST_MODE_KEY = 'test_mode';
-    const DEBUG_MODE_KEY = 'debug_mode';
+    public const TEST_MODE_KEY = 'test_mode';
+    public const DEBUG_MODE_KEY = 'debug_mode';
 
-    const INVOICE_DUE_PERIOD_KEY = 'invoice_due_period';
-    const INVOICE_SHIPPING_DURATION_KEY = 'invoice_shipping_duration';
+    public const INVOICE_DUE_PERIOD_KEY = 'invoice_due_period';
+    public const INVOICE_SHIPPING_DURATION_KEY = 'invoice_shipping_duration';
 
     /**
      * @return bool

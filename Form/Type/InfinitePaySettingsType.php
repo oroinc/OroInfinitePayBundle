@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 class InfinitePaySettingsType extends AbstractType
 {
-    const BLOCK_PREFIX = 'oro_infinitepay_settings';
+    public const BLOCK_PREFIX = 'oro_infinitepay_settings';
 
     /**
      * @throws ConstraintDefinitionException

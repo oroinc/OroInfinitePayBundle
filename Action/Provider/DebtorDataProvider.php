@@ -13,9 +13,9 @@ use Oro\Component\PhpUtils\Network\DnsResolver;
  */
 class DebtorDataProvider implements DebtorDataProviderInterface
 {
-    const NOT_AVAILABLE = 'na';
-    const DB_NEW_CUSTOMER_HAS_ACCOUNT = '1';
-    const NEG_PAY_HIST_FALSE = '0';
+    public const NOT_AVAILABLE = 'na';
+    public const DB_NEW_CUSTOMER_HAS_ACCOUNT = '1';
+    public const NEG_PAY_HIST_FALSE = '0';
 
     /**
      * @var CompanyDataProviderInterface

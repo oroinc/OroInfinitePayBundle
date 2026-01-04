@@ -6,7 +6,7 @@ use Oro\Bundle\EntityConfigBundle\Form\Type\TextType;
 
 class VatIdType extends TextType
 {
-    const NAME = 'oro_infinitepay.form_type.vat_id';
+    public const NAME = 'oro_infinitepay.form_type.vat_id';
 
     #[\Override]
     public function getName()

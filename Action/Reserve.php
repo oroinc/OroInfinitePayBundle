@@ -12,7 +12,7 @@ class Reserve extends ActionAbstract
     /**
      * @internal
      */
-    const DEFAULT_ADDITIONAL_DATA = [
+    public const DEFAULT_ADDITIONAL_DATA = [
         'email' => '',
         'legalForm' => '',
     ];

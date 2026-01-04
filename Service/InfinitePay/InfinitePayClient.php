@@ -12,8 +12,8 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\Logger\InfinitePayAPILogger
  */
 class InfinitePayClient extends SoapClient implements InfinitePayClientInterface
 {
-    const TEST_WSDL = 'https://test.infinitepay.de/ws/InfinitePayAPI?wsdl';
-    const LIVE_WSDL = 'https://app.infinitepay.de/ws/InfinitePayAPI?wsdl';
+    public const TEST_WSDL = 'https://test.infinitepay.de/ws/InfinitePayAPI?wsdl';
+    public const LIVE_WSDL = 'https://app.infinitepay.de/ws/InfinitePayAPI?wsdl';
 
     /** @var InfinitePayConfigInterface */
     protected $config;

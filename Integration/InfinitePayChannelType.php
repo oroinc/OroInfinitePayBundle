@@ -7,7 +7,7 @@ use Oro\Bundle\IntegrationBundle\Provider\IconAwareIntegrationInterface;
 
 class InfinitePayChannelType implements ChannelInterface, IconAwareIntegrationInterface
 {
-    const TYPE = 'infinite_pay';
+    public const TYPE = 'infinite_pay';
 
     #[\Override]
     public function getLabel()

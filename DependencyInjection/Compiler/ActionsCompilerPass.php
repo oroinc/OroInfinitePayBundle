@@ -9,9 +9,9 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ActionsCompilerPass implements CompilerPassInterface
 {
-    const REGISTRY_PAYMENT_ACTIONS = 'oro_infinite_pay.registry.payment_actions';
+    public const REGISTRY_PAYMENT_ACTIONS = 'oro_infinite_pay.registry.payment_actions';
 
-    const TAG_PAYMENT_ACTION = 'payment_action';
+    public const TAG_PAYMENT_ACTION = 'payment_action';
 
     #[\Override]
     public function process(ContainerBuilder $container)
