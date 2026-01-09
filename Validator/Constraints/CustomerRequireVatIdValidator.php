@@ -56,7 +56,8 @@ class CustomerRequireVatIdValidator extends ConstraintValidator
         $result = false;
         /** @var AbstractDefaultTypedAddress $address */
         foreach ($customer->getAddresses() as $address) {
-            if (!$address->isEmpty()
+            if (
+                !$address->isEmpty()
                 && EuropeanUnionHelper::isEuropeanUnionCountry($address->getCountryIso2())
                 && $address->hasTypeWithName(AddressType::TYPE_BILLING)
             ) {

@@ -50,7 +50,7 @@ class InfinitePay implements PaymentMethodInterface
     public function execute($actionName, PaymentTransaction $paymentTransaction)
     {
         if (!$this->supports($actionName)) {
-            throw new MethodNotSupportedException('InfinityPay implementation does not support action: '.$actionName);
+            throw new MethodNotSupportedException('InfinityPay implementation does not support action: ' . $actionName);
         }
 
         $entity = $this->orderProvider->getDataObjectFromPaymentTransaction($paymentTransaction);

@@ -15,7 +15,7 @@ class ClientDataProvider implements ClientDataProviderInterface
     {
         $clientData = new ClientData();
         $clientData->setClientRef($config->getClientRef());
-        $message = $config->getClientRef().$orderId;
+        $message = $config->getClientRef() . $orderId;
         $clientData->setSecurityCd(
             $this->generateSecurityCode($message, $config->getSecret())
         );

@@ -98,7 +98,7 @@ class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
 
     /**
      * @param Order $order
-     * @param string$type
+     * @param string $type
      *
      * @return array
      */
