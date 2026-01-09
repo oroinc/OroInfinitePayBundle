@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a generic response.
+ */
 class GenericResponse implements GenericResponseInterface
 {
     /**

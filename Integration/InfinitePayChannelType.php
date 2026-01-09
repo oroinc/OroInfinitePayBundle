@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Integration;
 use Oro\Bundle\IntegrationBundle\Provider\ChannelInterface;
 use Oro\Bundle\IntegrationBundle\Provider\IconAwareIntegrationInterface;
 
+/**
+ * Channel type for InfinitePay integration.
+ */
 class InfinitePayChannelType implements ChannelInterface, IconAwareIntegrationInterface
 {
     public const TYPE = 'infinite_pay';

@@ -8,6 +8,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Config\Factory\InfinitePayConfigFactoryI
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Provides InfinitePay configuration.
+ */
 class InfinitePayConfigProvider implements InfinitePayConfigProviderInterface
 {
     /**

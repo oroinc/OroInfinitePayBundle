@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Defines the contract for InfinitePay client.
+ */
 interface InfinitePayClientInterface
 {
     /**

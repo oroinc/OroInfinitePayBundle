@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a check status request.
+ */
 class RequestCheckStatus extends GenericRequest
 {
     /**

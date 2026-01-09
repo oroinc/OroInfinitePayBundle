@@ -7,6 +7,13 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay as SOAP;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\Factory\InfinitePayClientFactoryInterface;
 
 /**
+ * Communicates with the InfinitePay SOAP gateway.
+ *
+ * This class implements the gateway interface to communicate with the InfinitePay payment service via SOAP.
+ * It provides methods for payment operations including reserve, capture, activate, and apply transaction operations.
+ * The class uses a client factory to create configured SOAP clients for each operation
+ * based on the payment method configuration.
+ *
  * @codeCoverageIgnore
  */
 class SoapGateway implements GatewayInterface

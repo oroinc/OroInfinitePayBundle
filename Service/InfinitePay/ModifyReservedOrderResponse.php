@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a modify reserved order response.
+ */
 class ModifyReservedOrderResponse
 {
     /**

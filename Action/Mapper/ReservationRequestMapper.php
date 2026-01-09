@@ -15,6 +15,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ReserveOrder;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ShippingData;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Maps order data to reservation request.
+ */
 class ReservationRequestMapper implements RequestMapperInterface
 {
     /**

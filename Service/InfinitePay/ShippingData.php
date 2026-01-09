@@ -3,6 +3,14 @@
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
 /**
+ * Represents shipping address information for InfinitePay SOAP requests.
+ *
+ * This class encapsulates shipping address data required by the InfinitePay SOAP API.
+ * It includes recipient contact information, address details, and an option to use billing data
+ * as the shipping address. The class provides getter and setter methods for all properties
+ * and supports fluent method chaining for convenient object construction.
+ * It is primarily used when building SOAP requests for payment operations that require shipping information.
+ *
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  */
 class ShippingData

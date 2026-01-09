@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Method\Provider;
 
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Defines the contract for invoice number generator.
+ */
 interface InvoiceNumberGeneratorInterface
 {
     /**

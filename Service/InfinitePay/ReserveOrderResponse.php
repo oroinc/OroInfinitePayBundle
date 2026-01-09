@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a reserve order response.
+ */
 class ReserveOrderResponse implements ResponseBodyInterface
 {
     /**

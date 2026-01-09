@@ -10,6 +10,9 @@ use Oro\Bundle\IntegrationBundle\Generator\IntegrationIdentifierGeneratorInterfa
 use Oro\Bundle\LocaleBundle\Helper\LocalizationHelper;
 use Oro\Bundle\SecurityBundle\Encoder\SymmetricCrypterInterface;
 
+/**
+ * Creates InfinitePay configuration instances.
+ */
 class InfinitePayConfigFactory implements InfinitePayConfigFactoryInterface
 {
     /**

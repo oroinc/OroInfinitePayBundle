@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action\Provider;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Provides order totals.
+ */
 interface OrderTotalProviderInterface
 {
     public const TOTAL_CALC_B2B_TAX_PER_ITEM = '3';

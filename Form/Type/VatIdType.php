@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Form\Type;
 
 use Oro\Bundle\EntityConfigBundle\Form\Type\TextType;
 
+/**
+ * Form type for VAT ID.
+ */
 class VatIdType extends TextType
 {
     public const NAME = 'oro_infinitepay.form_type.vat_id';

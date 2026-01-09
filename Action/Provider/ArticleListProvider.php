@@ -8,6 +8,9 @@ use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\OrderBundle\Entity\OrderLineItem;
 use Oro\Bundle\TaxBundle\Model\Result;
 
+/**
+ * Provides article list for orders.
+ */
 class ArticleListProvider implements ArticleListProviderInterface
 {
     /**

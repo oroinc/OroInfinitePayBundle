@@ -3,6 +3,15 @@
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
 /**
+ * Represents order total and transaction information for InfinitePay SOAP requests.
+ *
+ * This class encapsulates order and transaction data required by the InfinitePay SOAP API.
+ * It includes order identifiers, payment information, pricing details (gross and net amounts), shipping costs,
+ * discounts, VAT information, and transaction metadata. The class provides getter and setter methods
+ * for all properties and supports fluent method chaining for convenient object construction.
+ * It is primarily used when building SOAP requests for payment operations
+ * that require comprehensive order and transaction information.
+ *
  * @SuppressWarnings(PHPMD.TooManyFields)
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  */

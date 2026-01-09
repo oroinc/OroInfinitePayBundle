@@ -11,6 +11,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ActivateOrder;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\RequestActivation;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Maps order data to activation request.
+ */
 class ActivationRequestMapper implements RequestMapperInterface
 {
     /**

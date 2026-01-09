@@ -10,6 +10,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * Form type for debtor data.
+ */
 class DebtorDataType extends AbstractType
 {
     public const BLOCK_PREFIX = 'oro_infinite_pay_debtor_data';

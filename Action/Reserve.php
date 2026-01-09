@@ -7,6 +7,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
+/**
+ * Handles reserve action for payment transactions.
+ */
 class Reserve extends ActionAbstract
 {
     /**

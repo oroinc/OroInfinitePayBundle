@@ -10,6 +10,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CaptureOrder;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\RequestCapture;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Maps order data to capture request.
+ */
 class CaptureRequestMapper implements RequestMapperInterface
 {
     /**

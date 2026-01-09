@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Method\Config;
 
 use Oro\Bundle\PaymentBundle\Method\Config\ParameterBag\AbstractParameterBagPaymentConfig;
 
+/**
+ * Configuration for InfinitePay payment method.
+ */
 class InfinitePayConfig extends AbstractParameterBagPaymentConfig implements InfinitePayConfigInterface
 {
     public const CLIENT_REF_KEY = 'client_ref';

@@ -7,6 +7,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * Compiler pass for registering payment actions.
+ */
 class ActionsCompilerPass implements CompilerPassInterface
 {
     public const REGISTRY_PAYMENT_ACTIONS = 'oro_infinite_pay.registry.payment_actions';

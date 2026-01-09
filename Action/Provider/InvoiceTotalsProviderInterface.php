@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action\Provider;
 
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Provides invoice totals for orders.
+ */
 interface InvoiceTotalsProviderInterface
 {
     /**

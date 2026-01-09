@@ -9,6 +9,9 @@ use Oro\Bundle\PaymentBundle\Method\View\PaymentMethodViewInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
+/**
+ * View for InfinitePay payment method.
+ */
 class InfinitePayView implements PaymentMethodViewInterface
 {
     /**

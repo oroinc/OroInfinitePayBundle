@@ -10,6 +10,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\RequestApplyTransaction;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Maps order data to apply transaction request.
+ */
 class ApplyTransactionRequestMapper implements RequestMapperInterface
 {
     /**

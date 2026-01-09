@@ -11,6 +11,9 @@ use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 use Oro\Bundle\PaymentBundle\Method\PaymentMethodInterface;
 use Oro\Bundle\ReminderBundle\Exception\MethodNotSupportedException;
 
+/**
+ * InfinitePay payment method implementation.
+ */
 class InfinitePay implements PaymentMethodInterface
 {
     public const ACTIVATE = 'activate';

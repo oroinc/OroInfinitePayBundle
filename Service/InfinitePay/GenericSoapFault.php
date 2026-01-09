@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a generic SOAP fault.
+ */
 class GenericSoapFault
 {
     /**

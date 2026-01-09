@@ -17,6 +17,9 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\InvalidOptionsException;
 use Symfony\Component\Validator\Exception\MissingOptionsException;
 
+/**
+ * Form type for InfinitePay settings.
+ */
 class InfinitePaySettingsType extends AbstractType
 {
     public const BLOCK_PREFIX = 'oro_infinitepay_settings';

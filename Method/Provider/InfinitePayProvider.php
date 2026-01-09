@@ -7,6 +7,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Config\Provider\InfinitePayConfigProvide
 use Oro\Bundle\InfinitePayBundle\Method\Factory\InfinitePayFactoryInterface;
 use Oro\Bundle\PaymentBundle\Method\Provider\AbstractPaymentMethodProvider;
 
+/**
+ * Provides InfinitePay payment method.
+ */
 class InfinitePayProvider extends AbstractPaymentMethodProvider
 {
     /**

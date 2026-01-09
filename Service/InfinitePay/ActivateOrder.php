@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents an activate order request.
+ */
 class ActivateOrder
 {
     /**

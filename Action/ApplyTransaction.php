@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
+/**
+ * Handles apply transaction action for payment transactions.
+ */
 class ApplyTransaction extends ActionAbstract
 {
     /**

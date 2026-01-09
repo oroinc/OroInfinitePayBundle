@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay\Logger;
 
 use Psr\Log\LoggerInterface;
 
+/**
+ * Logs InfinitePay API requests and responses.
+ */
 class InfinitePayAPILogger implements InfinitePayAPILoggerInterface
 {
     /** @var LoggerInterface */

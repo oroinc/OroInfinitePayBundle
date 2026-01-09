@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a reservation request.
+ */
 class RequestReservation extends GenericRequest
 {
     /**

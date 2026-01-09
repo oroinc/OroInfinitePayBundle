@@ -6,6 +6,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\InvoiceData;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Provides invoice data for orders.
+ */
 interface InvoiceDataProviderInterface
 {
     /**

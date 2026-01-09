@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents an activation request.
+ */
 class RequestActivation extends GenericRequest
 {
     /**

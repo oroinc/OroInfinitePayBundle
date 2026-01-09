@@ -3,6 +3,14 @@
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
 /**
+ * Represents debtor information for InfinitePay SOAP requests.
+ *
+ * This class encapsulates all debtor-related data required by the InfinitePay SOAP API.
+ * It includes personal information (name, contact details, address), identification data, credit scoring information,
+ * and custom user-defined fields. The class provides getter and setter methods for all properties
+ * and supports fluent method chaining for convenient object construction.
+ * It is primarily used when building SOAP requests for payment operations.
+ *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @SuppressWarnings(PHPMD.TooManyFields)

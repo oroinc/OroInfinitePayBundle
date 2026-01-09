@@ -6,6 +6,9 @@ use Oro\Bundle\CustomerBundle\Entity\Customer;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CompanyData;
 use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 
+/**
+ * Provides company data for orders.
+ */
 interface CompanyDataProviderInterface
 {
     /**
