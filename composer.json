@@ -16,7 +16,7 @@
     },
     "require": {
         "oro/commerce": "7.0.*",
-        "besimple/soap-client": "^0.2.6"
+        "oroinc/soap-client": "^0.2.7"
     },
     "repositories": {
         "oro": {
