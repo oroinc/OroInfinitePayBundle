@@ -8,6 +8,9 @@ use Oro\Bundle\IntegrationBundle\Entity\Transport;
 use Oro\Bundle\IntegrationBundle\Provider\TransportInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
+/**
+ * Transport for InfinitePay integration.
+ */
 class InfinitePayTransport implements TransportInterface
 {
     /** @var ParameterBag */

@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action\Registry;
 
 use Oro\Bundle\InfinitePayBundle\Action\ActionInterface;
 
+/**
+ * Registry for payment actions.
+ */
 class ActionRegistry implements ActionRegistryInterface
 {
     /**

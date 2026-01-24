@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\OrderBundle\Entity\Order;
 
+/**
+ * Defines the contract for request mappers.
+ */
 interface RequestMapperInterface
 {
     /**

@@ -6,6 +6,9 @@ use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PricingBundle\SubtotalProcessor\TotalProcessorProvider;
 use Oro\Bundle\TaxBundle\Model\ResultElement;
 
+/**
+ * Provides invoice totals for orders.
+ */
 class InvoiceTotalsProvider implements InvoiceTotalsProviderInterface
 {
     /**

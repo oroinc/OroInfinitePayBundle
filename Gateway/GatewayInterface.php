@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Gateway;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay as SOAP;
 
+/**
+ * Defines the contract for payment gateway.
+ */
 interface GatewayInterface
 {
     /**

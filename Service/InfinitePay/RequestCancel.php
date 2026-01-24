@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a cancel request.
+ */
 class RequestCancel extends GenericRequest
 {
     /**

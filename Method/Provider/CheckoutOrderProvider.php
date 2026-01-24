@@ -6,6 +6,9 @@ use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 use Oro\Bundle\PaymentBundle\Provider\AddressExtractor;
 
+/**
+ * Provides order data for checkout.
+ */
 class CheckoutOrderProvider implements OrderProviderInterface
 {
     /**

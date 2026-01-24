@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
+/**
+ * Handles activation action for payment transactions.
+ */
 class Activate extends ActionAbstract
 {
     /**

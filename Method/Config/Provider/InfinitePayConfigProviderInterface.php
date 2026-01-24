@@ -4,6 +4,9 @@ namespace Oro\Bundle\InfinitePayBundle\Method\Config\Provider;
 
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 
+/**
+ * Provides InfinitePay configuration.
+ */
 interface InfinitePayConfigProviderInterface
 {
     /**

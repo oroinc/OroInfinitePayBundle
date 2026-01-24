@@ -9,6 +9,9 @@ use Oro\Bundle\InfinitePayBundle\Exception\ValueNotSetException;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\CompanyData;
 use Oro\Bundle\OrderBundle\Entity\OrderAddress;
 
+/**
+ * Provides company data for orders.
+ */
 class CompanyDataProvider implements CompanyDataProviderInterface
 {
     /**

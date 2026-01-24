@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay\Factory;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\InfinitePayClientInterface;
 
+/**
+ * Defines the contract for InfinitePay client factory.
+ */
 interface InfinitePayClientFactoryInterface
 {
     /**

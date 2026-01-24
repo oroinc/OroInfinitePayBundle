@@ -6,6 +6,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Method\View\InfinitePayView;
 use Symfony\Component\Form\FormFactoryInterface;
 
+/**
+ * Creates InfinitePay payment method view instances.
+ */
 class InfinitePayViewFactory implements InfinitePayViewFactoryInterface
 {
     /**

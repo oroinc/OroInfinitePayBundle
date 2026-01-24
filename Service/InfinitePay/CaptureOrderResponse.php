@@ -2,6 +2,9 @@
 
 namespace Oro\Bundle\InfinitePayBundle\Service\InfinitePay;
 
+/**
+ * Represents a capture order response.
+ */
 class CaptureOrderResponse extends GenericResponse implements ResponseBodyInterface
 {
     /**

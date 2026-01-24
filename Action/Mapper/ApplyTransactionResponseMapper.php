@@ -5,6 +5,9 @@ namespace Oro\Bundle\InfinitePayBundle\Action\Mapper;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\ResponseBodyInterface;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 
+/**
+ * Maps apply transaction response to payment transaction.
+ */
 class ApplyTransactionResponseMapper implements ResponseMapperInterface
 {
     /**

@@ -6,6 +6,9 @@ use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfigInterface;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\InfinitePayClient;
 use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\Logger\InfinitePayAPILoggerInterface;
 
+/**
+ * Creates InfinitePay client instances.
+ */
 class InfinitePayClientFactory implements InfinitePayClientFactoryInterface
 {
     /**

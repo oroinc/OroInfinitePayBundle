@@ -6,6 +6,9 @@ use Oro\Bundle\InfinitePayBundle\Service\InfinitePay\OrderTotal;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\TaxBundle\Model\ResultElement;
 
+/**
+ * Provides order totals.
+ */
 class OrderTotalProvider implements OrderTotalProviderInterface
 {
     /**
