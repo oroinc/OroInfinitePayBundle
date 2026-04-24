@@ -1,6 +1,6 @@
 <?php
 
-namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\DependencyInjection;
+namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\DependencyInjection;
 
 use Oro\Bundle\InfinitePayBundle\DependencyInjection\OroInfinitePayExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
