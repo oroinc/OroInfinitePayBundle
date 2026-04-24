@@ -1,6 +1,6 @@
 <?php
 
-namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Mapper;
+namespace Oro\Bundle\InfinitePayBundle\Tests\Unit\Action\Provider;
 
 use Oro\Bundle\InfinitePayBundle\Action\Provider\InvoiceDataProvider;
 use Oro\Bundle\InfinitePayBundle\Method\Config\InfinitePayConfig;
