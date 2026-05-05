@@ -17,7 +17,7 @@ class OroInfititePayBundleInstaller implements Installation
     #[\Override]
     public function getMigrationVersion(): string
     {
-        return 'v1_0';
+        return 'v1_0_1';
     }
 
     #[\Override]
@@ -72,8 +72,8 @@ class OroInfititePayBundleInstaller implements Installation
         $table = $schema->getTable('oro_integration_transport');
         $table->addColumn('ipay_client_ref', 'string', ['notnull' => false, 'length' => 255]);
         $table->addColumn('ipay_username', 'string', ['notnull' => false, 'length' => 255]);
-        $table->addColumn('ipay_password', 'string', ['notnull' => false, 'length' => 255]);
-        $table->addColumn('ipay_secret', 'string', ['notnull' => false, 'length' => 255]);
+        $table->addColumn('ipay_password', 'text', ['notnull' => false]);
+        $table->addColumn('ipay_secret', 'text', ['notnull' => false]);
         $table->addColumn('ipay_auto_capture', 'boolean', ['default' => '0', 'notnull' => false]);
         $table->addColumn('ipay_auto_activate', 'boolean', ['default' => '0', 'notnull' => false]);
         $table->addColumn('ipay_debug_mode', 'boolean', ['default' => '0', 'notnull' => false]);
