@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\InvalidOptionsException;
@@ -37,12 +38,12 @@ class InfinitePaySettingsType extends AbstractType
             ->add('infinitePayLabels', LocalizedFallbackValueCollectionType::class, [
                 'label' => 'oro.infinite_pay.settings.labels.label',
                 'required' => true,
-                'entry_options' => ['constraints' => [new NotBlank()]],
+                'entry_options' => ['constraints' => [new NotBlank(), new Length(max: 255)]],
             ])
             ->add('infinitePayShortLabels', LocalizedFallbackValueCollectionType::class, [
                 'label' => 'oro.infinite_pay.settings.short_labels.label',
                 'required' => true,
-                'entry_options' => ['constraints' => [new NotBlank()]],
+                'entry_options' => ['constraints' => [new NotBlank(), new Length(max: 255)]],
             ])
             ->add('infinitePayClientRef', TextType::class, [
                 'label' => 'oro.infinite_pay.settings.client_ref.label',

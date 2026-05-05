@@ -1,0 +1,34 @@
+<?php
+
+namespace Oro\Bundle\InfinitePayBundle\Migrations\Schema\v1_1;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
+use Oro\Bundle\MigrationBundle\Migration\Migration;
+use Oro\Bundle\MigrationBundle\Migration\QueryBag;
+
+/**
+ * Converts Infinite Pay encrypted credential columns from VARCHAR(255) to TEXT to fit AES-encrypted values.
+ */
+class ChangeEncryptedColumnsToText implements Migration
+{
+    #[\Override]
+    public function up(Schema $schema, QueryBag $queries): void
+    {
+        $table = $schema->getTable('oro_integration_transport');
+
+        $this->changeColumnToText($table, 'ipay_password');
+        $this->changeColumnToText($table, 'ipay_secret');
+    }
+
+    private function changeColumnToText(Table $table, string $columnName): void
+    {
+        if ($table->getColumn($columnName)->getType()->getName() === Types::TEXT) {
+            return;
+        }
+
+        $table->modifyColumn($columnName, ['type' => Type::getType(Types::TEXT), 'length' => null]);
+    }
+}

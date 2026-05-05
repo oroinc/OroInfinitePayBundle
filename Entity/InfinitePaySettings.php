@@ -67,10 +67,10 @@ class InfinitePaySettings extends Transport
     #[ORM\Column(name: 'ipay_username', type: Types::STRING, length: 255, nullable: false)]
     protected ?string $infinitePayUsername = null;
 
-    #[ORM\Column(name: 'ipay_password', type: Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(name: 'ipay_password', type: Types::TEXT, nullable: false)]
     protected ?string $infinitePayPassword = null;
 
-    #[ORM\Column(name: 'ipay_secret', type: Types::STRING, length: 255, nullable: false)]
+    #[ORM\Column(name: 'ipay_secret', type: Types::TEXT, nullable: false)]
     protected ?string $infinitePaySecret = null;
 
     #[ORM\Column(name: 'ipay_auto_capture', type: Types::BOOLEAN, options: ['default' => false])]
