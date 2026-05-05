@@ -11,9 +11,17 @@ Oro\Bundle\InfinitePayBundle\Entity\InfinitePaySettings:
             - NotBlank: ~
         infinitePayClientRef:
             - NotBlank: ~
+            - Length:
+                max: 255
         infinitePayUsername:
             - NotBlank: ~
+            - Length:
+                max: 255
         infinitePayPassword:
             - NotBlank: ~
+            - Length:
+                max: 255
         infinitePaySecret:
             - NotBlank: ~
+            - Length:
+                max: 255
