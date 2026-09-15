@@ -1,0 +1,13 @@
+include:
+    - '@OroPaymentBundle:ProductsAndShoppingListsForPayments.yml'
+
+# InfinitePay resolves the debtor company data from the customer's VAT ID and aborts with
+# UserDataMissingException when it is not set, so the shared payment fixture's customer is
+# redefined here with one. The VAT ID is an extend field owned by this package, which is why it
+# cannot live in the OroPaymentBundle fixture — applications without InfinitePay load that one too.
+Oro\Bundle\CustomerBundle\Entity\Customer:
+    customer:
+        name: 'Company A'
+        organization: '@organization'
+        owner: '@admin'
+        vatId: 'TESTVATID'
