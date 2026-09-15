@@ -1,7 +1,7 @@
 @regression
 @fixture-OroFlatRateShippingBundle:FlatRateIntegration.yml
 @fixture-OroCheckoutBundle:Shipping.yml
-@fixture-OroPaymentBundle:ProductsAndShoppingListsForPayments.yml
+@fixture-OroInfinitePayBundle:ProductsAndShoppingListsForInfinitePay.yml
 @behat-test-env
 Feature: Process order submission with InfinitePay payment method
   In order to be able to purchase products
