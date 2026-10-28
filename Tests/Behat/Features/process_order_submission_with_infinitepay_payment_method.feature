@@ -71,3 +71,22 @@ Feature: Process order submission with InfinitePay payment method
     When I proceed as the Admin
     And I go to Sales/Orders
     Then I should see Paid in full in grid
+
+  Scenario: Successful order reservation with InfinitePay when Auto-Activation is disabled
+    Given I go to System/Integrations/Manage Integrations
+    And I click edit "InfinitePay" in grid
+    And I fill "InfinitePay Form" with:
+      | Auto-Activation | false |
+    When I save and close form
+    Then I should see "Integration saved" flash message
+    When I proceed as the User
+    And I open page with shopping list List 2
+    And I press "Create Order"
+    And I select "Fifth avenue, 10115 Berlin, Germany" on the "Billing Information" checkout step and press Continue
+    And I select "Fifth avenue, 10115 Berlin, Germany" on the "Shipping Information" checkout step and press Continue
+    And I check "Flat Rate" on the "Shipping Method" checkout step and press Continue
+    And I fill "InfintePayEmailForm" with:
+      | Email | email_for_success_emulation@test.com |
+    And I click "Continue"
+    When I press "Submit Order"
+    Then I see the "Thank You" page with "Thank You For Your Purchase!" title
